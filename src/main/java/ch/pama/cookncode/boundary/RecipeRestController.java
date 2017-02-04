@@ -10,6 +10,6 @@ public class RecipeRestController {
 
     @GetMapping("/random")
     public String getRecipe() {
-        return "This is a random repository.";
+        return "This is a random recipe.";
     }
 }
