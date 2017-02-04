@@ -1,0 +1,18 @@
+language: java
+# Use Travis's cointainer based infrastructure
+sudo: false
+notifications:
+  email:
+    - marius.reusch@gmail.com
+jdk:
+  - oraclejdk8
+
+before_cache:
+  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+cache:
+  directories:
+    - $HOME/.gradle/caches/
+    - $HOME/.gradle/wrapper/
+
+./gradlew check
