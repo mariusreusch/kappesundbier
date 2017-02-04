@@ -14,9 +14,10 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 script: ./gradlew check
-script: ./gradlew build
+script: ./gradlew clean build
 
 deploy:
+  skip_cleanup: true
   provider: elasticbeanstalk
   access_key_id:
     secure: "ot1Ge92LDzg95yZGpgKqWwYr/iKSH9BjlhoDsa1fxovfE6MTJU49DWeHZo+b2d8v/nJWAN9Y/5yCG6WOSRjqdx1BUnr87BESoR4QYx+zZV6f4D9ymptwUAPK7RqhvChr5yoKtMsL1UjRNVYnoeZWEZm7AxMnjgNRSBg4X9VTzpimgz/KC7GWXUj6bz+4DeY8eNPoVtNQGolic0YWqplx3yjjsZbIrEZSfhHbsa4/FbOacBrWU/etweZIy4ll3cNz6hZ7dBsHkKyAybAwQOtlVBpDuSOo6C5sL/k4QQgjvRc+RHPHAxa+fAN5AvU5HuTReZebdoxOMjblyLR/KGJmIfK9V2VoVwhCNSvdRJakWddsIWTF2x4iHiXFRTa/ebr0Pk7kJGGkoq4wdUCCjiIcgQuX4/Efq3G1NzD3T+MBk/zs9gtCdjo/5pAMLwCqtVpjMXrWITx5kfwl9YJKYlal1PcArO1Yj3+rXyb3WeoQXkLsjGipLuwMB+IRR0cyAxTQbpyQ1Sr34uqfZVB+o2xfQcZGG2QjJySsG3ONjB3VxukgPJpLOIxnQgUvJ8Imekqn7IiVfL/ezqPMOPH0IOZI6NVc6ZBeug+6I56k5eR7jT6dkrLxT1iw704dyNTZPLg7VGHwxaznwLfEfb2KfGH83Mc8q2/daAXLpZsDpIYHzFU="
@@ -26,6 +27,7 @@ deploy:
   app: cookandcode
   env: Custom-env
   bucket_name: elasticbeanstalk-us-west-2-865145069215
+  zip_file: './build/libs/cookncode.jar'
   on:
     repo: mariusreusch/cookncode
     branch: master
