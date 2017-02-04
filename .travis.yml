@@ -25,7 +25,6 @@ deploy:
   region: us-west-2
   app: cookandcode
   env: Custom-env
-  bucket_name: $ELASTIC_BEANSTALK_BUCKET
   on:
     repo: mariusreusch/cookncode
     branch: master
