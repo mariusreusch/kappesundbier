@@ -27,7 +27,7 @@ deploy:
   app: cookandcode
   env: Custom-env
   bucket_name: elasticbeanstalk-us-west-2-865145069215
-  artifact: application.jar
+  zip_file: 'application.jar
   on:
     repo: mariusreusch/cookncode
     branch: master
