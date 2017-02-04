@@ -26,7 +26,7 @@ repositories {
 
 task stage(type: Copy, dependsOn: [clean, build]) {
 	from jar.archivePath
-	into projectDir
+	into project.buildDir
 	rename {
 		'application.jar'
 	}
