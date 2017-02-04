@@ -23,12 +23,6 @@ repositories {
 	mavenCentral()
 }
 
-
-task stage(type: Copy, dependsOn: [clean, build]) {
-	from jar.archivePath
-	into project.buildDir
-}
-
 dependencies {
 	compile('org.flywaydb:flyway-core')
 	//compile('org.springframework.boot:spring-boot-starter-jooq')

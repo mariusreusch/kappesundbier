@@ -1,1 +1,1 @@
-web: java -jar build/application.jar
+web: java -jar build/libs/cookncode.jar
