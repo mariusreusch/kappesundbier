@@ -1,19 +1,29 @@
 language: java
-# Use Travis's cointainer based infrastructure
 sudo: false
 notifications:
   email:
-    - marius.reusch@gmail.com
-jdk:
-  - oraclejdk8
+    - secure: "Cl0Mo3mptm+LoKafAgFZ9bOBytowXE+a41a1RzY1e+SnP8i6qZhk7Qd2ZOW1sf4Pls4d2a9DwGc/Cg2qH2Gk5Jwy8vEPXiu1G50JYGK//Gp982nRH512NR9W08nqSIGMzpTNJRGmui/d/uBCZuAujAW4oYMS/6Zo+TmZYwqspKEz7Spy8l0eTDq0Y7GrKzxMyKVH1SUt3WBmdxukjgyDBtRwsBfbPLJNSe3AZMF4oSzbQhoGeBrKKmvuYNnXmkohz7dl1iet94aWMg3jt0hoO+MXMFTz74yfuDSm1hVjKCcHts6oLt2mK3AtmiATBsdJkyMl5r6HK2R4DJW8j3NSw7ghiYQuDnJmg85m0RiiEaIOWVUjDIBRzRUqMFSl33qKFWf0C6zS2vk5naFKLpC8CfwpclI6RChoeqTiS7e71uiJN5vEfrNjQwGPeNXwJ5vf2R9sNZC5WeTKHm+bpAkvr+Ut4v/8lgulQxE1uN6hlh7urUbJHqwmM0mU3SpWrewjupyvT1LVsIigG3cwa41t4Oa5SaeJUMd+rMxTtrCoemkgguJm9GkaRXAWy3Gpt+15mi5+bBJolhmr6x6l3jVRI836PaFjZGDVJ6jajAu65NLQ9xisyUCGJRGvFKV5HEz1/jijxxn9tj4uPZ3UE/jtWk35HQ4kvi0Hv8c1TIAH6Ac="
 
+jdk:
+- oraclejdk8
 before_cache:
-  - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
-  - rm -fr $HOME/.gradle/caches/*/plugin-resolution/
+- rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
+- rm -fr $HOME/.gradle/caches/*/plugin-resolution/
 cache:
   directories:
-    - $HOME/.gradle/caches/
-    - $HOME/.gradle/wrapper/
+  - $HOME/.gradle/caches/
+  - $HOME/.gradle/wrapper/
+script: ./gradlew check
 
-script:
-  ./gradlew check
+deploy:
+  provider: elasticbeanstalk
+  access_key_id:
+    secure: "ot1Ge92LDzg95yZGpgKqWwYr/iKSH9BjlhoDsa1fxovfE6MTJU49DWeHZo+b2d8v/nJWAN9Y/5yCG6WOSRjqdx1BUnr87BESoR4QYx+zZV6f4D9ymptwUAPK7RqhvChr5yoKtMsL1UjRNVYnoeZWEZm7AxMnjgNRSBg4X9VTzpimgz/KC7GWXUj6bz+4DeY8eNPoVtNQGolic0YWqplx3yjjsZbIrEZSfhHbsa4/FbOacBrWU/etweZIy4ll3cNz6hZ7dBsHkKyAybAwQOtlVBpDuSOo6C5sL/k4QQgjvRc+RHPHAxa+fAN5AvU5HuTReZebdoxOMjblyLR/KGJmIfK9V2VoVwhCNSvdRJakWddsIWTF2x4iHiXFRTa/ebr0Pk7kJGGkoq4wdUCCjiIcgQuX4/Efq3G1NzD3T+MBk/zs9gtCdjo/5pAMLwCqtVpjMXrWITx5kfwl9YJKYlal1PcArO1Yj3+rXyb3WeoQXkLsjGipLuwMB+IRR0cyAxTQbpyQ1Sr34uqfZVB+o2xfQcZGG2QjJySsG3ONjB3VxukgPJpLOIxnQgUvJ8Imekqn7IiVfL/ezqPMOPH0IOZI6NVc6ZBeug+6I56k5eR7jT6dkrLxT1iw704dyNTZPLg7VGHwxaznwLfEfb2KfGH83Mc8q2/daAXLpZsDpIYHzFU="
+  secret_access_key:
+    secure: "h6ctlADm8TA5+p6Qwfqf3atuiTM/iPh4yszA8jVnRdK4oaEwcCcBPJ+6exsLjb3p3/a2NQ5GyWWFhQtR0fZKjV+L7JjEWZas0UAU2sLTa6guhduv6hZQllFr7+yV7r+ZGmexnYjXYq7BWC5OxejccYWuoyNI4O3gq8ABOYMlIk0+fdu+Vqu2cX3MxhRMfQ+EPvdHkz6rp5STJ88kUEtTKQr7o/Dj206KPG2OSVaQSyAkREoFmho04fT81Gprenph3E5OBIH5dJ5lYJ2/rbLHSTsczjO309ck6fleIL9K06lhOOs9ZkP42jL0SshJ013I7lnw36B5/EhzmhhVqzL0Uqk6uc2/lJQsaAULhljlj4hb4W7bqvJJcB/dpZ8/IPjeavF677hGnq0FJ/wQioGlDp5tkKn9LyEjITOR0yRb4zsgOKYbp/mZ9jBfhJJshat7opsnUadOc90GBGGlgZ13emqQrZyXSVKB7Ohgrj5i1W2yibKuq6sAKXnba0P69IzDESma2f/PSt9tSczECeXGTfW7npyIUSW37MfzavptocBOmo/eb0YfeQIeuihXw/5ByvxaZ0ihaXsd/vH7endytqIokqA6uPLUrZ8f5YED59tCD6YlH27KF+LdUQAYu80JoWaD4q1VWEzsiYEVOuXHTzbQxr9geGKqL5cu3BWjZoA="
+  region: us-west-2
+  app: cookandcode
+  env: Custom-env
+  on:
+    repo: cookncode
+    branch: master
