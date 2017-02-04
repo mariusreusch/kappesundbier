@@ -14,7 +14,7 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 script: ./gradlew check
-script: ./gradlew clean build
+script: ./gradlew clean stage
 
 deploy:
   skip_cleanup: true
