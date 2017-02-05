@@ -4,6 +4,6 @@ jasypt:
 
 spring:
   datasource:
-    url: ENC(qlcqNK5sddIAI/gAc/6w3OPq/W/PswoZYM3h9YJIaSoP3OsuUhQl/hyb/+85FNgmwd8EEHHBl12Rciv8AFcUl/xFNW8ROXBGISiZAcw7fAEbmhi57E2Ahszz53LWRg3p)
+    url: ENC(Sfv+Nde172kWkbWPKSO2aCBkGbA+sKL0hO5HjZK0W8hlb/GxFWpyKgiWz4QAHGlIWICrGcO3Baps4TG1zijL7oe+rlAo7wwhyMb2XfgUz3BmaeAhcibKWA==)
     username: ENC(jcgVYsnD068a9uQv65ldiNNJopPAA2Kj)
     password: ENC(a4hBptzxIM+Ye3J4U3ZHUYBb1OCwO8on)
