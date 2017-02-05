@@ -1,0 +1,8 @@
+<ul *ngIf="notes">
+    <li *ngFor="let note of notes">
+        <div>
+            {{note.text}} ({{note.date}})
+            <button (click)="deleteNote(note)">Delete</button>
+        </div>
+    </li>
+</ul>

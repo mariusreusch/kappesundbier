@@ -1,0 +1,99 @@
+apply plugin: 'com.moowork.node'
+
+def clientRoot = file("${project.rootDir}/frontend")
+def clientDist = file("${clientRoot.getAbsolutePath()}/dist")
+
+node {
+    version = '7.2.0'
+    yarnVersion = '0.20.0'
+
+    distBaseUrl = 'https://nodejs.org/dist'
+
+    // If true, it will download node using above parameters.
+    // If false, it will try to use globally installed node.
+    download = true
+
+    // Set the work directory for unpacking node
+    workDir = new File(clientRoot, ".gradle/nodejs")
+
+    // Set the work directory for unpacking yarn
+    yarnWorkDir = new File(clientRoot, ".gradle/yarn")
+
+    // Set the work directory where node_modules should be located
+    nodeModulesDir = clientRoot
+}
+
+task clientBuild(type: YarnTask) {
+    group = 'Client'
+
+    description = 'Builds the client'
+    workingDir  = clientRoot
+
+    args = ['run', 'build']
+    inputs.files fileTree(dir: clientRoot, excludes: ["dist/**", "test/**"])
+    outputs.dir(clientDist)
+}
+
+task clientArtifacts(type: Copy) {
+    from clientDist
+    into "build/classes/static"
+}
+
+task e2e(type: YarnTask) {
+    group = 'Client'
+    description = 'Execute e2e tests'
+    workingDir  = clientRoot
+
+    args = ['run', 'e2e']
+}
+
+task cleanFrontendTest(type: YarnTask) {
+    group = 'Client'
+    description = 'Clean up old test results'
+    workingDir  = clientRoot
+
+    args = ['run', 'clean:frontend-test']
+}
+
+task frontendUnitTest(type: YarnTask) {
+    group = 'Client'
+    description = 'Execute karma tests'
+    workingDir  = clientRoot
+
+    args = ['test']
+    inputs.files fileTree(dir: clientRoot, excludes: ["dist/**", "test/**"])
+    outputs.file file("${clientRoot}/test/karma-result.xml")
+}
+
+task tslint(type: YarnTask) {
+    group = 'Client'
+    description = 'Execute tslint analysis'
+    workingDir  = clientRoot
+
+    args = ['run', 'lint']
+    inputs.files fileTree(dir: clientRoot, excludes: ["dist/**", "test/**"])
+    outputs.file file("${clientRoot}/tslint-result.xml")
+}
+
+task webDriverUpdate(type: YarnTask) {
+    group = 'Client'
+    workingDir  = clientRoot
+
+    args = ['run', 'webdriver:update']
+}
+
+yarn_install.dependsOn yarnSetup
+clientBuild.dependsOn yarn_install
+clientArtifacts.dependsOn clientBuild
+
+e2e.dependsOn webDriverUpdate
+e2e.dependsOn clientBuild
+cleanFrontendTest.mustRunAfter clientBuild
+frontendUnitTest.mustRunAfter cleanFrontendTest
+cleanFrontendTest.dependsOn yarn_install
+
+e2e.dependsOn cleanFrontendTest
+e2e.dependsOn serverRun
+e2e.finalizedBy serverStop
+
+cleanFrontendTest.dependsOn cleanTest

@@ -1,0 +1,86 @@
+task serverRun(){
+    group = 'Server'
+    description = 'Starts the server as background process'
+
+    doLast {
+
+        def commandLine = "java -jar $jar.archivePath.absolutePath"
+        def handshakeMessage = 'WE ARE READY FOR TEST - 1786558124300001'
+
+        ProcessBuilder builder = new ProcessBuilder(commandLine.split(' '))
+        builder.redirectErrorStream(true)
+        builder.directory(new File("."))
+
+        def envVariables = generateProfileSettings();
+        envVariables['server.handshakeMessage'] = handshakeMessage
+        builder.environment().putAll(envVariables)
+
+        Process process = builder.start()
+
+        InputStream stdout = process.getInputStream()
+        BufferedReader reader = new BufferedReader(new InputStreamReader(stdout))
+
+        new StreamGobbler(process.errorStream, System.err).start();
+
+        def line
+        while ((line = reader.readLine()) != null) {
+            println line
+            if (line.contains(handshakeMessage)) {
+                println "Server started"
+                break;
+            }
+        }
+
+        new StreamGobbler(stdout, System.out).start();
+    }
+}
+
+ext.generateProfileSettings = {
+    def properties = [:]
+    properties['spring.config.location'] = new File(project.projectDir, 'src/main/resources/').absolutePath + "/"
+    if (project.properties['active-profile']) {
+        properties['spring.profiles.active'] = project.properties['active-profile']
+    }
+    println("profile settings: $properties")
+    return properties
+}
+
+serverRun.dependsOn bootRepackage
+
+
+task serverStop {
+    group = 'Server'
+    description = 'Stops the server'
+
+    doLast {
+        URL url = new URL("http://localhost:9051/shutdown")
+        HttpURLConnection con = (HttpURLConnection) url.openConnection()
+        con.setRequestMethod("POST")
+        if (200 != con.getResponseCode()) {
+            println("Post was not successful")
+        }
+    }
+}
+
+class StreamGobbler extends Thread {
+    InputStream is
+    PrintStream ps
+
+    private StreamGobbler(InputStream is, PrintStream printStream) {
+        this.is = is
+    }
+
+    @Override
+    void run() {
+        try {
+            InputStreamReader isr = new InputStreamReader(is);
+            BufferedReader br = new BufferedReader(isr);
+            String line = null;
+            while ((line = br.readLine()) != null)
+                ps.println(line)
+        }
+        catch (IOException ioe) {
+            ioe.printStackTrace()
+        }
+    }
+}
