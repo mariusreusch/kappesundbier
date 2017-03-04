@@ -50,14 +50,14 @@ module.exports = {
                 })
             },
             {
-                test: /\.css$/,
-                include: helpers.root('src', 'app'),
-                loader: 'raw-loader'
-            },
-            {
                 test: /\.(ttf|png|htc|ico|jpe?g|eot|gif|svg|woff(2)?)(\?[a-z0-9=&.]+)?$/,
                 loader: 'file-loader'
 
+            },
+            {
+                test: /\.css$/,
+                include: helpers.root('src', 'app'),
+                loaders: ['to-string-loader', 'css-loader']
             }
         ]
     }

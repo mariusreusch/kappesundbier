@@ -3,8 +3,9 @@ import { NoteService } from "./note-list/note.service";
 import { Note } from "./model/note";
 
 @Component({
-    selector: 'note-app',
+    selector: 'cookncode-app',
     templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css'],
     providers: [NoteService]
 })
 export class AppComponent {
@@ -15,9 +16,7 @@ export class AppComponent {
     notes: Note[];
 
     ngOnInit(): void {
-        this.noteService.getAllNotes().subscribe(
-            notes => this.notes = notes
-        );
+
     }
 
     deleteNote(note: Note): void {
