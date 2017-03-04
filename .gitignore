@@ -1,3 +1,6 @@
 .idea
 .gradle
 devutils/**/*
+!/.idea/runConfigurations/
+out
+build
