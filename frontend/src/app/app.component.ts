@@ -5,7 +5,7 @@ import { Note } from "./model/note";
 @Component({
     selector: 'cookncode-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css'],
+    styleUrls: ['./app.component.scss'],
     providers: [NoteService]
 })
 export class AppComponent {

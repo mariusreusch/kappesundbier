@@ -1,0 +1,30 @@
+@import '~@angular/material/core/theming/all-theme';
+@import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
+
+.food-planner-font-1 {
+  font-family: 'Oswald';
+}
+
+.front-page-image {
+  background-image: url("../img/mango-1534061_1920.jpg");
+  height: 90vh;
+  background-size: cover;
+  text-align: center;
+}
+
+.head-line {
+  font-size: 40pt;
+  padding-left: 2%;
+}
+
+.head-area {
+  height: 10vh;
+  display: flex;
+  align-items: center;
+}
+
+.front-page-text {
+  color: white;
+  font-size: 60pt;
+  padding-top: 5%;
+}
