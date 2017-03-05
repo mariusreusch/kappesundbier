@@ -1,5 +1,9 @@
-<div class="head-area">
-    <div class="head-line food-planner-font-1"><a routerLink="/">FoodPlanner</a></div>
-    <a md-button routerLink="/recipe-overview">Recipe Management</a>
-</div>
+<md-toolbar class="cac-background cac-font-1">
+    <a class="cac-font-1 logo" routerLink="/">FoodPlanner</a>
+
+    <span class="cac-fill-remaining-space"></span>
+
+    <a md-button class="cac-font-1 cac-header-button" routerLink="/week-planner">Plan your week</a>
+    <a md-button class="cac-font-1 cac-header-button" routerLink="/recipe-overview">Recipe Management</a>
+</md-toolbar>
 <router-outlet></router-outlet>
