@@ -1,5 +1,10 @@
 @import '~@angular/material/core/theming/prebuilt/deeppurple-amber';
 
+a {
+  color: black;
+  text-decoration: none;
+}
+
 body#cook-and-code-body {
   background-color: white;
   margin: 0px;
