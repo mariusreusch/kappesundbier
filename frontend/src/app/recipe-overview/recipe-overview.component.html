@@ -1,1 +1,39 @@
-Recipe Overview
+<div class="cac-area">
+    <md-card class="cac-card">
+        <md-card-header>
+            <md-card-title><h3>Create a new recipe</h3></md-card-title>
+        </md-card-header>
+        <md-card-content>
+            <md-input-container class="cac-recipe-title">
+                <input md-line mdInput placeholder="Recipe title" value="">
+            </md-input-container>
+
+            <md-list>
+                <h3 md-subheader>Ingredients</h3>
+                <md-list-item *ngFor="let ingredient of ingredients">
+                    <div md-line>
+                        <md-input-container>
+                            <input mdInput placeholder="Ingredient" value="">
+                        </md-input-container>
+                        <md-input-container>
+                            <input mdInput placeholder="Measuring Unit" value="">
+                        </md-input-container>
+                        <md-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear
+                        </md-icon>
+                    </div>
+                </md-list-item>
+            </md-list>
+
+            <button id="cac-add-ingredient-btn" md-mini-fab (click)="addIngredient()">
+                <md-icon>add</md-icon>
+            </button>
+            <md-divider></md-divider>
+
+            <md-slide-toggle (change)="toggleSlider()">{{visibilitySliderState}}</md-slide-toggle>
+            <md-divider></md-divider>
+        </md-card-content>
+        <md-card-actions>
+            <button md-button>CREATE</button>
+        </md-card-actions>
+    </md-card>
+</div>
