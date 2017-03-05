@@ -7,6 +7,7 @@ import { NoteListComponent } from "./note-list/note-list.component";
 import { NoteAddComponent } from "./note-add/note-add.component";
 import { MaterialModule } from "@angular/material";
 import "hammerjs";
+import "style-loader!./styles.scss";
 
 @NgModule({
     imports: [
