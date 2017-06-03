@@ -39,14 +39,6 @@ task clientArtifacts(type: Copy) {
     into "build/classes/static"
 }
 
-task e2e(type: YarnTask) {
-    group = 'Client'
-    description = 'Execute e2e tests'
-    workingDir  = clientRoot
-
-    args = ['run', 'e2e']
-}
-
 task cleanFrontendTest(type: YarnTask) {
     group = 'Client'
     description = 'Clean up old test results'
