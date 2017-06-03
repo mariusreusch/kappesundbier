@@ -1,4 +1,4 @@
-package ch.pama.cookncode.boundary;
+package ch.pama.cookncode.rest;
 
 import ch.pama.cookncode.CooknCodeMain;
 import org.junit.Test;

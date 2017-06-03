@@ -1,0 +1,19 @@
+.logo {
+  font-size: 36pt;
+}
+
+.cac-fill-remaining-space {
+  // This fills the remaining space, by using flexbox.
+  // Every toolbar row uses a flexbox row layout.
+  flex: 1 1 auto;
+}
+
+.cac-header-button {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.cac-header-toolbar {
+  height: 10vh;
+  justify-content: center;
+}

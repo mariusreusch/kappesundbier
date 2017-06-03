@@ -5,7 +5,7 @@ def clientDist = file("${clientRoot.getAbsolutePath()}/dist")
 
 node {
     version = '7.2.0'
-    yarnVersion = '0.20.0'
+    yarnVersion = '0.21.3'
 
     distBaseUrl = 'https://nodejs.org/dist'
 
