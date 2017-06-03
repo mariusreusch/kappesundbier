@@ -24,14 +24,14 @@ public class RecipeRestControllerTest {
 
     @Test
     public void testRandomRest() throws Exception {
-        mockMvc.perform(get("/recipe/random"))
+        mockMvc.perform(get("/recipes/random"))
                 .andExpect(content().string("This is a random recipe."));
 
     }
 
     @Test
     public void getRecipeById() throws Exception {
-        mockMvc.perform(get("/recipe/1"))
+        mockMvc.perform(get("/recipes/1"))
                 .andExpect(content().string("A first recipe"));
 
     }
