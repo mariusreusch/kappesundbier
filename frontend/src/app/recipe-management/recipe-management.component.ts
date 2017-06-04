@@ -1,6 +1,8 @@
 import { Component } from "@angular/core";
 import { Recipe } from "./recipe";
 import { RecipeService } from "./recipe-service";
+import { Observable } from "rxjs/Observable";
+import { CreateRecipeResult } from "./create-recipe-result";
 
 @Component({
   selector: 'recipe-management',
@@ -10,10 +12,12 @@ import { RecipeService } from "./recipe-service";
 })
 export class RecipeManagementComponent {
 
+  creareRecipeResult: Observable<CreateRecipeResult>;
+
   constructor(private recipeService: RecipeService) {
   }
 
   createRecipe(recipe: Recipe) {
-    this.recipeService.create(recipe).subscribe();
+    this.creareRecipeResult = this.recipeService.create(recipe);
   }
 }

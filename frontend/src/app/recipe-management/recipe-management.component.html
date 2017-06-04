@@ -1,3 +1,3 @@
 <div class="cac-area">
-  <new-recipe (onRecipeCreated)="createRecipe($event)"></new-recipe>
+  <new-recipe [createRecipeResult]="creareRecipeResult | async" (onRecipeCreated)="createRecipe($event)"></new-recipe>
 </div>
