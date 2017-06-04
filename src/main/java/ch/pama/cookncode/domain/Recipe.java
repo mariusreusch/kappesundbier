@@ -1,8 +1,12 @@
 package ch.pama.cookncode.domain;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
+
+import static javax.persistence.CascadeType.ALL;
+import static javax.persistence.FetchType.EAGER;
 
 @Entity
 public class Recipe {
@@ -10,22 +14,29 @@ public class Recipe {
     @GeneratedValue
     @Id
     private Long id;
-
     private String name;
+    private int numberOfPortions;
+    @ManyToMany(fetch = EAGER, cascade = ALL)
+    private List<Ingredient> ingredients;
 
-    public Long getId() {
-        return id;
+    private Recipe() {
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public Recipe(String name, int numberOfPortions, List<Ingredient> ingredients) {
+        this.name = Objects.requireNonNull(name);
+        this.numberOfPortions = Objects.requireNonNull(numberOfPortions);
+        this.ingredients = new ArrayList<>(ingredients);
     }
 
     public String getName() {
         return name;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public int getNumberOfPortions() {
+        return numberOfPortions;
+    }
+
+    public List<Ingredient> getIngredients() {
+        return ingredients;
     }
 }

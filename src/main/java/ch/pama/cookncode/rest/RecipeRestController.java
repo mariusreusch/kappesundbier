@@ -1,44 +1,22 @@
 package ch.pama.cookncode.rest;
 
-import ch.pama.cookncode.domain.RecipeRepository;
+import ch.pama.cookncode.rest.dto.RecipeDto;
+import ch.pama.cookncode.service.RecipeService;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.List;
-
 @RestController
-@RequestMapping("recipes")
+@RequestMapping("api/recipes")
 public class RecipeRestController {
 
-    private RecipeRepository recipeRepository;
+    private final RecipeService recipeService;
 
-    public RecipeRestController(RecipeRepository recipeRepository) {
-        this.recipeRepository = recipeRepository;
+    public RecipeRestController(RecipeService recipeService) {
+        this.recipeService = recipeService;
     }
 
     @PostMapping
-    public RecipeDto createRecipe(RecipeDto recipeDto) {
-        return recipeDto;
-    }
-
-    @GetMapping("/")
-    public List<RecipeDto> findAll() {
-        ArrayList<RecipeDto> recipeDtos = new ArrayList<>();
-
-        RecipeDto recipeDto = new RecipeDto();
-        recipeDto.setName("Spaghetti mit Tomatensosse");
-        recipeDto.setNumberOfPortions(4);
-        recipeDto.addIngredient(new IngredientDto("Spaghetti", "500", "gramm"));
-        recipeDto.addIngredient(new IngredientDto("Tomatensosse", "200", "ml"));
-
-        recipeDtos.add(recipeDto);
-
-        return recipeDtos;
-    }
-
-    @GetMapping("/{id}")
-    public String getRecipe(@PathVariable Long id) {
-        return recipeRepository.findOne(id).getName();
+    public RecipeDto createRecipe(@RequestBody RecipeDto recipeDto) {
+        return recipeService.createRecipe(recipeDto);
     }
 
     @GetMapping("/random")

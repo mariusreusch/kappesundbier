@@ -1,4 +1,4 @@
-import { Component, ViewChild } from "@angular/core";
+import { Component, EventEmitter, Output, ViewChild } from "@angular/core";
 import { Ingredient } from "../ingredient";
 import { Recipe } from "../recipe";
 import { NgForm } from "@angular/forms";
@@ -12,6 +12,9 @@ export class NewRecipeComponent {
 
   newRecipe = new Recipe("", []);
   newIngredient = new Ingredient("", null, "");
+
+  @Output()
+  onRecipeCreated = new EventEmitter<Recipe>();
 
   @ViewChild('ingredientForm') ingredientForm: NgForm;
 
@@ -29,9 +32,8 @@ export class NewRecipeComponent {
   }
 
   onSubmit() {
-    if (this.newRecipe.ingredients.length > 1) {
-      console.log("valid recipe");
+    if (this.newRecipe.ingredients.length > 0) {
+      this.onRecipeCreated.emit(this.newRecipe);
     }
-    console.log("recipe form submitted");
   }
 }
