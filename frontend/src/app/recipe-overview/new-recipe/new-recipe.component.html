@@ -1,0 +1,62 @@
+<md-card>
+  <md-card-header>
+    <md-card-title><h1>Create a new recipe</h1></md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+      <md-input-container class="cac-recipe-name">
+        <input md-line mdInput
+               placeholder="Recipe Name"
+               name="name"
+               required
+               [(ngModel)]="newRecipe.name">
+      </md-input-container>
+    </form>
+
+    <h3 md-subheader>Ingredients</h3>
+    <md-list>
+      <md-list-item *ngFor="let ingredient of newRecipe.ingredients">
+        <div md-line style="display: flex;">
+          <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}</div>
+          <md-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</md-icon>
+        </div>
+      </md-list-item>
+    </md-list>
+
+    <form #ingredientForm="ngForm" (ngSubmit)="addIngredient()" onsubmit="ingredientAmount.focus()">
+      <md-input-container>
+        <input mdInput
+               placeholder="Amount"
+               type="number"
+               name="ingredientAmount"
+               [(ngModel)]="newIngredient.amount"
+               required>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               placeholder="Measuring Unit"
+               name="measuringUnit"
+               [(ngModel)]="newIngredient.unitOfMeasurement"
+               required>
+      </md-input-container>
+      <md-input-container>
+        <input mdInput
+               placeholder="Ingredient Name"
+               name="ingredientName"
+               [(ngModel)]="newIngredient.name"
+               required>
+      </md-input-container>
+
+      <button type="submit"
+              [disabled]="!ingredientForm.form.valid"
+              md-mini-fab>
+        <md-icon>add</md-icon>
+      </button>
+    </form>
+
+    <md-divider></md-divider>
+  </md-card-content>
+  <md-card-actions>
+    <button type="submit" md-button [disabled]="!recipeForm.form.valid" (click)="recipeForm.ngSubmit.emit()">Save Recipe</button>
+  </md-card-actions>
+</md-card>

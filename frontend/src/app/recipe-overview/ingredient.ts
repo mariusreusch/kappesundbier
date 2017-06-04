@@ -1,4 +1,5 @@
-export interface Ingredient {
-    name: string;
-    unitOfMeasurement: string;
+export class Ingredient {
+
+  constructor(public name: string, public amount: number, public unitOfMeasurement: string) {
+  }
 }

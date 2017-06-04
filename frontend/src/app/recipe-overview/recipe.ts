@@ -1,5 +1,8 @@
 import { Ingredient } from "./ingredient";
-export interface Recipe {
-    name: string;
-    ingredients: Ingredient[];
+
+export class Recipe {
+
+
+  constructor(public name: string, public ingredients: Ingredient[]) {
+  }
 }
