@@ -8,8 +8,8 @@ import { CacRouterModule } from "./cac-router.module";
 import "hammerjs";
 import { CacMaterialModule } from "./cac-material.module";
 import { HomeComponent } from "./home/home.component";
-import { RecipeOverviewComponent } from "./recipe-overview/recipe-overview.component";
-import { NewRecipeComponent } from "./recipe-overview/new-recipe/new-recipe.component";
+import { RecipeManagementComponent } from "./recipe-management/recipe-management.component";
+import { NewRecipeComponent } from "./recipe-management/new-recipe/new-recipe.component";
 import { WeekPlannerComponent } from "./week-planner/week-planner.component";
 
 
@@ -23,7 +23,7 @@ import { WeekPlannerComponent } from "./week-planner/week-planner.component";
     BrowserAnimationsModule
   ],
   declarations: [
-    AppComponent, HomeComponent, RecipeOverviewComponent, NewRecipeComponent, WeekPlannerComponent
+    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, WeekPlannerComponent
   ],
   bootstrap: [AppComponent]
 })

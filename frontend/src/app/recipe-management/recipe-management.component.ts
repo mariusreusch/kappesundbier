@@ -3,12 +3,12 @@ import { Recipe } from "./recipe";
 import { RecipeService } from "./recipe-service";
 
 @Component({
-  selector: 'recipe-overview',
-  templateUrl: './recipe-overview.component.html',
-  styleUrls: ['./recipe-overview.component.css'],
+  selector: 'recipe-management',
+  templateUrl: './recipe-management.component.html',
+  styleUrls: ['./recipe-management.component.css'],
   providers: [RecipeService]
 })
-export class RecipeOverviewComponent {
+export class RecipeManagementComponent {
 
   constructor(private recipeService: RecipeService) {
   }
