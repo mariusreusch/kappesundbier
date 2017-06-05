@@ -19,7 +19,7 @@ public class Recipe {
     @ManyToMany(fetch = EAGER, cascade = ALL)
     private Set<Ingredient> ingredients;
     private String instruction;
-    @ManyToMany(fetch = EAGER)
+    @ManyToMany(fetch = EAGER, cascade = ALL)
     private Set<RecipeCategory> categories;
 
     @OnlyForFramework

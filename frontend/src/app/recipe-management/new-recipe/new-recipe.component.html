@@ -4,14 +4,14 @@
   </md-card-header>
   <md-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
-      <md-input-container class="cac-recipe-name">
+      <md-input-container class="cac-full-width-input">
         <input md-line mdInput
                placeholder="Recipe Name"
                name="recipeName"
                required
                [(ngModel)]="newRecipe.name">
       </md-input-container>
-      <md-input-container class="cac-recipe-name">
+      <md-input-container class="cac-full-width-input">
         <input md-line mdInput
                placeholder="Number Of Portions"
                name="numberOfPortions"
@@ -19,7 +19,14 @@
                required
                [(ngModel)]="newRecipe.numberOfPortions">
       </md-input-container>
-      <md-input-container class="cac-recipe-name">
+      <md-input-container class="cac-full-width-input">
+        <input md-line mdInput
+               placeholder="Categories (comma separated)"
+               name="numberOfPortions"
+               required
+               [(ngModel)]="categoriesAsCommaSeparatedString">
+      </md-input-container>
+      <md-input-container class="cac-full-width-input">
         <textarea mdInput
                   name="instruction"
                   placeholder="Instruction"
@@ -74,6 +81,6 @@
     <md-divider></md-divider>
   </md-card-content>
   <md-card-actions>
-    <button type="submit" md-button [disabled]="!recipeForm.form.valid" (click)="recipeForm.ngSubmit.emit()">Save Recipe</button>
+    <button type="submit" md-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1" (click)="recipeForm.ngSubmit.emit()">Save Recipe</button>
   </md-card-actions>
 </md-card>

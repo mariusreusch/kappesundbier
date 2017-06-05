@@ -17,6 +17,7 @@ export class NewRecipeComponent {
 
   newRecipe = new Recipe("", null, "", [], []);
   newIngredient = new Ingredient("", null, "");
+  categoriesAsCommaSeparatedString = "";
 
   @Output()
   onRecipeCreated = new EventEmitter<Recipe>();
@@ -66,6 +67,7 @@ export class NewRecipeComponent {
 
   onSubmit() {
     if (this.newRecipe.ingredients.length > 0) {
+      this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(",").map(s => s.trim());
       this.onRecipeCreated.emit(this.newRecipe);
       this.resetIngredientForm();
       this.resetRecipeForm();
@@ -79,6 +81,7 @@ export class NewRecipeComponent {
 
   private resetRecipeForm() {
     this.newRecipe = new Recipe("", null, "", [], []);
+    this.categoriesAsCommaSeparatedString = "";
     this.recipeForm.resetForm();
   }
 }
