@@ -15,7 +15,7 @@ import { CreateRecipeResultState } from "../create-recipe-result-state";
 export class NewRecipeComponent {
 
 
-  newRecipe = new Recipe("", []);
+  newRecipe = new Recipe("", null, "", [], []);
   newIngredient = new Ingredient("", null, "");
 
   @Output()
@@ -29,17 +29,19 @@ export class NewRecipeComponent {
     if (createRecipeResult) {
       switch (createRecipeResult.state) {
         case CreateRecipeResultState.SUCCESS:
+          //TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('Recipe ' + createRecipeResult.createdRecipe.name + ' has been created', null, {
-              duration: 2000,
+            this.snackBar.open('Recipe "' + createRecipeResult.createdRecipe.name + '" has been created', null, {
+              duration: 4000,
             });
           }, 1);
 
           break;
         case CreateRecipeResultState.FAILED:
+          //TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.snackBar.open('An error occured', null, {
-              duration: 2000,
+              duration: 4000,
             });
           }, 1);
           break;
@@ -76,7 +78,7 @@ export class NewRecipeComponent {
   }
 
   private resetRecipeForm() {
-    this.newRecipe = new Recipe("", []);
+    this.newRecipe = new Recipe("", null, "", [], []);
     this.recipeForm.resetForm();
   }
 }

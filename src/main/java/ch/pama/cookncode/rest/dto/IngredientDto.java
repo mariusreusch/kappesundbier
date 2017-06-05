@@ -1,6 +1,7 @@
 package ch.pama.cookncode.rest.dto;
 
 import ch.pama.cookncode.domain.Ingredient;
+import ch.pama.cookncode.util.OnlyForFramework;
 
 public class IngredientDto {
 
@@ -8,6 +9,7 @@ public class IngredientDto {
     private int amount;
     private String unitOfMeasurement;
 
+    @OnlyForFramework
     private IngredientDto() {
     }
 

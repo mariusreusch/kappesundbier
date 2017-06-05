@@ -11,6 +11,23 @@
                required
                [(ngModel)]="newRecipe.name">
       </md-input-container>
+      <md-input-container class="cac-recipe-name">
+        <input md-line mdInput
+               placeholder="Number Of Portions"
+               name="numberOfPortions"
+               type="number"
+               required
+               [(ngModel)]="newRecipe.numberOfPortions">
+      </md-input-container>
+      <md-input-container class="cac-recipe-name">
+        <textarea mdInput
+                  name="instruction"
+                  placeholder="Instruction"
+                  rows="4"
+                  required
+                  [(ngModel)]="newRecipe.instruction">
+        </textarea>
+      </md-input-container>
     </form>
 
     <h3 md-subheader>Ingredients</h3>

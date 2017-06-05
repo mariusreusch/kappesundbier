@@ -37,4 +37,19 @@ public class Ingredient {
         return unitOfMeasurement;
     }
 
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Ingredient that = (Ingredient) o;
+        return amount == that.amount &&
+                Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(unitOfMeasurement, that.unitOfMeasurement);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, name, amount, unitOfMeasurement);
+    }
 }

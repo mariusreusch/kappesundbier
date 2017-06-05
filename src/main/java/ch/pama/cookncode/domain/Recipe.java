@@ -1,9 +1,9 @@
 package ch.pama.cookncode.domain;
 
+import ch.pama.cookncode.util.OnlyForFramework;
+
 import javax.persistence.*;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
@@ -17,15 +17,21 @@ public class Recipe {
     private String name;
     private int numberOfPortions;
     @ManyToMany(fetch = EAGER, cascade = ALL)
-    private List<Ingredient> ingredients;
+    private Set<Ingredient> ingredients;
+    private String instruction;
+    @ManyToMany(fetch = EAGER)
+    private Set<RecipeCategory> categories;
 
+    @OnlyForFramework
     private Recipe() {
     }
 
-    public Recipe(String name, int numberOfPortions, List<Ingredient> ingredients) {
+    public Recipe(String name, int numberOfPortions, String instruction, Set<Ingredient> ingredients, Set<RecipeCategory> categories) {
         this.name = Objects.requireNonNull(name);
         this.numberOfPortions = Objects.requireNonNull(numberOfPortions);
-        this.ingredients = new ArrayList<>(ingredients);
+        this.instruction = Objects.requireNonNull(instruction);
+        this.ingredients = new HashSet<>(ingredients);
+        this.categories = new HashSet<>(categories);
     }
 
     public String getName() {
@@ -36,7 +42,15 @@ public class Recipe {
         return numberOfPortions;
     }
 
-    public List<Ingredient> getIngredients() {
+    public Set<Ingredient> getIngredients() {
         return ingredients;
+    }
+
+    public String getInstruction() {
+        return instruction;
+    }
+
+    public Set<RecipeCategory> getCategories() {
+        return categories;
     }
 }

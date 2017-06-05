@@ -12,11 +12,20 @@ buildscript {
 	}
 }
 
+plugins {
+	id "org.flywaydb.flyway" version "4.2.0"
+}
+
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
 apply from: "server.gradle"
 apply from: "frontend.gradle"
 
+
+project.ext['flyway.url']='jdbc:mysql://localhost:3306/cookncode'
+project.ext['flyway.user']='root'
+project.ext['flyway.password']='root'
+project.ext['flyway.schemas']='cookncode'
 
 jar {
 	baseName = 'cookncode'
