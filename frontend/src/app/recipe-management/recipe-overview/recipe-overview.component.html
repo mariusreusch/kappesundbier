@@ -1,0 +1,17 @@
+<md-card style="margin-top: 5%">
+  <md-card-header>
+    <md-card-title><h1>My Recipes</h1></md-card-title>
+  </md-card-header>
+  <md-card-content>
+    <md-list>
+      <md-list-item *ngFor="let recipe of myRecipes ">
+        <div style="display: flex;" md-line>
+          <div style="align-self: center;">{{recipe.name}}</div>
+          <md-chip-list *ngFor="let category of recipe.categories">
+            <md-chip>{{category}}</md-chip>
+          </md-chip-list>
+        </div>
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+</md-card>

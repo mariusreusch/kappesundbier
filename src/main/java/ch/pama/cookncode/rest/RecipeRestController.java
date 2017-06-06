@@ -4,6 +4,8 @@ import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.service.RecipeService;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("api/recipes")
 public class RecipeRestController {
@@ -22,5 +24,10 @@ public class RecipeRestController {
     @GetMapping("/random")
     public String getRecipe() {
         return "This is a random recipe.";
+    }
+
+    @GetMapping("")
+    public List<RecipeDto> findAll(){
+        return recipeService.findAllRecipesOfUser();
     }
 }

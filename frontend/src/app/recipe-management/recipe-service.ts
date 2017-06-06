@@ -17,6 +17,11 @@ export class RecipeService {
       .catch(RecipeService.handleError);
   }
 
+  findMyRecipes() {
+    return this.http.get("./api/recipes")
+      .map(response => response.json());
+  }
+
   private static handleData(response: any) {
     let createdRecipe: Recipe = response.json();
     return new CreateRecipeResult(CreateRecipeResultState.SUCCESS, createdRecipe);

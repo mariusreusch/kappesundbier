@@ -8,13 +8,18 @@ a {
 }
 
 body#cac-body {
-  margin: 0px;
+  margin: 0;
 }
 
 .cac-font-1 {
-  font-family: 'Work Sans' !important;
+  font-family: 'Work Sans', sans-serif !important;
 }
 
 .cac-background {
   background-color: white;
+}
+
+.cac-remove-ingredient-btn {
+  color: grey;
+  cursor: pointer;
 }

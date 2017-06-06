@@ -11,6 +11,7 @@ import { HomeComponent } from "./home/home.component";
 import { RecipeManagementComponent } from "./recipe-management/recipe-management.component";
 import { NewRecipeComponent } from "./recipe-management/new-recipe/new-recipe.component";
 import { WeekPlannerComponent } from "./week-planner/week-planner.component";
+import { RecipeOverviewComponent } from "./recipe-management/recipe-overview/recipe-overview.component";
 
 
 @NgModule({
@@ -23,7 +24,7 @@ import { WeekPlannerComponent } from "./week-planner/week-planner.component";
     BrowserAnimationsModule
   ],
   declarations: [
-    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, WeekPlannerComponent
+    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, WeekPlannerComponent
   ],
   bootstrap: [AppComponent]
 })

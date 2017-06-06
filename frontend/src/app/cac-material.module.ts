@@ -1,10 +1,9 @@
 import {
-  MdButtonModule, MdCardModule, MdIconModule, MdInputModule, MdSnackBarContainer, MdSnackBarModule,
-  MdToolbarModule
+  MdButtonModule, MdCardModule, MdChipsModule, MdIconModule, MdInputModule, MdSnackBarModule, MdToolbarModule
 } from "@angular/material";
 import { NgModule } from "@angular/core";
 
-const cacMaterialModules = [MdButtonModule, MdCardModule, MdInputModule, MdToolbarModule, MdIconModule, MdSnackBarModule];
+const cacMaterialModules = [MdButtonModule, MdCardModule, MdInputModule, MdToolbarModule, MdIconModule, MdSnackBarModule, MdChipsModule];
 
 @NgModule({
   imports: cacMaterialModules,
