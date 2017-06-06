@@ -1,0 +1,2 @@
+ALTER TABLE recipe ADD COLUMN creation_date DATETIME NOT NULL;
+
