@@ -27,3 +27,10 @@
 }
 
 
+.front-page-image {
+  background-image: url("../assets/img/italian-1082230_1920.jpg");
+  height: 100vh;
+  background-size: cover;
+  text-align: center;
+}
+

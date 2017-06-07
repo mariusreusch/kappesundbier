@@ -4,6 +4,7 @@ import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.service.RecipeService;
 import org.springframework.web.bind.annotation.*;
 
+import java.security.Principal;
 import java.util.List;
 
 @RestController
@@ -27,7 +28,8 @@ public class RecipeRestController {
     }
 
     @GetMapping("")
-    public List<RecipeDto> findAll(){
+    public List<RecipeDto> findAll(Principal principal){
+
         return recipeService.findAllRecipesOfUser();
     }
 }

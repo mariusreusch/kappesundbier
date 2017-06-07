@@ -2,8 +2,14 @@ package ch.pama.cookncode.domain;
 
 import ch.pama.cookncode.util.OnlyForFramework;
 
-import javax.persistence.*;
-import java.util.*;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.ManyToMany;
+import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Objects;
+import java.util.Set;
 
 import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
@@ -21,6 +27,7 @@ public class Recipe {
     private String instruction;
     @ManyToMany(fetch = EAGER, cascade = ALL)
     private Set<RecipeCategory> categories;
+    private ZonedDateTime creationDate;
 
     @OnlyForFramework
     private Recipe() {
@@ -32,6 +39,7 @@ public class Recipe {
         this.instruction = Objects.requireNonNull(instruction);
         this.ingredients = new HashSet<>(ingredients);
         this.categories = new HashSet<>(categories);
+        this.creationDate = ZonedDateTime.now();
     }
 
     public String getName() {

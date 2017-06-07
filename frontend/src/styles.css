@@ -23,3 +23,10 @@ body#cac-body {
   color: grey;
   cursor: pointer;
 }
+
+.front-page-text {
+  color: white;
+  text-shadow: darkslategray 0.01em 0.01em 0.1em;
+  font-size: 60pt;
+  padding-top: 5%;
+}
