@@ -12,6 +12,18 @@
 }
 
 .cac-header-toolbar {
-  height: 10vh;
+  height: 5vh;
   justify-content: center;
 }
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 200px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+

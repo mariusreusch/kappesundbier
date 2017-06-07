@@ -1,12 +1,13 @@
 .front-page-image {
-  background-image: url("../../assets/img/mango-1534061_1920.jpg");
-  height: 90vh;
+  background-image: url("../../assets/img/italian-1082230_1920.jpg");
+  height: 95vh;
   background-size: cover;
   text-align: center;
 }
 
 .front-page-text {
   color: white;
+  text-shadow: darkslategray 0.01em 0.01em 0.1em;
   font-size: 60pt;
   padding-top: 5%;
 }
