@@ -1,6 +1,10 @@
-.idea
 .gradle
 devutils/**/*
+.idea/dataSources
+.idea/dictionaries
+.idea/libraries
+.idea/modules
+.idea/*.xml
 !/.idea/runConfigurations/
 out
 build
