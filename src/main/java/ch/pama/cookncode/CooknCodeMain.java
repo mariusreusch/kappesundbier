@@ -37,7 +37,6 @@ public class CooknCodeMain extends WebSecurityConfigurerAdapter {
         SpringApplication.run(CooknCodeMain.class, args);
     }
 
-
     @RequestMapping("/api/user")
     public Principal user(Principal principal) {
         return principal;
@@ -46,7 +45,7 @@ public class CooknCodeMain extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         // @formatter:off
-        http.antMatcher("/**").authorizeRequests().antMatchers("/", "/login**", "/webjars/**").permitAll().anyRequest()
+        http.antMatcher("/**").authorizeRequests().antMatchers("/", "/*bundle.js**", "/*.jpg", "/*.jpeg").permitAll().anyRequest()
                 .authenticated().and().exceptionHandling()
                 .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")).and().logout()
                 .logoutSuccessUrl("/").permitAll().and().csrf()
