@@ -4,3 +4,20 @@ server:
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+
+google:
+    client:
+      clientId: 188938948487-7ut4gko2brbia7t6vkkb94blod28te50.apps.googleusercontent.com
+      client-secret: kwrOHManPsJKsXsnxFb_ayxM
+      accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+      userAuthorizationUri: https://accounts.google.com/o/oauth2/auth
+      tokenName: oauth_token
+      authenticationScheme: query
+      clientAuthenticationScheme: form
+      scope: profile
+    resource:
+      userInfoUri: https://www.googleapis.com/userinfo/v2/me
+
+logging:
+  level:
+    org.springframework.security: DEBUG

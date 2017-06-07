@@ -1,19 +1,19 @@
 buildscript {
-	ext {
-		springBootVersion = '1.5.3.RELEASE'
-	}
-	repositories {
-		mavenCentral()
-		maven { url "https://plugins.gradle.org/m2/" }
-	}
-	dependencies {
-		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
-		classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
-	}
+    ext {
+        springBootVersion = '1.5.3.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven { url "https://plugins.gradle.org/m2/" }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath "com.moowork.gradle:gradle-node-plugin:1.1.1"
+    }
 }
 
 plugins {
-	id "org.flywaydb.flyway" version "4.2.0"
+    id "org.flywaydb.flyway" version "4.2.0"
 }
 
 apply plugin: 'java'
@@ -22,36 +22,39 @@ apply from: "server.gradle"
 apply from: "frontend.gradle"
 
 
-project.ext['flyway.url']='jdbc:mysql://localhost:3306/cookncode'
-project.ext['flyway.user']='root'
-project.ext['flyway.password']='root'
-project.ext['flyway.schemas']='cookncode'
+project.ext['flyway.url'] = 'jdbc:mysql://localhost:3306/cookncode'
+project.ext['flyway.user'] = 'root'
+project.ext['flyway.password'] = 'root'
+project.ext['flyway.schemas'] = 'cookncode'
 
 jar {
-	baseName = 'cookncode'
-	version = '0.0.1-SNAPSHOT'
-	archiveName = baseName + '.jar'
-	into("static") {
+    baseName = 'cookncode'
+    version = '0.0.1-SNAPSHOT'
+    archiveName = baseName + '.jar'
+    into("static") {
         from clientArtifacts
     }
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
-	compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
-	compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
-	compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1")
-	compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.11")
-	compile("mysql:mysql-connector-java:5.1.27")
-	compile("org.flywaydb:flyway-core")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-actuator:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
+    compile("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
+    compile("org.springframework.security.oauth:spring-security-oauth2")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.6.1")
+    compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.11")
+    compile("mysql:mysql-connector-java:5.1.27")
+    compile("org.flywaydb:flyway-core")
 
-	runtime("org.springframework.boot:spring-boot-devtools")
+    runtime("org.springframework.boot:spring-boot-devtools")
 
-	testCompile("org.springframework.boot:spring-boot-starter-test")
-	testCompile("org.assertj:assertj-core:3.6.2")
+    testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("org.assertj:assertj-core:3.6.2")
 }
 
