@@ -17,6 +17,3 @@ create table user_recipes
 		foreign key (recipes_id) references cookncode.recipe (id)
 ) ;
 
-create index FKpco0pexrpl6x78mtuukwb49g1
-	on user_recipes (user_id) ;
-
