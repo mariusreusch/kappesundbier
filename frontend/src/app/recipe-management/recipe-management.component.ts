@@ -23,6 +23,7 @@ export class RecipeManagementComponent implements OnInit {
   }
 
   createRecipe(recipe: Recipe) {
-    this.creareRecipeResult = this.recipeService.create(recipe);
+    this.creareRecipeResult = this.recipeService.create(recipe).share();
+
   }
 }
