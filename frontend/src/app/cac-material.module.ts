@@ -4,12 +4,15 @@ import {
 
 import { MaterialModule } from "@angular/material";
 import { NgModule } from "@angular/core";
+import { AuthService } from "./auth.service";
+import { AuthGuard } from "./auth-guard.service";
 
 const cacMaterialModules = [MaterialModule, MdButtonModule, MdCardModule, MdInputModule, MdToolbarModule, MdIconModule, MdSnackBarModule, MdChipsModule];
 
 @NgModule({
   imports: cacMaterialModules,
-  exports: cacMaterialModules,
+  exports: cacMaterialModules
+
 })
 export class CacMaterialModule {
 }

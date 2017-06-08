@@ -9,8 +9,4 @@ import { AuthenticationService } from "../authentication-service";
 })
 export class HomeComponent {
 
-  constructor(public authenticationService: AuthenticationService) {
-
-  }
-
 }

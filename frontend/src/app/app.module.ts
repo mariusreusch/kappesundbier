@@ -12,6 +12,7 @@ import { RecipeManagementComponent } from "./recipe-management/recipe-management
 import { NewRecipeComponent } from "./recipe-management/new-recipe/new-recipe.component";
 import { WeekPlannerComponent } from "./week-planner/week-planner.component";
 import { RecipeOverviewComponent } from "./recipe-management/recipe-overview/recipe-overview.component";
+import { LoginComponent } from "./login.component";
 
 
 @NgModule({
@@ -21,10 +22,11 @@ import { RecipeOverviewComponent } from "./recipe-management/recipe-overview/rec
     HttpModule,
     CacRouterModule,
     CacMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
   ],
   declarations: [
-    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, WeekPlannerComponent
+    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
+    WeekPlannerComponent, LoginComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -1,12 +1,11 @@
-import { Component, Injectable, OnInit } from "@angular/core";import { Http } from "@angular/http";
+import { Injectable, OnInit } from "@angular/core";
+import { Http } from "@angular/http";
 import { Observable } from "rxjs/Observable";
+import { log } from "util";
 
 @Injectable()
-export class AuthenticationService implements OnInit {
+export class AuthenticationService {
 
-  ngOnInit(): void {
-    this.login().subscribe();
-  }
 
   authenticated = false;
 
@@ -16,12 +15,10 @@ export class AuthenticationService implements OnInit {
   login() {
     return this.http.get("./api/user")
       .map(response => {
-        this.authenticated = true;
-        return response.json();
+        return true;
       })
       .catch(() => {
-        this.authenticated = false;
-        return Observable.of("");
+        return Observable.of(false);
       });
   }
 
@@ -33,7 +30,7 @@ export class AuthenticationService implements OnInit {
       .catch(() => {
         this.authenticated = false;
         return Observable.of("");
-      }).subscribe();
+      });
 
   }
 

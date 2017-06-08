@@ -1,0 +1,36 @@
+.logo {
+  font-size: 24pt;
+}
+
+.cac-fill-remaining-space {
+  flex: 1 1 auto;
+}
+
+.cac-header-button {
+  font-size: 16pt;
+  font-weight: bold;
+}
+
+.cac-header-toolbar {
+  height: 5vh;
+  justify-content: center;
+}
+
+.example-sidenav-fab-container md-sidenav {
+  max-width: 200px;
+}
+
+.example-sidenav-fab-container .mat-sidenav-content,
+.example-sidenav-fab-container md-sidenav {
+  display: flex;
+  overflow: visible;
+}
+
+
+.front-page-image {
+  background-image: url("../assets/img/italian-1082230_1920.jpg");
+  height: 100vh;
+  background-size: cover;
+  text-align: center;
+}
+
