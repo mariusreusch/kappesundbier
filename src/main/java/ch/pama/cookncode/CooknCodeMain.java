@@ -3,6 +3,7 @@ package ch.pama.cookncode;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.boot.autoconfigure.flyway.FlywayMigrationStrategy;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.ResourceServerProperties;
 import org.springframework.boot.autoconfigure.security.oauth2.resource.UserInfoTokenServices;
 import org.springframework.boot.context.properties.ConfigurationProperties;
@@ -32,6 +33,16 @@ public class CooknCodeMain extends WebSecurityConfigurerAdapter {
 
     @Autowired
     OAuth2ClientContext oauth2ClientContext;
+
+    @Bean
+    public FlywayMigrationStrategy cleanMigrateStrategy() {
+        FlywayMigrationStrategy strategy = flyway -> {
+            flyway.clean();
+            flyway.migrate();
+        };
+
+        return strategy;
+    }
 
     public static void main(String[] args) {
         SpringApplication.run(CooknCodeMain.class, args);
