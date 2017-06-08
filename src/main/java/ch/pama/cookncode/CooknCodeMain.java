@@ -34,16 +34,6 @@ public class CooknCodeMain extends WebSecurityConfigurerAdapter {
     @Autowired
     OAuth2ClientContext oauth2ClientContext;
 
-    @Bean
-    public FlywayMigrationStrategy cleanMigrateStrategy() {
-        FlywayMigrationStrategy strategy = flyway -> {
-            flyway.clean();
-            flyway.migrate();
-        };
-
-        return strategy;
-    }
-
     public static void main(String[] args) {
         SpringApplication.run(CooknCodeMain.class, args);
     }
