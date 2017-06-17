@@ -38,7 +38,8 @@ export class AuthService {
       .catch(() => {
         this.isLoggedIn = false;
         return Observable.of("");
-      });
+      })
+      .subscribe();
   }
 
 }
