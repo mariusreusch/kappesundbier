@@ -13,16 +13,12 @@ export class HomeService {
   }
 
   getUser(): Observable<any> {
-    //return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     return this.http.get("./api/user")
-      .map(response => response.json()
-      )
+      .map(response => response.json())
       .catch(() => {
         return Observable.of("");
       });
   }
-
-
 }
 
 

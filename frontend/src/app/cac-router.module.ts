@@ -3,7 +3,7 @@ import { HomeComponent } from "./home/home.component";
 import { RecipeManagementComponent } from "./recipe-management/recipe-management.component";
 import { WeekPlannerComponent } from "./week-planner/week-planner.component";
 import { RouterModule, Routes } from "@angular/router";
-import { LoginComponent } from "./login.component";
+import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
 

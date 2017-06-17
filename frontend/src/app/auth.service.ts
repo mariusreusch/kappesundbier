@@ -8,21 +8,19 @@ import { Http } from "@angular/http";
 
 @Injectable()
 export class AuthService {
+
   isLoggedIn: boolean = false;
 
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-
   constructor(private http: Http) {
   }
 
   login(): Observable<boolean> {
-    //return Observable.of(true).delay(1000).do(val => this.isLoggedIn = true);
     return this.http.get("./api/user")
       .map(response => {
         response.json();
-
         this.isLoggedIn = true;
         return true;
       })

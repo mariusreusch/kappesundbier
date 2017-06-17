@@ -7,3 +7,17 @@ spring:
     url: jdbc:mysql://localhost:3306/cookncode
     username: root
     password: ENC(9UGCMsl14C7CGToInitsJA==)
+
+
+#google:
+#    client:
+#      clientId: 188938948487-7ut4gko2brbia7t6vkkb94blod28te50.apps.googleusercontent.com
+#      client-secret: kwrOHManPsJKsXsnxFb_ayxM
+#      accessTokenUri: https://www.googleapis.com/oauth2/v3/token
+#      userAuthorizationUri: http://localhost:5000/o/oauth2/auth
+#      tokenName: oauth_token
+#      authenticationScheme: query
+#      clientAuthenticationScheme: form
+#      scope: profile
+#    resource:
+#      userInfoUri: https://www.googleapis.com/userinfo/v2/me
