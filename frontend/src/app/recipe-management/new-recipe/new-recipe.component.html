@@ -37,7 +37,7 @@
       </md-input-container>
     </form>
 
-    <h3 md-subheader>Ingredients</h3>
+    <h3>Ingredients</h3>
     <md-list>
       <md-list-item *ngFor="let ingredient of newRecipe.ingredients">
         <div md-line style="display: flex;">
@@ -78,7 +78,18 @@
       </button>
     </form>
 
+    <h3>Pictures</h3>
+
+    <file-upload (onFileSelected)="addImage($event)"></file-upload>
+
+    <div>
+    <span *ngFor="let image of newRecipe.images">
+      <img src="{{image.content}}" alt="" width="200">
+    </span>
+    </div>
+
     <md-divider></md-divider>
+
   </md-card-content>
   <md-card-actions>
     <button type="submit" md-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1" (click)="recipeForm.ngSubmit.emit()">Save Recipe</button>

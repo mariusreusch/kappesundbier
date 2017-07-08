@@ -14,6 +14,7 @@ import { WeekPlannerComponent } from "./week-planner/week-planner.component";
 import { RecipeOverviewComponent } from "./recipe-management/recipe-overview/recipe-overview.component";
 import { LoginComponent } from "./login/login.component";
 import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
+import { FileUploadComponent } from "./file-upload/file-upload.component";
 
 
 @NgModule({
@@ -23,11 +24,11 @@ import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
     HttpModule,
     AppRouterModule,
     CacMaterialModule,
-    BrowserAnimationsModule,
+    BrowserAnimationsModule
   ],
   declarations: [
     AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
-    WeekPlannerComponent, LoginComponent, RecipeDetailComponent
+    WeekPlannerComponent, LoginComponent, RecipeDetailComponent, FileUploadComponent
   ],
   bootstrap: [AppComponent]
 })

@@ -5,6 +5,8 @@ import { LIVE_ANNOUNCER_PROVIDER, MdSnackBar, OVERLAY_PROVIDERS } from "@angular
 import { CreateRecipeResult } from "../create-recipe-result";
 import { CreateRecipeResultState } from "../create-recipe-result-state";
 import { Recipe } from "../../recipe";
+import { FileToUpload } from "../../file-upload/file-to-upload";
+
 
 @Component({
   selector: 'new-recipe',
@@ -15,7 +17,7 @@ import { Recipe } from "../../recipe";
 export class NewRecipeComponent {
 
 
-  newRecipe = new Recipe("", "", null, "", [], []);
+  newRecipe = new Recipe("", "", null, "", [], [], []);
   newIngredient = new Ingredient("", null, "");
   categoriesAsCommaSeparatedString = "";
 
@@ -74,13 +76,17 @@ export class NewRecipeComponent {
     }
   }
 
+  addImage(file: FileToUpload) {
+    this.newRecipe.images.push(file);
+  }
+
   private resetIngredientForm() {
     this.newIngredient = new Ingredient("", null, "");
     this.ingredientForm.resetForm();
   }
 
   private resetRecipeForm() {
-    this.newRecipe = new Recipe("", "", null, "", [], []);
+    this.newRecipe = new Recipe("", "", null, "", [], [], []);
     this.categoriesAsCommaSeparatedString = "";
     this.recipeForm.resetForm();
   }

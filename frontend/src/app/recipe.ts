@@ -1,4 +1,5 @@
 import { Ingredient } from "./recipe-management/ingredient";
+import { FileToUpload } from "./file-upload/file-to-upload";
 
 export class Recipe {
 
@@ -7,6 +8,9 @@ export class Recipe {
               public numberOfPortions: number,
               public instruction: string,
               public ingredients: Ingredient[],
-              public categories: string[]) {
+              public categories: string[],
+              public images: FileToUpload[]) {
   }
+
+
 }
