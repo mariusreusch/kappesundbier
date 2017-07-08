@@ -1,12 +1,24 @@
-<span *ngIf="recipe">
-<p>{{recipe.name}}</p>
-<p>{{recipe.categories}}</p>
+<div class="cac-area" *ngIf="recipe">
+  <md-card>
+  <md-card-content>
+    <h1>{{recipe.name}}</h1>
+    <h3>Number Of Portions</h3>
+   {{recipe.numberOfPortions}}
 
-  <ul *ngFor="let ingredient of recipe.ingredients">
-    <li>
-    {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
-    </li>
-  </ul>
-<p>{{recipe.numberOfPortions}}</p>
-<p>{{recipe.instruction}}</p>
-</span>
+    <h3>Categories</h3>
+    <md-chip-list>
+      <md-chip *ngFor="let category of recipe.categories">{{category}}</md-chip>
+    </md-chip-list>
+
+    <h3>Number Of Portions</h3>
+    <span md-line>{{recipe.instruction}}</span>
+
+    <h3>Ingredients</h3>
+    <md-list>
+      <md-list-item *ngFor="let ingredient of recipe.ingredients">
+          {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
+      </md-list-item>
+    </md-list>
+  </md-card-content>
+  </md-card>
+</div>

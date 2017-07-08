@@ -23,5 +23,4 @@ export class RecipeDetailComponent implements OnInit {
       .switchMap((params: ParamMap) => this.service.findRecipe(params.get('id')))
       .subscribe((recipe: Recipe) => this.recipe = recipe);
   }
-
 }
