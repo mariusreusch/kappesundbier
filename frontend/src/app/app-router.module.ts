@@ -39,5 +39,5 @@ const appRoutes: Routes = [
     AuthService
   ]
 })
-export class CacRouterModule {
+export class AppRouterModule {
 }

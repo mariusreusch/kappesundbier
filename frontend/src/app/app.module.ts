@@ -4,7 +4,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { AppComponent } from "./app.component";
 import { FormsModule } from "@angular/forms";
 import { HttpModule } from "@angular/http";
-import { CacRouterModule } from "./cac-router.module";
+import { AppRouterModule } from "./app-router.module";
 import "hammerjs";
 import { CacMaterialModule } from "./cac-material.module";
 import { HomeComponent } from "./home/home.component";
@@ -20,7 +20,7 @@ import { LoginComponent } from "./login/login.component";
     BrowserModule,
     FormsModule,
     HttpModule,
-    CacRouterModule,
+    AppRouterModule,
     CacMaterialModule,
     BrowserAnimationsModule,
   ],

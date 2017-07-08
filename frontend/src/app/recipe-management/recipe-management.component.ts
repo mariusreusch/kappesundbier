@@ -3,6 +3,7 @@ import { Recipe } from "./recipe";
 import { RecipeService } from "./recipe-service";
 import { Observable } from "rxjs/Observable";
 import { CreateRecipeResult } from "./create-recipe-result";
+import "rxjs/add/operator/share";
 
 @Component({
   selector: 'recipe-management',
