@@ -13,6 +13,7 @@ import { NewRecipeComponent } from "./recipe-management/new-recipe/new-recipe.co
 import { WeekPlannerComponent } from "./week-planner/week-planner.component";
 import { RecipeOverviewComponent } from "./recipe-management/recipe-overview/recipe-overview.component";
 import { LoginComponent } from "./login/login.component";
+import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 
 
 @NgModule({
@@ -26,7 +27,7 @@ import { LoginComponent } from "./login/login.component";
   ],
   declarations: [
     AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
-    WeekPlannerComponent, LoginComponent
+    WeekPlannerComponent, LoginComponent, RecipeDetailComponent
   ],
   bootstrap: [AppComponent]
 })

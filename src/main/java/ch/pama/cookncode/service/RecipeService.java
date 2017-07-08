@@ -34,4 +34,8 @@ public class RecipeService {
                 .stream()
                 .map(RecipeDto::from).collect(toList());
     }
+
+    public RecipeDto findById(String id) {
+        return RecipeDto.from(this.recipeRepository.findOne(Long.valueOf(id)));
+    }
 }

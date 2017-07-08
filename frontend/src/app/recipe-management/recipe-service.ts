@@ -1,9 +1,9 @@
 import { Injectable } from "@angular/core";
-import { Recipe } from "./recipe";
 import { Http } from "@angular/http";
 import { CreateRecipeResult } from "./create-recipe-result";
 import { CreateRecipeResultState } from "./create-recipe-result-state";
 import { Observable } from "rxjs/Observable";
+import { Recipe } from "../recipe";
 
 @Injectable()
 export class RecipeService {
@@ -19,6 +19,11 @@ export class RecipeService {
 
   findMyRecipes() {
     return this.http.get("./api/recipes")
+      .map(response => response.json());
+  }
+
+  findRecipe(id: string) {
+    return this.http.get("./api/recipes/" + id)
       .map(response => response.json());
   }
 

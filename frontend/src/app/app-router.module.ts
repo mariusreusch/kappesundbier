@@ -6,6 +6,7 @@ import { RouterModule, Routes } from "@angular/router";
 import { LoginComponent } from "./login/login.component";
 import { AuthGuard } from "./auth-guard.service";
 import { AuthService } from "./auth.service";
+import { RecipeDetailComponent } from "./recipe-detail/recipe-detail.component";
 
 const appRoutes: Routes = [
   {
@@ -16,6 +17,12 @@ const appRoutes: Routes = [
   {
     path: 'recipe-overview',
     component: RecipeManagementComponent,
+    canActivate: [AuthGuard]
+
+  },
+  {
+    path: 'recipe-detail/:id',
+    component: RecipeDetailComponent,
     canActivate: [AuthGuard]
 
   },

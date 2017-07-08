@@ -24,20 +24,22 @@ public class RecipeRestController {
 
     @PostMapping
     public RecipeDto createRecipe(@RequestBody RecipeDto recipeDto, Principal principal) {
-
         User user = getOrCreateUser(principal);
         return recipeService.createRecipe(recipeDto, user);
     }
 
-    @GetMapping("/random")
-    public String getRecipe() {
-        return "This is a random recipe.";
-    }
-
-    @GetMapping("")
+    @GetMapping
     public List<RecipeDto> findAll(Principal principal) {
         User user = getOrCreateUser(principal);
         return recipeService.findAllRecipesOfUser(user);
+    }
+
+    @GetMapping("/{id}")
+    public RecipeDto findById(@PathVariable String id, Principal principal) {
+        return findAll(principal).stream()
+                .filter(recipeDto -> recipeDto.getId().equals(id))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
     }
 
     private User getOrCreateUser(Principal principal) {

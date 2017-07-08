@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
-import { Recipe } from "./recipe";
 import { RecipeService } from "./recipe-service";
 import { Observable } from "rxjs/Observable";
 import { CreateRecipeResult } from "./create-recipe-result";
 import "rxjs/add/operator/share";
+import { Recipe } from "../recipe";
 
 @Component({
   selector: 'recipe-management',
@@ -13,7 +13,7 @@ import "rxjs/add/operator/share";
 })
 export class RecipeManagementComponent implements OnInit {
 
-  creareRecipeResult: Observable<CreateRecipeResult>;
+  createRecipeResult: Observable<CreateRecipeResult>;
   myRecipes: Observable<Recipe[]>;
 
   constructor(private recipeService: RecipeService) {
@@ -24,7 +24,7 @@ export class RecipeManagementComponent implements OnInit {
   }
 
   createRecipe(recipe: Recipe) {
-    this.creareRecipeResult = this.recipeService.create(recipe).share();
+    this.createRecipeResult = this.recipeService.create(recipe).share();
 
   }
 }

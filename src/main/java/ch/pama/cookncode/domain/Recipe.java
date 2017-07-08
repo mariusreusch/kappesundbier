@@ -42,6 +42,10 @@ public class Recipe {
         this.creationDate = ZonedDateTime.now();
     }
 
+    public Long getId() {
+        return id;
+    }
+
     public String getName() {
         return name;
     }

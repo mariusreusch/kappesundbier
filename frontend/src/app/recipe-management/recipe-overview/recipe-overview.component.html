@@ -6,7 +6,7 @@
     <md-list>
       <md-list-item *ngFor="let recipe of myRecipes ">
         <div style="display: flex;" md-line>
-          <div style="align-self: center;">{{recipe.name}}</div>
+          <button md-button (click)="onSelect(recipe)">{{recipe.name}}</button>
           <md-chip-list *ngFor="let category of recipe.categories">
             <md-chip>{{category}}</md-chip>
           </md-chip-list>

@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
 import { Ingredient } from "../ingredient";
-import { Recipe } from "../recipe";
 import { NgForm } from "@angular/forms";
 import { LIVE_ANNOUNCER_PROVIDER, MdSnackBar, OVERLAY_PROVIDERS } from "@angular/material";
 import { CreateRecipeResult } from "../create-recipe-result";
 import { CreateRecipeResultState } from "../create-recipe-result-state";
+import { Recipe } from "../../recipe";
 
 @Component({
   selector: 'new-recipe',
@@ -15,7 +15,7 @@ import { CreateRecipeResultState } from "../create-recipe-result-state";
 export class NewRecipeComponent {
 
 
-  newRecipe = new Recipe("", null, "", [], []);
+  newRecipe = new Recipe("", "", null, "", [], []);
   newIngredient = new Ingredient("", null, "");
   categoriesAsCommaSeparatedString = "";
 
@@ -80,7 +80,7 @@ export class NewRecipeComponent {
   }
 
   private resetRecipeForm() {
-    this.newRecipe = new Recipe("", null, "", [], []);
+    this.newRecipe = new Recipe("", "", null, "", [], []);
     this.categoriesAsCommaSeparatedString = "";
     this.recipeForm.resetForm();
   }
