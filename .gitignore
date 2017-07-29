@@ -1,5 +1,4 @@
 .gradle
-devutils/**/*
 .idea/dataSources
 .idea/dictionaries
 .idea/libraries
