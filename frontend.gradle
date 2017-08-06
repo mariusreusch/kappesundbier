@@ -4,8 +4,8 @@ def clientRoot = file("${project.rootDir}/frontend")
 def clientDist = file("${clientRoot.getAbsolutePath()}/dist")
 
 node {
-    version = '8.0.0'
-    yarnVersion = '0.21.3'
+    version = '8.2.1'
+    yarnVersion = '0.27.5'
     distBaseUrl = 'https://nodejs.org/dist'
     // If false, it will try to use globally installed node.
     download = true
