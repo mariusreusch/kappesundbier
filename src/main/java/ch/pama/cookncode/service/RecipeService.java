@@ -1,12 +1,11 @@
 package ch.pama.cookncode.service;
 
-import ch.pama.cookncode.domain.Recipe;
-import ch.pama.cookncode.domain.RecipeRepository;
-import ch.pama.cookncode.domain.User;
-import ch.pama.cookncode.domain.UserRepository;
+import ch.pama.cookncode.domain.*;
 import ch.pama.cookncode.rest.dto.RecipeDto;
+import ch.pama.cookncode.rest.dto.RecipeImageDto;
 import org.springframework.stereotype.Service;
 
+import java.util.Collection;
 import java.util.List;
 
 import static java.util.stream.Collectors.toList;
@@ -22,8 +21,13 @@ public class RecipeService {
         this.userRepository = userRepository;
     }
 
-    public RecipeDto createRecipe(RecipeDto recipeDto, User user) {
-        user.addRecipe(recipeDto.toRecipe());
+    public RecipeDto createRecipe(RecipeDto recipeDto, User user, List<byte[]> recipeImageData) {
+        Recipe recipe = recipeDto.toRecipe();
+        recipeImageData.stream()
+                .map(RecipeImage::new)
+                .forEach(recipe::addImage);
+
+        user.addRecipe(recipe);
         userRepository.save(user);
         return recipeDto;
     }
@@ -38,4 +42,14 @@ public class RecipeService {
     public RecipeDto findById(String id) {
         return RecipeDto.from(this.recipeRepository.findOne(Long.valueOf(id)));
     }
+
+    public List<byte[]> findImagesOfRecipe(Long id, User user) {
+        return user.getRecipes().stream()
+                .filter(recipe -> recipe.getId() == id)
+                .map(Recipe::getRecipeImages)
+                .flatMap(Collection::stream)
+                .map(RecipeImage::getData)
+                .collect(toList());
+    }
+
 }

@@ -2,10 +2,7 @@ package ch.pama.cookncode.domain;
 
 import ch.pama.cookncode.util.OnlyForFramework;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToMany;
+import javax.persistence.*;
 import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Objects;
@@ -28,6 +25,9 @@ public class Recipe {
     @ManyToMany(fetch = EAGER, cascade = ALL)
     private Set<RecipeCategory> categories;
     private ZonedDateTime creationDate;
+    @OneToMany(cascade = ALL)
+    @JoinColumn(name = "fk_recipe_id")
+    private Set<RecipeImage> recipeImages;
 
     @OnlyForFramework
     private Recipe() {
@@ -40,6 +40,7 @@ public class Recipe {
         this.ingredients = new HashSet<>(ingredients);
         this.categories = new HashSet<>(categories);
         this.creationDate = ZonedDateTime.now();
+        this.recipeImages = new HashSet<>();
     }
 
     public Long getId() {
@@ -64,5 +65,13 @@ public class Recipe {
 
     public Set<RecipeCategory> getCategories() {
         return categories;
+    }
+
+    public void addImage(RecipeImage recipeImage) {
+        this.recipeImages.add(recipeImage);
+    }
+
+    public Set<RecipeImage> getRecipeImages() {
+        return recipeImages;
     }
 }

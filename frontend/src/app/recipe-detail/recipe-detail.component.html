@@ -19,6 +19,8 @@
           {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
       </md-list-item>
     </md-list>
+
+    <img *ngFor="let image of base64EncodedImages" src="{{image}}" alt="">
   </md-card-content>
   </md-card>
 </div>

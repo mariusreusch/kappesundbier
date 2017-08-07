@@ -5,13 +5,19 @@ import ch.pama.cookncode.domain.UserRepository;
 import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.service.RecipeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.http.CacheControl;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
+
+import static org.springframework.http.HttpStatus.*;
 
 @RestController
 @RequestMapping("api/recipes")
@@ -33,8 +39,11 @@ public class RecipeRestController {
             @RequestParam("file") MultipartFile[] multipartFiles, Principal principal) throws IOException {
         User user = getOrCreateUser(principal);
         RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
-        return recipeService.createRecipe(recipeDto, user);
-
+        List<byte[]> recipeImageData = new ArrayList<>();
+        for (MultipartFile multipartFile : multipartFiles) {
+            recipeImageData.add(multipartFile.getBytes());
+        }
+        return recipeService.createRecipe(recipeDto, user, recipeImageData);
     }
 
     @GetMapping
@@ -49,6 +58,18 @@ public class RecipeRestController {
                 .filter(recipeDto -> recipeDto.getId().equals(id))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @GetMapping("/{id}/images")
+    public ResponseEntity<List<byte[]>> findImgesByRecipeId(@PathVariable Long id, Principal principal) {
+        User user = getOrCreateUser(principal);
+        List<byte[]> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
+
+        HttpHeaders headers = new HttpHeaders();
+        headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+
+        return new ResponseEntity<>(imagesOfRecipe, headers, OK);
+
     }
 
     private User getOrCreateUser(Principal principal) {
