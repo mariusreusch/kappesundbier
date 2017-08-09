@@ -1,9 +1,16 @@
 server:
   port: 5000
+  tomcat:
+    max-http-post-size: 100000000 #100MB
 
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
+  http:
+    multipart:
+      max-file-size: 50MB
+      max-request-size: 50MB
+
 
 google:
     client:
@@ -21,3 +28,4 @@ google:
 logging:
   level:
     org.springframework.security: DEBUG
+
