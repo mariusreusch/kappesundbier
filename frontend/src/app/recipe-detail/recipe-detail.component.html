@@ -20,7 +20,10 @@
       </md-list-item>
     </md-list>
 
-    <img *ngFor="let image of base64EncodedImages" src="{{image}}" alt="">
+    <span *ngFor="let image of base64EncodedImages">
+      <img src="{{image}}" alt="" width="100%">
+    </span>
+
   </md-card-content>
   </md-card>
 </div>

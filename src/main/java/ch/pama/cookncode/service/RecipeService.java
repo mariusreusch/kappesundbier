@@ -6,8 +6,10 @@ import ch.pama.cookncode.rest.dto.RecipeImageDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.List;
 
+import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -28,8 +30,13 @@ public class RecipeService {
                 .forEach(recipe::addImage);
 
         user.addRecipe(recipe);
-        userRepository.save(user);
-        return recipeDto;
+        User save = userRepository.save(user);
+
+        Recipe newRecipe = save.getRecipes().stream()
+                .max(comparing(Recipe::getCreationDate))
+                .orElseThrow(IllegalStateException::new);
+
+        return recipeDto.from(newRecipe);
     }
 
     public List<RecipeDto> findAllRecipesOfUser(User user) {

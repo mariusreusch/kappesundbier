@@ -74,4 +74,8 @@ public class Recipe {
     public Set<RecipeImage> getRecipeImages() {
         return recipeImages;
     }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
 }
