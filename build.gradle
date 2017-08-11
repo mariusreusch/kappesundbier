@@ -34,16 +34,6 @@ jar {
     into("static") {
         from clientArtifacts
     }
-
-    from("${rootDir}/.ebextensions") {
-        into('.ebextensions')
-    }
-}
-
-task testa {
-    doLast {
-        println "${rootDir}"
-    }
 }
 
 repositories {
