@@ -16,21 +16,13 @@
   justify-content: center;
 }
 
-.example-sidenav-fab-container md-sidenav {
+.cac-sidenav-fab-container md-sidenav {
   max-width: 200px;
 }
 
-.example-sidenav-fab-container .mat-sidenav-content,
-.example-sidenav-fab-container md-sidenav {
+.cac-sidenav-fab-container .mat-sidenav-content,
+.cac-sidenav-fab-container md-sidenav {
   display: flex;
   overflow: visible;
-}
-
-
-.front-page-image {
-  background-image: url("../assets/img/italian-1082230_1920.jpg");
-  height: 100vh;
-  background-size: cover;
-  text-align: center;
 }
 
