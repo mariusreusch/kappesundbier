@@ -34,6 +34,18 @@ jar {
     into("static") {
         from clientArtifacts
     }
+
+}
+
+
+task zip(type: Zip, dependsOn: bootRepackage) {
+    from ('.ebextensions') {
+        into '.ebextensions'
+    }
+    from (jar.outputs.files) {
+        into '.'
+    }
+    destinationDir project.buildDir
 }
 
 repositories {
