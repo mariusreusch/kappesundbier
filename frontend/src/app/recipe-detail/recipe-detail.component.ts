@@ -1,8 +1,8 @@
-import {Component, OnInit} from "@angular/core";
-import {RecipeService} from "../recipe-management/recipe-service";
-import {ActivatedRoute, ParamMap} from "@angular/router";
+import { Component, OnInit } from "@angular/core";
+import { RecipeService } from "../recipe-management/recipe-service";
+import { ActivatedRoute, ParamMap } from "@angular/router";
 import "rxjs/add/operator/switchMap";
-import {Recipe} from "../recipe";
+import { Recipe } from "../recipe";
 
 @Component({
   selector: 'recipe-detail',
@@ -12,8 +12,8 @@ import {Recipe} from "../recipe";
 })
 export class RecipeDetailComponent implements OnInit {
 
-  private recipe: Recipe;
-  private base64EncodedImages = [];
+  recipe: Recipe;
+  base64EncodedImages = [];
 
   constructor(private route: ActivatedRoute,
               private service: RecipeService) {
