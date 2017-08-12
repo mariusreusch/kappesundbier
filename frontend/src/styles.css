@@ -24,7 +24,13 @@ body#cac-body {
 }
 
 .front-page-text {
-  color: white;
-  font-size: 60pt;
+  color: black;
+  font-size: 30pt;
+  padding-top: 5%;
+}
+
+.subtitle-text {
+  color: black;
+  font-size: 14pt;
   padding-top: 5%;
 }

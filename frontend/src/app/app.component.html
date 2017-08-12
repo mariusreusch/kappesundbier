@@ -1,4 +1,4 @@
-<md-toolbar class="cac-background cac-font-1 cac-header-toolbar">
+<md-toolbar class="cac-background cac-font-1 cac-header-toolbar" *ngIf="isLoggedIn()">
 
   <button md-button (click)="sidenav.toggle()">
     <md-icon style="margin-right: 10px;">menu</md-icon>
@@ -7,7 +7,9 @@
 
   <span class="cac-fill-remaining-space"></span>
 
-  <a class="cac-font-1 logo" routerLink="/">FoodPlanner</a>
+  <a class="cac-font-1 logo" routerLink="/">
+    <img src="/assets/logo_small.png" width="50">
+  </a>
 </md-toolbar>
 
 

@@ -1,7 +1,6 @@
-<div class="front-page-image">
-  <div class="front-page-text cac-font-1">
-    <span *ngIf="user">
-    Hej {{user.userAuthentication.details.given_name}}, keep your recipes
+<div class="front-page">
+  <div class="front-page-text cac-font-1"><span *ngIf="user">
+    Hej <b>{{user.userAuthentication.details.given_name}}</b>, keep your recipes
     </span>
   </div>
 </div>
