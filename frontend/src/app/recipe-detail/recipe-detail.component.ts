@@ -26,9 +26,9 @@ export class RecipeDetailComponent implements OnInit {
 
     this.route.paramMap
       .switchMap((params: ParamMap) => this.service.findRecipeImages(params.get('id')))
-      .subscribe((images) => {
-        for (let i = 0; i < images.json().length; i++) {
-          this.base64EncodedImages.push('data:image/jpg;base64,' + images.json()[i]);
+      .subscribe((images: any) => {
+        for (let i = 0; i < images.length; i++) {
+          this.base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
         }
       });
 

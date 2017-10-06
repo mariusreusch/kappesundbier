@@ -6,7 +6,7 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class AuthService {
@@ -16,13 +16,12 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private http: Http) {
+  constructor(private httpClient: HttpClient) {
   }
 
   login(): Observable<boolean> {
-    return this.http.get('./api/user')
-      .map(response => {
-        response.json();
+    return this.httpClient.get('./api/user')
+      .map(() => {
         this.isLoggedIn = true;
         return true;
       })
@@ -33,7 +32,7 @@ export class AuthService {
   }
 
   logout(): void {
-    this.http.post('./logout', {})
+    this.httpClient.post('./logout', {})
       .do(() => this.isLoggedIn = false)
       .catch(() => {
         this.isLoggedIn = false;

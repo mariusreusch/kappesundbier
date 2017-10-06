@@ -68,7 +68,7 @@ public class RecipeRestController {
 
         recipeService.deleteReceipe(id, user);
 
-        return new DeletedRecipeIdDto(id);
+        return new DeletedRecipeIdDto(id.toString());
     }
 
     @GetMapping("/{id}/images")

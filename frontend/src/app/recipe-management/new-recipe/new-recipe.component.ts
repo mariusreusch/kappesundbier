@@ -34,7 +34,7 @@ export class NewRecipeComponent {
         case CreateRecipeResultState.SUCCESS:
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('Es wurde eine neues fabelhaftes Rezept erfolgreich gespeichert.', null, {
+            this.snackBar.open('Ein neues fabelhaftes Rezept wurde erfolgreich gespeichert.', null, {
               duration: 4000,
             });
           }, 1);

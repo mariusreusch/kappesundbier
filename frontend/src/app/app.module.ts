@@ -3,7 +3,6 @@ import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
-import { HttpModule } from '@angular/http';
 import { AppRouterModule } from './app-router.module';
 import 'hammerjs';
 import { CacMaterialModule } from './cac-material.module';
@@ -16,13 +15,14 @@ import { LoginComponent } from './login/login.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
+import { HttpClientModule } from '@angular/common/http';
 
 
 @NgModule({
   imports: [
     BrowserModule,
     FormsModule,
-    HttpModule,
+    HttpClientModule,
     AppRouterModule,
     CacMaterialModule,
     BrowserAnimationsModule

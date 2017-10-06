@@ -6,17 +6,17 @@ import 'rxjs/add/operator/map';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/delay';
-import { Http } from '@angular/http';
+import { HttpClient } from '@angular/common/http';
 
 @Injectable()
 export class HomeService {
 
-  constructor(private http: Http) {
+  constructor(private httpClient: HttpClient) {
   }
 
   getUser(): Observable<any> {
-    return this.http.get('./api/user')
-      .map(response => response.json())
+    return this.httpClient.get('./api/user')
+      .map(response => response)
       .catch(() => {
         return Observable.of('');
       });

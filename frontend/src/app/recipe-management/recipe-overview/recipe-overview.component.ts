@@ -35,7 +35,7 @@ export class RecipeOverviewComponent {
   @Input('deleteRecipeResult')
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
     if (deleteRecipeResult && deleteRecipeResult.state === DeleteRecipeResultState.SUCCESS) {
-      this.myRecipes = this.myRecipes.filter(recipe => recipe.id === deleteRecipeResult.deletedRecipeId);
+      this.myRecipes = this.myRecipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
       setTimeout(() => {
         this.snackBar.open('Schade dass du dieses bezaubernde Rezept gelöscht hast!', null, {
           duration: 4000,

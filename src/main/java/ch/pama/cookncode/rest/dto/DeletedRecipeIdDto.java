@@ -4,9 +4,9 @@ import ch.pama.cookncode.util.OnlyForFramework;
 
 public class DeletedRecipeIdDto {
 
-    private long deletedRecipeId;
+    private String deletedRecipeId;
 
-    public DeletedRecipeIdDto(long deletedRecipeId) {
+    public DeletedRecipeIdDto(String deletedRecipeId) {
         this.deletedRecipeId = deletedRecipeId;
     }
 
@@ -14,7 +14,8 @@ public class DeletedRecipeIdDto {
     private DeletedRecipeIdDto() {
     }
 
-    public long getDeletedRecipeId() {
+    @OnlyForFramework
+    public String getDeletedRecipeId() {
         return deletedRecipeId;
     }
 }
