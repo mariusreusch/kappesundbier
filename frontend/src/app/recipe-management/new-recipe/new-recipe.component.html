@@ -1,81 +1,81 @@
-<md-card>
-  <md-card-header>
-    <md-card-title><h1>Erstelle ein neues Rezept</h1></md-card-title>
-  </md-card-header>
-  <md-card-content>
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h1>Erstelle ein neues Rezept</h1></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
-      <md-input-container class="cac-full-width-input">
-        <input md-line mdInput
+      <mat-input-container class="cac-full-width-input">
+        <input mat-line matInput
                placeholder="Recipe Name"
                name="recipeName"
                required
                [(ngModel)]="newRecipe.name">
-      </md-input-container>
-      <md-input-container class="cac-full-width-input">
-        <input md-line mdInput
+      </mat-input-container>
+      <mat-input-container class="cac-full-width-input">
+        <input mat-line matInput
                placeholder="Number Of Portions"
                name="numberOfPortions"
                type="number"
                required
                [(ngModel)]="newRecipe.numberOfPortions">
-      </md-input-container>
-      <md-input-container class="cac-full-width-input">
-        <input md-line mdInput
+      </mat-input-container>
+      <mat-input-container class="cac-full-width-input">
+        <input mat-line matInput
                placeholder="Categories (comma separated)"
                name="numberOfPortions"
                required
                [(ngModel)]="categoriesAsCommaSeparatedString">
-      </md-input-container>
-      <md-input-container class="cac-full-width-input">
-        <textarea mdInput
+      </mat-input-container>
+      <mat-input-container class="cac-full-width-input">
+        <textarea matInput
                   name="instruction"
                   placeholder="Instruction"
                   rows="4"
                   required
                   [(ngModel)]="newRecipe.instruction">
         </textarea>
-      </md-input-container>
+      </mat-input-container>
     </form>
 
     <h3>Ingredients</h3>
-    <md-list>
-      <md-list-item *ngFor="let ingredient of newRecipe.ingredients">
-        <div md-line style="display: flex;">
+    <mat-list>
+      <mat-list-item *ngFor="let ingredient of newRecipe.ingredients">
+        <div mat-line style="display: flex;">
           <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
             {{ingredient.name}}
           </div>
-          <md-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</md-icon>
+          <mat-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
         </div>
-      </md-list-item>
-    </md-list>
+      </mat-list-item>
+    </mat-list>
 
     <form #ingredientForm="ngForm" (ngSubmit)="addIngredient()" onsubmit="ingredientAmount.focus()">
-      <md-input-container>
-        <input mdInput
+      <mat-input-container>
+        <input matInput
                placeholder="Amount"
                type="number"
                name="ingredientAmount"
                [(ngModel)]="newIngredient.amount"
                required>
-      </md-input-container>
-      <md-input-container>
-        <input mdInput
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput
                placeholder="Measuring Unit"
                name="measuringUnit"
                [(ngModel)]="newIngredient.unitOfMeasurement"
                required>
-      </md-input-container>
-      <md-input-container>
-        <input mdInput
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput
                placeholder="Ingredient Name"
                name="ingredientName"
                [(ngModel)]="newIngredient.name"
                required>
-      </md-input-container>
+      </mat-input-container>
 
       <button [disabled]="!ingredientForm.form.valid"
-              md-mini-fab>
-        <md-icon>add</md-icon>
+              mat-mini-fab>
+        <mat-icon>add</mat-icon>
       </button>
     </form>
 
@@ -89,12 +89,12 @@
     </span>
     </div>
 
-    <md-divider></md-divider>
+    <mat-divider></mat-divider>
 
-  </md-card-content>
-  <md-card-actions>
-    <button md-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1"
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1"
             (click)="recipeForm.ngSubmit.emit()">Tue Fantastisches!
     </button>
-  </md-card-actions>
-</md-card>
+  </mat-card-actions>
+</mat-card>

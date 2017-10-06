@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Ingredient } from '../ingredient';
 import { NgForm } from '@angular/forms';
-import { LIVE_ANNOUNCER_PROVIDER, MdSnackBar, OVERLAY_PROVIDERS } from '@angular/material';
+import { MatSnackBar } from '@angular/material';
 import { CreateRecipeResult } from '../create-recipe-result';
 import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Recipe } from '../../recipe';
@@ -12,7 +12,7 @@ import { FileToUpload } from '../../file-upload/file-to-upload';
   selector: 'kub-new-recipe',
   templateUrl: './new-recipe.component.html',
   styleUrls: ['./new-recipe.component.css'],
-  providers: [OVERLAY_PROVIDERS, MdSnackBar, LIVE_ANNOUNCER_PROVIDER]
+  providers: [MatSnackBar]
 })
 export class NewRecipeComponent {
 
@@ -52,7 +52,7 @@ export class NewRecipeComponent {
     }
   }
 
-  constructor(private snackBar: MdSnackBar) {
+  constructor(private snackBar: MatSnackBar) {
   }
 
   addIngredient(): void {

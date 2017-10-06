@@ -3,7 +3,7 @@ import { CreateRecipeResult } from '../create-recipe-result';
 import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Router } from '@angular/router';
 import { Recipe } from '../../recipe';
-import { MdDialog, MdSnackBar } from '@angular/material';
+import { MatDialog, MatSnackBar } from '@angular/material';
 import { YesNoDialogComponent } from '../../yes-no-dialog/yes-no-dialog.component';
 import { DeleteRecipeResultState } from '../delete-recipe-result-state';
 import { DeleteRecipeResult } from '../delete-recipe-result';
@@ -12,7 +12,7 @@ import { DeleteRecipeResult } from '../delete-recipe-result';
   selector: 'kub-recipe-overview',
   templateUrl: './recipe-overview.component.html',
   styleUrls: ['./recipe-overview.component.css'],
-  providers: [MdDialog, MdSnackBar]
+  providers: [MatDialog, MatSnackBar]
 })
 export class RecipeOverviewComponent {
 
@@ -22,7 +22,7 @@ export class RecipeOverviewComponent {
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
 
-  constructor(private router: Router, private dialog: MdDialog, private snackBar: MdSnackBar) {
+  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) {
   }
 
   @Input('createRecipeResult')

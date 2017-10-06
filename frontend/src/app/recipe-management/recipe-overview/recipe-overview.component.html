@@ -1,22 +1,22 @@
-<md-card style="margin-top: 5%">
-  <md-card-header>
-    <md-card-title><h1>Meine Rezepte</h1></md-card-title>
-  </md-card-header>
-  <md-card-content>
-    <md-list>
-      <md-list-item *ngFor="let recipe of myRecipes ">
-        <div style="display: flex;" md-line>
+<mat-card style="margin-top: 5%">
+  <mat-card-header>
+    <mat-card-title><h1>Meine Rezepte</h1></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <mat-list>
+      <mat-list-item *ngFor="let recipe of myRecipes ">
+        <div style="display: flex;" mat-line>
 
-          <button md-button (click)="onSelect(recipe)">{{recipe.name}}</button>
-          <md-chip-list *ngFor="let category of recipe.categories">
-            <md-chip>{{category}}</md-chip>
-          </md-chip-list>
-          <button md-button (click)="onDelete(recipe)">
+          <button mat-button (click)="onSelect(recipe)">{{recipe.name}}</button>
+          <mat-chip-list *ngFor="let category of recipe.categories">
+            <mat-chip>{{category}}</mat-chip>
+          </mat-chip-list>
+          <button mat-button (click)="onDelete(recipe)">
             Löschen
           </button>
 
         </div>
-      </md-list-item>
-    </md-list>
-  </md-card-content>
-</md-card>
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>

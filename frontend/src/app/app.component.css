@@ -16,12 +16,12 @@
   justify-content: center;
 }
 
-.cac-sidenav-fab-container md-sidenav {
+.cac-sidenav-fab-container mat-sidenav {
   max-width: 200px;
 }
 
 .cac-sidenav-fab-container .mat-sidenav-content,
-.cac-sidenav-fab-container md-sidenav {
+.cac-sidenav-fab-container mat-sidenav {
   display: flex;
   overflow: visible;
 }

@@ -1,29 +1,29 @@
 <div class="cac-area" *ngIf="recipe">
-  <md-card>
-    <md-card-content>
+  <mat-card>
+    <mat-card-content>
       <h1>{{recipe.name}}</h1>
       <h3>Number Of Portions</h3>
       {{recipe.numberOfPortions}}
 
       <h3>Categories</h3>
-      <md-chip-list>
-        <md-chip *ngFor="let category of recipe.categories">{{category}}</md-chip>
-      </md-chip-list>
+      <mat-chip-list>
+        <mat-chip *ngFor="let category of recipe.categories">{{category}}</mat-chip>
+      </mat-chip-list>
 
       <h3>Number Of Portions</h3>
-      <span md-line>{{recipe.instruction}}</span>
+      <span mat-line>{{recipe.instruction}}</span>
 
       <h3>Ingredients</h3>
-      <md-list>
-        <md-list-item *ngFor="let ingredient of recipe.ingredients">
+      <mat-list>
+        <mat-list-item *ngFor="let ingredient of recipe.ingredients">
           {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
-        </md-list-item>
-      </md-list>
+        </mat-list-item>
+      </mat-list>
 
       <span *ngFor="let image of base64EncodedImages">
       <img src="{{image}}" alt="" width="100%">
     </span>
 
-    </md-card-content>
-  </md-card>
+    </mat-card-content>
+  </mat-card>
 </div>
