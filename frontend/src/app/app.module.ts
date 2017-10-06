@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AppRouterModule } from './app-router.module';
 import 'hammerjs';
-import { KubMaterialModule } from './kub-material.module';
+import { KubMaterialModule } from './kub-material/kub-material.module';
 import { YesNoDialogComponent } from './kub-common/yes-no-dialog/yes-no-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WeekPlannerModule } from './week-planner/week-planner.module';

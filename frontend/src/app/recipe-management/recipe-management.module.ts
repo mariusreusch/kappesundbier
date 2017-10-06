@@ -6,7 +6,7 @@ import { RecipeOverviewComponent } from './recipe-overview/recipe-overview.compo
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { RecipeManagementComponent } from './recipe-management.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { KubMaterialModule } from '../kub-material.module';
+import { KubMaterialModule } from '../kub-material/kub-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
