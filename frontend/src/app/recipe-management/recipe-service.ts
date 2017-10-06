@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { CreateRecipeResult } from './create-recipe-result';
 import { CreateRecipeResultState } from './create-recipe-result-state';
 import { Observable } from 'rxjs/Observable';
-import { Recipe } from '../recipe';
+import { Recipe } from './recipe';
 import { DeleteRecipeResult } from './delete-recipe-result';
 import { DeleteRecipeResultState } from './delete-recipe-result-state';
 import { HttpClient } from '@angular/common/http';

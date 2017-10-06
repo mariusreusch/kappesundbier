@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe-service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
-import { Recipe } from '../../recipe';
+import { Recipe } from '../recipe';
 
 @Component({
   selector: 'kub-recipe-detail',

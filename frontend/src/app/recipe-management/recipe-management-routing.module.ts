@@ -9,7 +9,6 @@ const routes: Routes = [
     path: 'recipe-overview',
     component: RecipeManagementComponent,
     canActivate: [AuthGuard]
-
   },
   {
     path: 'recipe-detail/:id',

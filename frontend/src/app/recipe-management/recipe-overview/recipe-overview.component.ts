@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { CreateRecipeResult } from '../create-recipe-result';
 import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Router } from '@angular/router';
-import { Recipe } from '../../recipe';
+import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
 import { DeleteRecipeResultState } from '../delete-recipe-result-state';
