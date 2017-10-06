@@ -27,12 +27,6 @@ const appRoutes: Routes = [
 
   },
   {
-    path: 'week-planner',
-    component: WeekPlannerComponent,
-    canActivate: [AuthGuard]
-
-  },
-  {
     path: 'login',
     component: LoginComponent
   }

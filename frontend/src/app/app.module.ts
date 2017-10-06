@@ -9,13 +9,13 @@ import { KubMaterialModule } from './kub-material.module';
 import { HomeComponent } from './home/home.component';
 import { RecipeManagementComponent } from './recipe-management/recipe-management.component';
 import { NewRecipeComponent } from './recipe-management/new-recipe/new-recipe.component';
-import { WeekPlannerComponent } from './week-planner/week-planner.component';
 import { RecipeOverviewComponent } from './recipe-management/recipe-overview/recipe-overview.component';
 import { LoginComponent } from './login/login.component';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { FileUploadComponent } from './file-upload/file-upload.component';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
+import { WeekPlannerModule } from './week-planner/week-planner.module';
 
 
 @NgModule({
@@ -25,14 +25,15 @@ import { HttpClientModule } from '@angular/common/http';
     HttpClientModule,
     AppRouterModule,
     KubMaterialModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    WeekPlannerModule
   ],
   entryComponents: [
     YesNoDialogComponent
   ],
   declarations: [
     AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
-    WeekPlannerComponent, LoginComponent, RecipeDetailComponent, FileUploadComponent, YesNoDialogComponent
+    LoginComponent, RecipeDetailComponent, FileUploadComponent, YesNoDialogComponent
   ],
   bootstrap: [AppComponent]
 })
