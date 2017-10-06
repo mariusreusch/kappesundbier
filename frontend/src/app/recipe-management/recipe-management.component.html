@@ -1,5 +1,7 @@
 <div class="cac-area">
-  <new-recipe [createRecipeResult]="createRecipeResult | async" (onRecipeCreated)="createRecipe($event)"></new-recipe>
-  <recipe-overview [myRecipes]="myRecipes | async"
-                   [createRecipeResult]="createRecipeResult | async"></recipe-overview>
+  <kub-new-recipe [createRecipeResult]="createRecipeResult | async" (onRecipeCreated)="createRecipe($event)"></kub-new-recipe>
+  <kub-recipe-overview [myRecipes]="myRecipes | async"
+                   [createRecipeResult]="createRecipeResult | async"
+                   [deleteRecipeResult]="deleteRecipeResult | async"
+                   (onRecipeDelete)="deleteRecipe($event)"></kub-recipe-overview>
 </div>

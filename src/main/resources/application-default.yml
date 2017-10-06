@@ -7,3 +7,7 @@ spring:
     url: jdbc:mysql://localhost:3306/cookncode
     username: root
     password: ENC(9UGCMsl14C7CGToInitsJA==)
+
+endpoints:
+  enabled: true
+  sensitive: false

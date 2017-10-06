@@ -2,6 +2,7 @@ package ch.pama.cookncode.rest;
 
 import ch.pama.cookncode.domain.User;
 import ch.pama.cookncode.domain.UserRepository;
+import ch.pama.cookncode.rest.dto.DeletedRecipeIdDto;
 import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.service.RecipeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -60,6 +61,16 @@ public class RecipeRestController {
                 .orElseThrow(IllegalArgumentException::new);
     }
 
+    @DeleteMapping("/{id}")
+    @ResponseStatus(OK)
+    public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
+        User user = getOrCreateUser(principal);
+
+        recipeService.deleteReceipe(id, user);
+
+        return new DeletedRecipeIdDto(id);
+    }
+
     @GetMapping("/{id}/images")
     public ResponseEntity<List<byte[]>> findImgesByRecipeId(@PathVariable Long id, Principal principal) {
         User user = getOrCreateUser(principal);
@@ -69,7 +80,6 @@ public class RecipeRestController {
         headers.setCacheControl(CacheControl.noCache().getHeaderValue());
 
         return new ResponseEntity<>(imagesOfRecipe, headers, OK);
-
     }
 
     private User getOrCreateUser(Principal principal) {

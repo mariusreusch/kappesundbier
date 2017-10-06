@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from "@angular/core";
-import { Ingredient } from "../ingredient";
-import { NgForm } from "@angular/forms";
-import { LIVE_ANNOUNCER_PROVIDER, MdSnackBar, OVERLAY_PROVIDERS } from "@angular/material";
-import { CreateRecipeResult } from "../create-recipe-result";
-import { CreateRecipeResultState } from "../create-recipe-result-state";
-import { Recipe } from "../../recipe";
-import { FileToUpload } from "../../file-upload/file-to-upload";
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Ingredient } from '../ingredient';
+import { NgForm } from '@angular/forms';
+import { LIVE_ANNOUNCER_PROVIDER, MdSnackBar, OVERLAY_PROVIDERS } from '@angular/material';
+import { CreateRecipeResult } from '../create-recipe-result';
+import { CreateRecipeResultState } from '../create-recipe-result-state';
+import { Recipe } from '../../recipe';
+import { FileToUpload } from '../../file-upload/file-to-upload';
 
 
 @Component({
-  selector: 'new-recipe',
+  selector: 'kub-new-recipe',
   templateUrl: './new-recipe.component.html',
   styleUrls: ['./new-recipe.component.css'],
   providers: [OVERLAY_PROVIDERS, MdSnackBar, LIVE_ANNOUNCER_PROVIDER]
@@ -17,9 +17,9 @@ import { FileToUpload } from "../../file-upload/file-to-upload";
 export class NewRecipeComponent {
 
 
-  newRecipe = new Recipe("", "", null, "", [], [], []);
-  newIngredient = new Ingredient("", null, "");
-  categoriesAsCommaSeparatedString = "";
+  newRecipe = new Recipe('', '', null, '', [], [], []);
+  newIngredient = new Ingredient('', null, '');
+  categoriesAsCommaSeparatedString = '';
 
   @Output()
   onRecipeCreated = new EventEmitter<Recipe>();
@@ -32,18 +32,18 @@ export class NewRecipeComponent {
     if (createRecipeResult) {
       switch (createRecipeResult.state) {
         case CreateRecipeResultState.SUCCESS:
-          //TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
+          // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('Recipe "' + createRecipeResult.createdRecipe.name + '" has been created', null, {
+            this.snackBar.open('Es wurde eine neues fabelhaftes Rezept erzeugt.', null, {
               duration: 4000,
             });
           }, 1);
 
           break;
         case CreateRecipeResultState.FAILED:
-          //TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
+          // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('An error occured', null, {
+            this.snackBar.open('Lass mich ich kann das! Oh kaputt : (', null, {
               duration: 4000,
             });
           }, 1);
@@ -52,7 +52,7 @@ export class NewRecipeComponent {
     }
   }
 
-  constructor(public snackBar: MdSnackBar) {
+  constructor(private snackBar: MdSnackBar) {
   }
 
   addIngredient(): void {
@@ -61,7 +61,7 @@ export class NewRecipeComponent {
   }
 
   removeIngredient(ingredientToRemove: Ingredient): void {
-    let index = this.newRecipe.ingredients.indexOf(ingredientToRemove);
+    const index = this.newRecipe.ingredients.indexOf(ingredientToRemove);
     if (index > -1) {
       this.newRecipe.ingredients.splice(index, 1);
     }
@@ -69,7 +69,7 @@ export class NewRecipeComponent {
 
   onSubmit() {
     if (this.newRecipe.ingredients.length > 0) {
-      this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(",").map(s => s.trim());
+      this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
       this.onRecipeCreated.emit(this.newRecipe);
       this.resetIngredientForm();
       this.resetRecipeForm();
@@ -81,13 +81,13 @@ export class NewRecipeComponent {
   }
 
   private resetIngredientForm() {
-    this.newIngredient = new Ingredient("", null, "");
+    this.newIngredient = new Ingredient('', null, '');
     this.ingredientForm.resetForm();
   }
 
   private resetRecipeForm() {
-    this.newRecipe = new Recipe("", "", null, "", [], [], []);
-    this.categoriesAsCommaSeparatedString = "";
+    this.newRecipe = new Recipe('', '', null, '', [], [], []);
+    this.categoriesAsCommaSeparatedString = '';
     this.recipeForm.resetForm();
   }
 }

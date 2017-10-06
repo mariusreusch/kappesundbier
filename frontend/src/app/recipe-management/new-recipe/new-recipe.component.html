@@ -1,6 +1,6 @@
 <md-card>
   <md-card-header>
-    <md-card-title><h1>Create a new recipe</h1></md-card-title>
+    <md-card-title><h1>Erstelle ein neues Rezept</h1></md-card-title>
   </md-card-header>
   <md-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
@@ -41,7 +41,9 @@
     <md-list>
       <md-list-item *ngFor="let ingredient of newRecipe.ingredients">
         <div md-line style="display: flex;">
-          <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}</div>
+          <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
+            {{ingredient.name}}
+          </div>
           <md-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</md-icon>
         </div>
       </md-list-item>
@@ -71,8 +73,7 @@
                required>
       </md-input-container>
 
-      <button type="submit"
-              [disabled]="!ingredientForm.form.valid"
+      <button [disabled]="!ingredientForm.form.valid"
               md-mini-fab>
         <md-icon>add</md-icon>
       </button>
@@ -92,6 +93,8 @@
 
   </md-card-content>
   <md-card-actions>
-    <button type="submit" md-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1" (click)="recipeForm.ngSubmit.emit()">Save Recipe</button>
+    <button md-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1"
+            (click)="recipeForm.ngSubmit.emit()">Tue Fantastisches!
+    </button>
   </md-card-actions>
 </md-card>

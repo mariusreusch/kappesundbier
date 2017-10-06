@@ -1,15 +1,20 @@
 <md-card style="margin-top: 5%">
   <md-card-header>
-    <md-card-title><h1>My Recipes</h1></md-card-title>
+    <md-card-title><h1>Meine Rezepte</h1></md-card-title>
   </md-card-header>
   <md-card-content>
     <md-list>
       <md-list-item *ngFor="let recipe of myRecipes ">
         <div style="display: flex;" md-line>
+
           <button md-button (click)="onSelect(recipe)">{{recipe.name}}</button>
           <md-chip-list *ngFor="let category of recipe.categories">
             <md-chip>{{category}}</md-chip>
           </md-chip-list>
+          <button md-button (click)="onDelete(recipe)">
+            Löschen
+          </button>
+
         </div>
       </md-list-item>
     </md-list>

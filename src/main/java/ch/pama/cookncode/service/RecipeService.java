@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 import java.util.Collection;
 import java.util.Comparator;
 import java.util.List;
+import java.util.Objects;
 
 import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
@@ -30,13 +31,10 @@ public class RecipeService {
                 .forEach(recipe::addImage);
 
         user.addRecipe(recipe);
-        User save = userRepository.save(user);
 
-        Recipe newRecipe = save.getRecipes().stream()
-                .max(comparing(Recipe::getCreationDate))
-                .orElseThrow(IllegalStateException::new);
+        Recipe newRecipe = recipeRepository.save(recipe);
 
-        return recipeDto.from(newRecipe);
+        return RecipeDto.from(newRecipe);
     }
 
     public List<RecipeDto> findAllRecipesOfUser(User user) {
@@ -52,11 +50,15 @@ public class RecipeService {
 
     public List<byte[]> findImagesOfRecipe(Long id, User user) {
         return user.getRecipes().stream()
-                .filter(recipe -> recipe.getId() == id)
+                .filter(recipe -> Objects.equals(recipe.getId(), id))
                 .map(Recipe::getRecipeImages)
                 .flatMap(Collection::stream)
                 .map(RecipeImage::getData)
                 .collect(toList());
     }
 
+    public void deleteReceipe(Long id, User user) {
+        user.getRecipes().removeIf(recipe -> Objects.equals(recipe.getId(), id));
+        userRepository.save(user);
+    }
 }
