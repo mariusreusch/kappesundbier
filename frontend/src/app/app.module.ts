@@ -6,7 +6,7 @@ import { FormsModule } from '@angular/forms';
 import { AppRouterModule } from './app-router.module';
 import 'hammerjs';
 import { KubMaterialModule } from './kub-material.module';
-import { YesNoDialogComponent } from './recipe-management/yes-no-dialog/yes-no-dialog.component';
+import { YesNoDialogComponent } from './kub-common/yes-no-dialog/yes-no-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WeekPlannerModule } from './week-planner/week-planner.module';
 import { HomeModule } from './home/home.module';
@@ -14,6 +14,7 @@ import { AuthService } from './auth.service';
 import { AuthGuard } from './auth-guard.service';
 import { LoginModule } from './login/login.module';
 import { RecipeManagementModule } from './recipe-management/recipe-management.module';
+import { KubCommonModule } from './kub-common/kub-common.module';
 
 @NgModule({
   imports: [
@@ -26,7 +27,8 @@ import { RecipeManagementModule } from './recipe-management/recipe-management.mo
     HomeModule,
     LoginModule,
     RecipeManagementModule,
-    WeekPlannerModule
+    WeekPlannerModule,
+    KubCommonModule
   ],
   entryComponents: [
     YesNoDialogComponent

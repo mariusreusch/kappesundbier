@@ -1,5 +1,5 @@
 import { Ingredient } from './recipe-management/ingredient';
-import { FileToUpload } from './recipe-management/file-upload/file-to-upload';
+import { FileToUpload } from './kub-common/file-upload/file-to-upload';
 
 export class Recipe {
 

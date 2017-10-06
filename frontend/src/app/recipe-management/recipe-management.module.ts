@@ -10,8 +10,7 @@ import { KubMaterialModule } from '../kub-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
-import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { KubCommonModule } from '../kub-common/kub-common.module';
 
 @NgModule({
   imports: [
@@ -20,10 +19,10 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
     FormsModule,
     HttpClientModule,
     RecipeManagementRoutingModule,
-    KubMaterialModule
+    KubMaterialModule,
+    KubCommonModule
   ],
-  declarations: [RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, RecipeDetailComponent,
-    YesNoDialogComponent, FileUploadComponent]
+  declarations: [RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, RecipeDetailComponent]
 })
 export class RecipeManagementModule {
 }
