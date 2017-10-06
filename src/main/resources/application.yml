@@ -1,15 +1,15 @@
 server:
   port: 5000
   tomcat:
-    max-http-post-size: 100000000 #100MB
+    max-http-post-size: 200000000 #200MB
 
 spring:
   datasource:
     driver-class-name: com.mysql.jdbc.Driver
   http:
     multipart:
-      max-file-size: 50MB
-      max-request-size: 50MB
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 
 google:
