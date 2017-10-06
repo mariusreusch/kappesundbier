@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
-import { AuthGuard } from '../auth-guard.service';
+import { AuthGuard } from '../authentication/auth-guard.service';
 import { RecipeManagementComponent } from './recipe-management.component';
 
 const routes: Routes = [

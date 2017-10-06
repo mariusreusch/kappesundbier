@@ -10,9 +10,7 @@ import { YesNoDialogComponent } from './kub-common/yes-no-dialog/yes-no-dialog.c
 import { HttpClientModule } from '@angular/common/http';
 import { WeekPlannerModule } from './week-planner/week-planner.module';
 import { HomeModule } from './home/home.module';
-import { AuthService } from './auth.service';
-import { AuthGuard } from './auth-guard.service';
-import { LoginModule } from './login/login.module';
+import { AuthenticationModule } from './authentication/authentication.module';
 import { RecipeManagementModule } from './recipe-management/recipe-management.module';
 import { KubCommonModule } from './kub-common/kub-common.module';
 
@@ -25,7 +23,7 @@ import { KubCommonModule } from './kub-common/kub-common.module';
     KubMaterialModule,
     BrowserAnimationsModule,
     HomeModule,
-    LoginModule,
+    AuthenticationModule,
     RecipeManagementModule,
     WeekPlannerModule,
     KubCommonModule
@@ -36,11 +34,7 @@ import { KubCommonModule } from './kub-common/kub-common.module';
   declarations: [
     AppComponent
   ],
-  bootstrap: [AppComponent],
-  providers: [
-    AuthGuard,
-    AuthService
-  ]
+  bootstrap: [AppComponent]
 })
 export class AppModule {
 }
