@@ -4,14 +4,14 @@
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
-      <mat-input-container class="cac-full-width-input">
+      <mat-input-container class="kub-full-width-input">
         <input mat-line matInput
                placeholder="Recipe Name"
                name="recipeName"
                required
                [(ngModel)]="newRecipe.name">
       </mat-input-container>
-      <mat-input-container class="cac-full-width-input">
+      <mat-input-container class="kub-full-width-input">
         <input mat-line matInput
                placeholder="Number Of Portions"
                name="numberOfPortions"
@@ -19,14 +19,14 @@
                required
                [(ngModel)]="newRecipe.numberOfPortions">
       </mat-input-container>
-      <mat-input-container class="cac-full-width-input">
+      <mat-input-container class="kub-full-width-input">
         <input mat-line matInput
                placeholder="Categories (comma separated)"
                name="numberOfPortions"
                required
                [(ngModel)]="categoriesAsCommaSeparatedString">
       </mat-input-container>
-      <mat-input-container class="cac-full-width-input">
+      <mat-input-container class="kub-full-width-input">
         <textarea matInput
                   name="instruction"
                   placeholder="Instruction"
@@ -44,7 +44,7 @@
           <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
             {{ingredient.name}}
           </div>
-          <mat-icon class="cac-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
+          <mat-icon class="kub-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
         </div>
       </mat-list-item>
     </mat-list>

@@ -5,7 +5,7 @@ import { AppComponent } from './app.component';
 import { FormsModule } from '@angular/forms';
 import { AppRouterModule } from './app-router.module';
 import 'hammerjs';
-import { CacMaterialModule } from './cac-material.module';
+import { KubMaterialModule } from './kub-material.module';
 import { HomeComponent } from './home/home.component';
 import { RecipeManagementComponent } from './recipe-management/recipe-management.component';
 import { NewRecipeComponent } from './recipe-management/new-recipe/new-recipe.component';
@@ -24,7 +24,7 @@ import { HttpClientModule } from '@angular/common/http';
     FormsModule,
     HttpClientModule,
     AppRouterModule,
-    CacMaterialModule,
+    KubMaterialModule,
     BrowserAnimationsModule
   ],
   entryComponents: [

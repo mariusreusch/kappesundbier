@@ -13,13 +13,13 @@ import {
 
 import { NgModule } from '@angular/core';
 
-const cacMaterialModules = [MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule, MatIconModule,
+const kubMaterialModules = [MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule, MatIconModule,
   MatSnackBarModule, MatChipsModule, MatSidenavModule, MatListModule, MatDialogModule];
 
 @NgModule({
-  imports: cacMaterialModules,
-  exports: cacMaterialModules
+  imports: kubMaterialModules,
+  exports: kubMaterialModules
 
 })
-export class CacMaterialModule {
+export class KubMaterialModule {
 }

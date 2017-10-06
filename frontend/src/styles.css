@@ -6,19 +6,19 @@ a {
   text-decoration: none;
 }
 
-body#cac-body {
+body#kub-body {
   margin: 0;
 }
 
-.cac-font-1 {
+.kub-font-1 {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
-.cac-background {
+.kub-background {
   background-color: white;
 }
 
-.cac-remove-ingredient-btn {
+.kub-remove-ingredient-btn {
   color: grey;
   cursor: pointer;
 }

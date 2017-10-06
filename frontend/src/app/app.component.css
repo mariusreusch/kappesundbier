@@ -2,26 +2,26 @@
   font-size: 24pt;
 }
 
-.cac-fill-remaining-space {
+.kub-fill-remaining-space {
   flex: 1 1 auto;
 }
 
-.cac-header-button {
+.kub-header-button {
   font-size: 16pt;
   font-weight: bold;
 }
 
-.cac-header-toolbar {
+.kub-header-toolbar {
   height: 5vh;
   justify-content: center;
 }
 
-.cac-sidenav-fab-container mat-sidenav {
+.kub-sidenav-fab-container mat-sidenav {
   max-width: 200px;
 }
 
-.cac-sidenav-fab-container .mat-sidenav-content,
-.cac-sidenav-fab-container mat-sidenav {
+.kub-sidenav-fab-container .mat-sidenav-content,
+.kub-sidenav-fab-container mat-sidenav {
   display: flex;
   overflow: visible;
 }
