@@ -4,8 +4,7 @@ import { HomeService } from './home.service';
 @Component({
   selector: 'kub-home',
   templateUrl: './home.component.html',
-  styleUrls: ['./home.component.css'],
-  providers: [HomeService]
+  styleUrls: ['./home.component.css']
 })
 export class HomeComponent implements OnInit {
 

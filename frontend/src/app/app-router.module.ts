@@ -10,11 +10,6 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 
 const appRoutes: Routes = [
   {
-    path: '',
-    component: HomeComponent,
-    canActivate: [AuthGuard]
-  },
-  {
     path: 'recipe-overview',
     component: RecipeManagementComponent,
     canActivate: [AuthGuard]

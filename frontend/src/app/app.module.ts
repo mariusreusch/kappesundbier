@@ -16,7 +16,7 @@ import { FileUploadComponent } from './file-upload/file-upload.component';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
 import { HttpClientModule } from '@angular/common/http';
 import { WeekPlannerModule } from './week-planner/week-planner.module';
-
+import { HomeModule } from './home/home.module';
 
 @NgModule({
   imports: [
@@ -26,13 +26,14 @@ import { WeekPlannerModule } from './week-planner/week-planner.module';
     AppRouterModule,
     KubMaterialModule,
     BrowserAnimationsModule,
+    HomeModule,
     WeekPlannerModule
   ],
   entryComponents: [
     YesNoDialogComponent
   ],
   declarations: [
-    AppComponent, HomeComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
+    AppComponent, RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent,
     LoginComponent, RecipeDetailComponent, FileUploadComponent, YesNoDialogComponent
   ],
   bootstrap: [AppComponent]
