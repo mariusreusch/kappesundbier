@@ -4,7 +4,7 @@ import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Router } from '@angular/router';
 import { Recipe } from '../../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { YesNoDialogComponent } from '../../yes-no-dialog/yes-no-dialog.component';
+import { YesNoDialogComponent } from '../yes-no-dialog/yes-no-dialog.component';
 import { DeleteRecipeResultState } from '../delete-recipe-result-state';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 

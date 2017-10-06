@@ -5,7 +5,7 @@ import { MatSnackBar } from '@angular/material';
 import { CreateRecipeResult } from '../create-recipe-result';
 import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Recipe } from '../../recipe';
-import { FileToUpload } from '../../file-upload/file-to-upload';
+import { FileToUpload } from '../file-upload/file-to-upload';
 
 
 @Component({
