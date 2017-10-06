@@ -1,8 +1,8 @@
-import { Component, OnInit } from "@angular/core";
-import { HomeService } from "./home.service";
+import { Component, OnInit } from '@angular/core';
+import { HomeService } from './home.service';
 
 @Component({
-  selector: 'cac-home',
+  selector: 'kub-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.css'],
   providers: [HomeService]

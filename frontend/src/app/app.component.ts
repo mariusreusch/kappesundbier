@@ -1,8 +1,8 @@
-import { Component } from "@angular/core";
-import { AuthService } from "./auth.service";
+import { Component } from '@angular/core';
+import { AuthService } from './auth.service';
 
 @Component({
-  selector: 'cookncode-app',
+  selector: 'kub-app',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })

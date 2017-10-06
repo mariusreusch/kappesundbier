@@ -1,12 +1,12 @@
-import { Injectable } from "@angular/core";
+import { Injectable } from '@angular/core';
 
-import { Observable } from "rxjs/Observable";
-import "rxjs/add/observable/of";
-import "rxjs/add/operator/map";
-import "rxjs/add/operator/catch";
-import "rxjs/add/operator/do";
-import "rxjs/add/operator/delay";
-import { Http } from "@angular/http";
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/delay';
+import { Http } from '@angular/http';
 
 @Injectable()
 export class HomeService {
@@ -15,10 +15,10 @@ export class HomeService {
   }
 
   getUser(): Observable<any> {
-    return this.http.get("./api/user")
+    return this.http.get('./api/user')
       .map(response => response.json())
       .catch(() => {
-        return Observable.of("");
+        return Observable.of('');
       });
   }
 }

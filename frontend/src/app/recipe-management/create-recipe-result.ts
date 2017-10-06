@@ -1,5 +1,5 @@
-import { CreateRecipeResultState } from "./create-recipe-result-state";
-import { Recipe } from "../recipe";
+import { CreateRecipeResultState } from './create-recipe-result-state';
+import { Recipe } from '../recipe';
 
 export class CreateRecipeResult {
 

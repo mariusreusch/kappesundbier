@@ -1,5 +1,5 @@
-import { Ingredient } from "./recipe-management/ingredient";
-import { FileToUpload } from "./file-upload/file-to-upload";
+import { Ingredient } from './recipe-management/ingredient';
+import { FileToUpload } from './file-upload/file-to-upload';
 
 export class Recipe {
 
@@ -11,6 +11,4 @@ export class Recipe {
               public categories: string[],
               public images: FileToUpload[]) {
   }
-
-
 }
