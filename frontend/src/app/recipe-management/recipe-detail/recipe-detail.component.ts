@@ -7,8 +7,7 @@ import { Recipe } from '../recipe';
 @Component({
   selector: 'kub-recipe-detail',
   templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css'],
-  providers: [RecipeService]
+  styleUrls: ['./recipe-detail.component.css']
 })
 export class RecipeDetailComponent implements OnInit {
 

@@ -6,7 +6,7 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule,
+  MatSidenavModule, MatSnackBar,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
@@ -18,8 +18,8 @@ const kubMaterialModules = [MatButtonModule, MatCardModule, MatInputModule, MatT
 
 @NgModule({
   imports: kubMaterialModules,
-  exports: kubMaterialModules
-
+  exports: kubMaterialModules,
+  providers: [MatSnackBar]
 })
 export class KubMaterialModule {
 }

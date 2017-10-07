@@ -11,8 +11,7 @@ import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
 @Component({
   selector: 'kub-new-recipe',
   templateUrl: './new-recipe.component.html',
-  styleUrls: ['./new-recipe.component.css'],
-  providers: [MatSnackBar]
+  styleUrls: ['./new-recipe.component.css']
 })
 export class NewRecipeComponent {
 
