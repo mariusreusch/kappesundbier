@@ -1,6 +1,8 @@
-<mat-card>
+<mat-card *ngIf="recipe">
   <mat-card-header>
-    <mat-card-title><h1 translate>Recipe.CreateNewRecipe</h1></mat-card-title>
+    <mat-card-title>
+      <h1 translate>Recipe.EditRecipe</h1>
+    </mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
@@ -9,7 +11,7 @@
                placeholder="{{'Common.Name' | translate}}"
                name="recipeName"
                required
-               [(ngModel)]="newRecipe.name">
+               [(ngModel)]="recipe.name">
       </mat-input-container>
       <mat-input-container class="kub-full-width-input">
         <input mat-line matInput
@@ -17,7 +19,7 @@
                name="numberOfPortions"
                type="number"
                required
-               [(ngModel)]="newRecipe.numberOfPortions">
+               [(ngModel)]="recipe.numberOfPortions">
       </mat-input-container>
       <mat-input-container class="kub-full-width-input">
         <input mat-line matInput
@@ -32,14 +34,14 @@
                   placeholder="{{'Recipe.Instruction' | translate}}"
                   rows="4"
                   required
-                  [(ngModel)]="newRecipe.instruction">
+                  [(ngModel)]="recipe.instruction">
         </textarea>
       </mat-input-container>
     </form>
 
     <h3 translate>Recipe.Ingredients</h3>
     <mat-list>
-      <mat-list-item *ngFor="let ingredient of newRecipe.ingredients">
+      <mat-list-item *ngFor="let ingredient of recipe.ingredients">
         <div mat-line style="display: flex;">
           <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
             {{ingredient.name}}
@@ -84,7 +86,7 @@
     <kub-file-upload (onFileSelected)="addImage($event)"></kub-file-upload>
 
     <div>
-    <span *ngFor="let image of newRecipe.images">
+    <span *ngFor="let image of recipe.images">
       <img src="{{image.content}}" alt="" width="200">
     </span>
     </div>
@@ -93,7 +95,7 @@
 
   </mat-card-content>
   <mat-card-actions>
-    <button mat-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1"
+    <button mat-button [disabled]="!recipeForm.form.valid || recipe.ingredients.length < 1"
             (click)="recipeForm.ngSubmit.emit()">
       {{'Recipe.DoSomeAmazingStuff' | translate}}
     </button>

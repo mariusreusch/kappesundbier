@@ -12,7 +12,8 @@ import { FormsModule } from '@angular/forms';
 import { KubCommonModule } from '../kub-common/kub-common.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecipeService } from './recipe-service';
-import { RecipeDetailViewComponent } from './recipe-detail/recipe-detail-view/recipe-detail-view/recipe-detail-view.component';
+import { RecipeDetailViewComponent } from './recipe-detail/recipe-detail-view/recipe-detail-view.component';
+import { RecipeDetailEditComponent } from './recipe-detail/recipe-detail-edit/recipe-detail-edit.component';
 
 @NgModule({
   imports: [
@@ -25,7 +26,7 @@ import { RecipeDetailViewComponent } from './recipe-detail/recipe-detail-view/re
     TranslateModule
   ],
   declarations: [RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, RecipeDetailComponent,
-    RecipeDetailViewComponent, RecipeDetailViewComponent],
+    RecipeDetailViewComponent, RecipeDetailViewComponent, RecipeDetailEditComponent],
   providers: [RecipeService]
 })
 export class RecipeManagementModule {

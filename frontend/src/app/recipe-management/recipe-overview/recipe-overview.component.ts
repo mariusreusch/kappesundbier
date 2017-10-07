@@ -7,6 +7,7 @@ import { MatDialog, MatSnackBar } from '@angular/material';
 import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
 import { DeleteRecipeResultState } from '../delete-recipe-result-state';
 import { DeleteRecipeResult } from '../delete-recipe-result';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'kub-recipe-overview',
@@ -22,7 +23,8 @@ export class RecipeOverviewComponent {
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
 
-  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar) {
+  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
+              private translate: TranslateService) {
   }
 
   @Input('createRecipeResult')
@@ -36,9 +38,12 @@ export class RecipeOverviewComponent {
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
     if (deleteRecipeResult && deleteRecipeResult.state === DeleteRecipeResultState.SUCCESS) {
       this.myRecipes = this.myRecipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
+      // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
       setTimeout(() => {
-        this.snackBar.open('Schade dass du dieses bezaubernde Rezept gelöscht hast!', null, {
-          duration: 4000,
+        this.translate.get('Recipe.DeleteRecipe').subscribe(text => {
+          this.snackBar.open(text, null, {
+            duration: 4000,
+          });
         });
       }, 1);
     }

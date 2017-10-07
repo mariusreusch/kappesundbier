@@ -14,9 +14,14 @@ export class RecipeDetailComponent implements OnInit {
 
   recipe: Observable<Recipe>;
   base64EncodedImages: Observable<any[]>;
+  isInEditMode = false;
 
   constructor(private route: ActivatedRoute,
               private service: RecipeService) {
+  }
+
+  switchToEditMode() {
+    this.isInEditMode = true;
   }
 
   ngOnInit() {

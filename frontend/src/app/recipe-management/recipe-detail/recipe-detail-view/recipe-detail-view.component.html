@@ -1,0 +1,28 @@
+<mat-card *ngIf="recipe">
+  <mat-card-content>
+    <h1>{{recipe.name}} <mat-icon class="kub-icon-btn" (click)="switchToEditMode()">create</mat-icon></h1>
+
+    <h3 translate>Recipe.NumberOfPortions</h3>
+    {{recipe.numberOfPortions}}
+
+    <h3 translate>Recipe.Categories</h3>
+    <mat-chip-list>
+      <mat-chip *ngFor="let category of recipe.categories">{{category}}</mat-chip>
+    </mat-chip-list>
+
+    <h3 translate>Recipe.Instruction</h3>
+    <span mat-line>{{recipe.instruction}}</span>
+
+    <h3 translate>Recipe.Ingredients</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let ingredient of recipe.ingredients">
+        {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
+      </mat-list-item>
+    </mat-list>
+
+    <span *ngFor="let image of base64EncodedImages">
+      <img src="{{image}}" alt="" width="100%">
+    </span>
+
+  </mat-card-content>
+</mat-card>

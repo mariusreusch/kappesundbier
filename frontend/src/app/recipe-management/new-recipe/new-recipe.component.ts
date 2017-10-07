@@ -6,6 +6,7 @@ import { CreateRecipeResult } from '../create-recipe-result';
 import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Recipe } from '../recipe';
 import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
+import { TranslateService } from '@ngx-translate/core';
 
 
 @Component({
@@ -33,8 +34,10 @@ export class NewRecipeComponent {
         case CreateRecipeResultState.SUCCESS:
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('Ein neues fabelhaftes Rezept wurde erfolgreich gespeichert.', null, {
-              duration: 4000,
+            this.translate.get('Recipe.SuccessfullySaved').subscribe(text => {
+              this.snackBar.open(text, null, {
+                duration: 4000,
+              });
             });
           }, 1);
 
@@ -42,8 +45,10 @@ export class NewRecipeComponent {
         case CreateRecipeResultState.FAILED:
           // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.snackBar.open('Lass mich ich kann das! Oh kaputt : (', null, {
-              duration: 4000,
+            this.translate.get('Common.Error').subscribe(text => {
+              this.snackBar.open(text, null, {
+                duration: 4000,
+              });
             });
           }, 1);
           break;
@@ -51,7 +56,7 @@ export class NewRecipeComponent {
     }
   }
 
-  constructor(private snackBar: MatSnackBar) {
+  constructor(private snackBar: MatSnackBar, private translate: TranslateService) {
   }
 
   addIngredient(): void {

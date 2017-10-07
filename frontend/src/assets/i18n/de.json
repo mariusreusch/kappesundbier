@@ -10,11 +10,15 @@
     "Amount": "Menge",
     "MeasuringUnit": "Masseinheit",
     "Pictures": "Bilder",
-    "DoSomeAmazingStuff": "Tue Fantastisches!"
+    "DoSomeAmazingStuff": "Tue Fantastisches!",
+    "EditRecipe": "Mach dein Rezept noch fantatischer!",
+    "DeleteRecipe": "Schade dass du dieses bezaubernde Rezept gelöscht hast!",
+    "SuccessfullySaved": "Ein neues fabelhaftes Rezept wurde erfolgreich gespeichert."
   },
   "Common": {
     "Name": "Name",
-    "Delete": "Löschen"
+    "Delete": "Löschen",
+    "Error": "Lass mich ich kann das! Oh kaputt : ("
   },
   "Menu": {
     "Menu": "Menü",

@@ -1,2 +1,10 @@
-<kub-recipe-detail-view [recipe]="recipe | async"
-                        [base64EncodedImages]="base64EncodedImages | async"></kub-recipe-detail-view>
+<div class="kub-area" *ngIf="recipe">
+
+  <kub-recipe-detail-view *ngIf="!isInEditMode"
+                          [recipe]="recipe | async"
+                          [base64EncodedImages]="base64EncodedImages | async"
+                          (switchToEditModeEvent)="switchToEditMode()"></kub-recipe-detail-view>
+
+  <kub-recipe-detail-edit *ngIf="isInEditMode"
+                          [recipe]="recipe | async"></kub-recipe-detail-edit>
+</div>
