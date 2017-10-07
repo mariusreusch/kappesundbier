@@ -9,13 +9,11 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { KubMaterialModule } from '../kub-material/kub-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
-import { BrowserModule } from '@angular/platform-browser';
 import { KubCommonModule } from '../kub-common/kub-common.module';
 
 @NgModule({
   imports: [
     CommonModule,
-    BrowserModule,
     FormsModule,
     HttpClientModule,
     RecipeManagementRoutingModule,
