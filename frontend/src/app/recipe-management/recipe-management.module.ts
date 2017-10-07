@@ -10,6 +10,7 @@ import { KubMaterialModule } from '../kub-material/kub-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { KubCommonModule } from '../kub-common/kub-common.module';
+import { TranslateModule } from '@ngx-translate/core';
 
 @NgModule({
   imports: [
@@ -18,7 +19,8 @@ import { KubCommonModule } from '../kub-common/kub-common.module';
     HttpClientModule,
     RecipeManagementRoutingModule,
     KubMaterialModule,
-    KubCommonModule
+    KubCommonModule,
+    TranslateModule
   ],
   declarations: [RecipeManagementComponent, NewRecipeComponent, RecipeOverviewComponent, RecipeDetailComponent]
 })

@@ -1,18 +1,18 @@
 <mat-card style="margin-top: 5%">
   <mat-card-header>
-    <mat-card-title><h1>Meine Rezepte</h1></mat-card-title>
+    <mat-card-title><h1 translate>Recipe.MyRecipes</h1></mat-card-title>
   </mat-card-header>
   <mat-card-content>
     <mat-list>
       <mat-list-item *ngFor="let recipe of myRecipes ">
-        <div style="display: flex;" mat-line>
+        <div style="  display: flex;" mat-line>
 
           <button mat-button (click)="onSelect(recipe)">{{recipe.name}}</button>
           <mat-chip-list *ngFor="let category of recipe.categories">
             <mat-chip>{{category}}</mat-chip>
           </mat-chip-list>
           <button mat-button (click)="onDelete(recipe)">
-            Löschen
+            {{'Common.Delete' | translate}}
           </button>
 
         </div>

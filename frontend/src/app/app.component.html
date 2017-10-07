@@ -2,7 +2,7 @@
 
   <button mat-button (click)="sidenav.toggle()">
     <mat-icon style="margin-right: 10px;">menu</mat-icon>
-    Menü
+    {{'Menu.Menu' | translate}}
   </button>
 
   <span class="kub-fill-remaining-space"></span>
@@ -18,16 +18,20 @@
     <mat-nav-list>
       <a mat-list-item class="kub-font-1 kub-header-button" (click)="sidenav.close()" routerLink="/">
         <mat-icon style="margin-right: 10px;">weekend</mat-icon>
-        Nach Hause</a>
+        {{'Menu.Home' | translate}}
+      </a>
       <a mat-list-item class="kub-font-1 kub-header-button" (click)="sidenav.close()" routerLink="/week-planner">
         <mat-icon style="margin-right: 10px;">event_node</mat-icon>
-        Wochenplaner</a>
+        {{'Menu.Weekplanner' | translate}}
+      </a>
       <a mat-list-item class="kub-font-1 kub-header-button" (click)="sidenav.close()" routerLink="/recipe-overview">
         <mat-icon style="margin-right: 10px;">restaurant_menu</mat-icon>
-        Rezepte</a>
+        {{'Menu.Recipes' | translate}}
+      </a>
       <a mat-list-item class="kub-font-1 kub-header-button" (click)="logout()">
         <mat-icon style="margin-right: 10px;">pan_tool</mat-icon>
-        Mach et jut!</a>
+        {{'Menu.Logout' | translate}}
+      </a>
     </mat-nav-list>
   </mat-sidenav>
 
