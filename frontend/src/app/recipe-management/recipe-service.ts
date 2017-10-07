@@ -40,12 +40,11 @@ export class RecipeService {
   }
 
   findRecipe(id: string) {
-    return this.httpClient.get('./api/recipes/' + id)
-      .map(response => response);
+    return this.httpClient.get<Recipe>('./api/recipes/' + id);
   }
 
   findRecipeImages(id: string) {
-    return this.httpClient.get('./api/recipes/' + id + '/images');
+    return this.httpClient.get<any>('./api/recipes/' + id + '/images');
   }
 
   deleteRecipe(recipe: Recipe) {

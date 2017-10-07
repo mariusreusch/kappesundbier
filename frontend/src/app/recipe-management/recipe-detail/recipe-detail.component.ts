@@ -3,6 +3,7 @@ import { RecipeService } from '../recipe-service';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 import { Recipe } from '../recipe';
+import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'kub-recipe-detail',
@@ -11,24 +12,25 @@ import { Recipe } from '../recipe';
 })
 export class RecipeDetailComponent implements OnInit {
 
-  recipe: Recipe;
-  base64EncodedImages = [];
+  recipe: Observable<Recipe>;
+  base64EncodedImages: Observable<any[]>;
 
   constructor(private route: ActivatedRoute,
               private service: RecipeService) {
   }
 
   ngOnInit() {
-    this.route.paramMap
-      .switchMap((params: ParamMap) => this.service.findRecipe(params.get('id')))
-      .subscribe((recipe: Recipe) => this.recipe = recipe);
+    this.recipe = this.route.paramMap
+      .switchMap((params: ParamMap) => this.service.findRecipe(params.get('id')));
 
-    this.route.paramMap
+    this.base64EncodedImages = this.route.paramMap
       .switchMap((params: ParamMap) => this.service.findRecipeImages(params.get('id')))
-      .subscribe((images: any) => {
+      .map((images: any) => {
+        const base64EncodedImages = [];
         for (let i = 0; i < images.length; i++) {
-          this.base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
+          base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
         }
+        return base64EncodedImages;
       });
 
   }
