@@ -15,7 +15,7 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 
 export function HttpLoaderFactory(http: HttpClient) {
-  return new TranslateHttpLoader(http);
+  return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
 }
 
 @NgModule({
@@ -23,19 +23,19 @@ export function HttpLoaderFactory(http: HttpClient) {
     BrowserModule,
     HttpClientModule,
     AppRouterModule,
-    KubMaterialModule,
     BrowserAnimationsModule,
-    HomeModule,
-    AuthenticationModule,
-    RecipeManagementModule,
-    WeekPlannerModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
         useFactory: HttpLoaderFactory,
         deps: [HttpClient]
       }
-    })
+    }),
+    KubMaterialModule,
+    HomeModule,
+    AuthenticationModule,
+    RecipeManagementModule,
+    WeekPlannerModule
   ],
   entryComponents: [
     YesNoDialogComponent
