@@ -1,6 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { CreateRecipeResult } from '../create-recipe-result';
-import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Router } from '@angular/router';
 import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
@@ -25,13 +23,6 @@ export class RecipeOverviewComponent {
 
   constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
               private translate: TranslateService) {
-  }
-
-  @Input('createRecipeResult')
-  set setCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
-    if (createRecipeResult && createRecipeResult.state === CreateRecipeResultState.SUCCESS) {
-      this.myRecipes.push(createRecipeResult.createdRecipe)
-    }
   }
 
   @Input('deleteRecipeResult')
