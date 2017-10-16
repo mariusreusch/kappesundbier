@@ -15,8 +15,15 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class RecipeOverviewComponent {
 
-  @Input()
-  myRecipes: Recipe[];
+  recipes: Recipe[];
+
+  @Input('myRecipes')
+  set setMyRecipes(myRecipes: Recipe[]) {
+    if (myRecipes) {
+      this.recipes = this.orderByCreationDateDescending(myRecipes);
+    }
+  }
+
 
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
@@ -28,7 +35,7 @@ export class RecipeOverviewComponent {
   @Input('deleteRecipeResult')
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
     if (deleteRecipeResult && deleteRecipeResult.state === DeleteRecipeResultState.SUCCESS) {
-      this.myRecipes = this.myRecipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
+      this.recipes = this.recipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
       // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
       setTimeout(() => {
         this.translate.get('Recipe.DeleteRecipe').subscribe(text => {
@@ -55,6 +62,12 @@ export class RecipeOverviewComponent {
       if (result === true) {
         this.onRecipeDelete.emit(recipe);
       }
+    });
+  }
+
+  private orderByCreationDateDescending(myRecipes: Recipe[]) {
+    return myRecipes.sort((a, b) => {
+      return new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime();
     });
   }
 }

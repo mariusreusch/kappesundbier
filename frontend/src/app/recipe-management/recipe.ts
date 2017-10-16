@@ -9,6 +9,7 @@ export class Recipe {
               public instruction: string,
               public ingredients: Ingredient[],
               public categories: string[],
-              public images: FileToUpload[]) {
+              public images: FileToUpload[],
+              public creationDate: Date) {
   }
 }

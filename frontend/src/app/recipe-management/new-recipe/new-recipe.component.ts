@@ -17,7 +17,7 @@ import { RecipeService } from '../recipe-service';
 })
 export class NewRecipeComponent {
 
-  newRecipe = new Recipe('', '', null, '', [], [], []);
+  newRecipe = new Recipe('', '', null, '', [], [], [], null);
   newIngredient = new Ingredient('', null, '');
   categoriesAsCommaSeparatedString = '';
 
@@ -87,7 +87,7 @@ export class NewRecipeComponent {
   }
 
   private resetRecipeForm() {
-    this.newRecipe = new Recipe('', '', null, '', [], [], []);
+    this.newRecipe = new Recipe('', '', null, '', [], [], [], null);
     this.categoriesAsCommaSeparatedString = '';
     this.recipeForm.resetForm();
   }
