@@ -21,7 +21,6 @@ apply plugin: 'org.springframework.boot'
 apply from: "server.gradle"
 apply from: "frontend.gradle"
 
-
 project.ext['flyway.url'] = 'jdbc:mysql://localhost:3306/cookncode'
 project.ext['flyway.user'] = 'root'
 project.ext['flyway.password'] = 'root'
@@ -57,13 +56,13 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     compile("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-    compile("org.springframework.security.oauth:spring-security-oauth2")
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.1")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.2.0.RELEASE")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2")
     compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.16")
-    compile("mysql:mysql-connector-java:5.1.27")
-    compile("org.flywaydb:flyway-core")
+    compile("mysql:mysql-connector-java:5.1.44")
+    compile("org.flywaydb:flyway-core:4.2.0")
 
-    runtime("org.springframework.boot:spring-boot-devtools")
+    runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testCompile("org.assertj:assertj-core:3.8.0")
