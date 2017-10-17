@@ -8,6 +8,7 @@ import { Recipe } from '../recipe';
 import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
 import { TranslateService } from '@ngx-translate/core';
 import { RecipeService } from '../recipe-service';
+import { Router } from '@angular/router';
 
 
 @Component({
@@ -24,7 +25,10 @@ export class NewRecipeComponent {
   @ViewChild('ingredientForm') ingredientForm: NgForm;
   @ViewChild('recipeForm') recipeForm: NgForm;
 
-  constructor(private snackBar: MatSnackBar, private translate: TranslateService, private recipeService: RecipeService) {
+  constructor(private snackBar: MatSnackBar,
+              private translate: TranslateService,
+              private router: Router,
+              private recipeService: RecipeService) {
   }
 
   addIngredient(): void {
@@ -53,6 +57,7 @@ export class NewRecipeComponent {
         case CreateRecipeResultState.SUCCESS:
           this.resetIngredientForm();
           this.resetRecipeForm();
+          this.router.navigate(['/recipe-overview']);
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Recipe.SuccessfullySaved').subscribe(text => {

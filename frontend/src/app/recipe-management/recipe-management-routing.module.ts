@@ -2,13 +2,13 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { AuthGuard } from '../authentication/auth-guard.service';
-import { RecipeManagementComponent } from './recipe-management.component';
+import { RecipeOverviewComponent } from './recipe-overview/recipe-overview.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 
 const routes: Routes = [
   {
     path: 'recipe-overview',
-    component: RecipeManagementComponent,
+    component: RecipeOverviewComponent,
     canActivate: [AuthGuard]
   },
   {
