@@ -27,7 +27,7 @@ cache:
   - $HOME/.gradle/wrapper/
 
 script: ./gradlew check
-script: ./gradlew clean zip
+script: ./gradlew clean createSourceBundleForAwsDeployment
 
 deploy:
   skip_cleanup: true

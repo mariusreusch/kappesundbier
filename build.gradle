@@ -33,10 +33,9 @@ jar {
     into("static") {
         from clientArtifacts
     }
-
 }
 
-task zip(type: Zip, dependsOn: build) {
+task createSourceBundleForAwsDeployment(type: Zip, dependsOn: build) {
     from ('.ebextensions') {
         into '.ebextensions'
     }
@@ -67,7 +66,6 @@ dependencies {
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
     testCompile("org.assertj:assertj-core:3.8.0")
 }
-
 
 task startMysqlDockerImage(type: Exec) {
     workingDir 'docker/mysql'
