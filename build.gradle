@@ -36,7 +36,7 @@ jar {
 
 }
 
-task zip(type: Zip, dependsOn: bootRepackage) {
+task zip(type: Zip, dependsOn: build) {
     from ('.ebextensions') {
         into '.ebextensions'
     }
