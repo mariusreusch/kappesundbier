@@ -1,22 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe-service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
-import { Recipe } from '../recipe';
+import { RecipeService } from '../recipe-service';
 import { Observable } from 'rxjs/Observable';
+import { Recipe } from '../recipe';
 
 @Component({
-  selector: 'kub-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  selector: 'kub-recipe-edit-smart',
+  templateUrl: './recipe-edit-smart.component.html',
+  styleUrls: ['./recipe-edit-smart.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class RecipeEditSmartComponent implements OnInit {
 
   recipe: Observable<Recipe>;
   base64EncodedImages: Observable<any[]>;
 
-  constructor(private route: ActivatedRoute,
-              private service: RecipeService,
+
+  constructor(private service: RecipeService,
+              private route: ActivatedRoute,
               private router: Router) {
   }
 
@@ -28,7 +28,4 @@ export class RecipeDetailComponent implements OnInit {
       .switchMap((params: ParamMap) => this.service.findRecipeBase64EncodedImages(params.get('id')));
   }
 
-  switchToEditMode(recipe: Recipe) {
-    this.route.paramMap.subscribe((params: ParamMap) => this.router.navigate(['/edit-recipe', recipe.id]))
-  }
 }

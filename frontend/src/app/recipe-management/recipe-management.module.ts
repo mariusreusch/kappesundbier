@@ -13,7 +13,8 @@ import { KubCommonModule } from '../kub-common/kub-common.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecipeService } from './recipe-service';
 import { RecipeDetailViewComponent } from './recipe-detail/recipe-detail-view/recipe-detail-view.component';
-import { RecipeDetailEditComponent } from './recipe-detail/recipe-detail-edit/recipe-detail-edit.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RecipeEditSmartComponent } from './recipe-edit/recipe-edit-smart.component';
 
 @NgModule({
   imports: [
@@ -26,7 +27,7 @@ import { RecipeDetailEditComponent } from './recipe-detail/recipe-detail-edit/re
     TranslateModule
   ],
   declarations: [RecipeOverviewComponent, NewRecipeComponent, RecipeListComponent, RecipeDetailComponent,
-    RecipeDetailViewComponent, RecipeDetailViewComponent, RecipeDetailEditComponent],
+    RecipeDetailViewComponent, RecipeDetailViewComponent, RecipeEditComponent, RecipeEditSmartComponent],
   providers: [RecipeService]
 })
 export class RecipeManagementModule {

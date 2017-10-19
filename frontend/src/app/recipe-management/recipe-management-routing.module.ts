@@ -4,6 +4,8 @@ import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { AuthGuard } from '../authentication/auth-guard.service';
 import { RecipeOverviewComponent } from './recipe-overview/recipe-overview.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
+import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
+import { RecipeEditSmartComponent } from './recipe-edit/recipe-edit-smart.component';
 
 const routes: Routes = [
   {
@@ -14,6 +16,12 @@ const routes: Routes = [
   {
     path: 'recipe-detail/:id',
     component: RecipeDetailComponent,
+    canActivate: [AuthGuard]
+
+  },
+  {
+    path: 'edit-recipe/:id',
+    component: RecipeEditSmartComponent,
     canActivate: [AuthGuard]
 
   },

@@ -15,12 +15,12 @@ export class RecipeDetailViewComponent {
   base64EncodedImages: any[];
 
   @Output()
-  switchToEditModeEvent = new EventEmitter<void>();
+  switchToEditModeEvent = new EventEmitter<Recipe>();
 
 
   constructor() { }
 
   switchToEditMode() {
-    this.switchToEditModeEvent.emit();
+    this.switchToEditModeEvent.emit(this.recipe);
   }
 }

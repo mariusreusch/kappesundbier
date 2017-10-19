@@ -47,6 +47,17 @@ export class RecipeService {
     return this.httpClient.get<any>('./api/recipes/' + id + '/images');
   }
 
+  findRecipeBase64EncodedImages(id: string) {
+    return this.findRecipeImages(id)
+      .map((images: any) => {
+        const base64EncodedImages = [];
+        for (let i = 0; i < images.length; i++) {
+          base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
+        }
+        return base64EncodedImages;
+      });
+  }
+
   deleteRecipe(recipe: Recipe) {
     return this.httpClient.delete('./api/recipes/' + recipe.id)
       .map((response: any) => new DeleteRecipeResult(DeleteRecipeResultState.SUCCESS, response))
