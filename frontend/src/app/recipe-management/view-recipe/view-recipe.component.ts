@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Recipe } from '../../recipe';
+import { Recipe } from '../recipe';
 
 @Component({
-  selector: 'kub-recipe-detail-view',
-  templateUrl: './recipe-detail-view.component.html',
-  styleUrls: ['./recipe-detail-view.component.css']
+  selector: 'kub-view-recipe',
+  templateUrl: './view-recipe.component.html',
+  styleUrls: ['./view-recipe.component.css']
 })
-export class RecipeDetailViewComponent {
+export class ViewRecipeComponent {
 
   @Input()
   recipe: Recipe;

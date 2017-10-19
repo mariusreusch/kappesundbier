@@ -5,14 +5,14 @@ import { RecipeManagementRoutingModule } from './recipe-management-routing.modul
 import { RecipeListComponent } from './recipe-overview/recipe-list.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
 import { RecipeOverviewSmartComponent } from './recipe-overview/recipe-overview-smart.component';
-import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
+import { ViewRecipeSmartComponent } from './view-recipe/view-recipe-smart.component';
 import { KubMaterialModule } from '../kub-material/kub-material.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 import { KubCommonModule } from '../kub-common/kub-common.module';
 import { TranslateModule } from '@ngx-translate/core';
 import { RecipeService } from './recipe-service';
-import { RecipeDetailViewComponent } from './recipe-detail/recipe-detail-view/recipe-detail-view.component';
+import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.component';
 
@@ -26,8 +26,8 @@ import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.compon
     KubCommonModule,
     TranslateModule
   ],
-  declarations: [RecipeOverviewSmartComponent, NewRecipeComponent, RecipeListComponent, RecipeDetailComponent,
-    RecipeDetailViewComponent, RecipeDetailViewComponent, EditRecipeComponent, EditRecipeSmartComponent],
+  declarations: [RecipeOverviewSmartComponent, NewRecipeComponent, RecipeListComponent, ViewRecipeSmartComponent,
+    ViewRecipeComponent, ViewRecipeComponent, EditRecipeComponent, EditRecipeSmartComponent],
   providers: [RecipeService]
 })
 export class RecipeManagementModule {

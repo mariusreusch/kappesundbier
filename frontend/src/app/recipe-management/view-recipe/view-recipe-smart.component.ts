@@ -6,11 +6,11 @@ import { Recipe } from '../recipe';
 import { Observable } from 'rxjs/Observable';
 
 @Component({
-  selector: 'kub-recipe-detail',
-  templateUrl: './recipe-detail.component.html',
-  styleUrls: ['./recipe-detail.component.css']
+  selector: 'kub-view-recipe-smart',
+  templateUrl: './view-recipe-smart.component.html',
+  styleUrls: ['./view-recipe-smart.component.css']
 })
-export class RecipeDetailComponent implements OnInit {
+export class ViewRecipeSmartComponent implements OnInit {
 
   recipe: Observable<Recipe>;
   base64EncodedImages: Observable<any[]>;
