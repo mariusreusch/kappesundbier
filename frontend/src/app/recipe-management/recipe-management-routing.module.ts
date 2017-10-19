@@ -1,16 +1,15 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { RouterModule, Routes } from '@angular/router';
 import { RecipeDetailComponent } from './recipe-detail/recipe-detail.component';
 import { AuthGuard } from '../authentication/auth-guard.service';
-import { RecipeOverviewComponent } from './recipe-overview/recipe-overview.component';
+import { RecipeOverviewSmartComponent } from './recipe-overview/recipe-overview-smart.component';
 import { NewRecipeComponent } from './new-recipe/new-recipe.component';
-import { RecipeEditComponent } from './recipe-edit/recipe-edit.component';
-import { RecipeEditSmartComponent } from './recipe-edit/recipe-edit-smart.component';
+import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.component';
 
 const routes: Routes = [
   {
     path: 'recipe-overview',
-    component: RecipeOverviewComponent,
+    component: RecipeOverviewSmartComponent,
     canActivate: [AuthGuard]
   },
   {
@@ -21,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'edit-recipe/:id',
-    component: RecipeEditSmartComponent,
+    component: EditRecipeSmartComponent,
     canActivate: [AuthGuard]
 
   },

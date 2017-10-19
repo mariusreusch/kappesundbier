@@ -1,23 +1,22 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap } from '@angular/router';
 import { RecipeService } from '../recipe-service';
 import { Observable } from 'rxjs/Observable';
 import { Recipe } from '../recipe';
 
 @Component({
-  selector: 'kub-recipe-edit-smart',
-  templateUrl: './recipe-edit-smart.component.html',
-  styleUrls: ['./recipe-edit-smart.component.css']
+  selector: 'kub-edit-recipe-smart',
+  templateUrl: './edit-recipe-smart.component.html',
+  styleUrls: ['./edit-recipe-smart.component.css']
 })
-export class RecipeEditSmartComponent implements OnInit {
+export class EditRecipeSmartComponent implements OnInit {
 
   recipe: Observable<Recipe>;
   base64EncodedImages: Observable<any[]>;
 
 
   constructor(private service: RecipeService,
-              private route: ActivatedRoute,
-              private router: Router) {
+              private route: ActivatedRoute) {
   }
 
   ngOnInit() {

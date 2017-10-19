@@ -1,10 +1,10 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Router } from '@angular/router';
-import { Recipe } from '../../recipe';
+import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { YesNoDialogComponent } from '../../../kub-common/yes-no-dialog/yes-no-dialog.component';
-import { DeleteRecipeResultState } from '../../delete-recipe-result-state';
-import { DeleteRecipeResult } from '../../delete-recipe-result';
+import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
+import { DeleteRecipeResultState } from '../delete-recipe-result-state';
+import { DeleteRecipeResult } from '../delete-recipe-result';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

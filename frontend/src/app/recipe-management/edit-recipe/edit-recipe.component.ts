@@ -1,15 +1,15 @@
-import { Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Ingredient } from '../ingredient';
 import { Recipe } from '../recipe';
 import { NgForm } from '@angular/forms';
 import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
 
 @Component({
-  selector: 'kub-recipe-edit',
-  templateUrl: './recipe-edit.component.html',
-  styleUrls: ['./recipe-edit.component.css']
+  selector: 'kub-edit-recipe',
+  templateUrl: './edit-recipe.component.html',
+  styleUrls: ['./edit-recipe.component.css']
 })
-export class RecipeEditComponent {
+export class EditRecipeComponent {
 
   newIngredient = new Ingredient('', null, '');
   categoriesAsCommaSeparatedString = '';

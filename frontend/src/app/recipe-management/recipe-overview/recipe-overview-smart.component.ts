@@ -6,11 +6,11 @@ import { Recipe } from '../recipe';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 
 @Component({
-  selector: 'kub-recipe-management',
-  templateUrl: './recipe-overview.component.html',
-  styleUrls: ['./recipe-overview.component.css']
+  selector: 'kub-recipe-smart-management',
+  templateUrl: './recipe-overview-smart.component.html',
+  styleUrls: ['./recipe-overview-smart.component.css']
 })
-export class RecipeOverviewComponent implements OnInit {
+export class RecipeOverviewSmartComponent implements OnInit {
 
   deleteRecipeResult: Observable<DeleteRecipeResult>;
   myRecipes: Observable<Recipe[]>;
