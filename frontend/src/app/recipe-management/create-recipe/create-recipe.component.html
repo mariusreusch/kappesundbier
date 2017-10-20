@@ -1,0 +1,101 @@
+<mat-card>
+  <mat-card-header>
+    <mat-card-title><h1 translate>Recipe.CreateNewRecipe</h1></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+    <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
+      <mat-input-container class="kub-full-width-input">
+        <input mat-line matInput
+               placeholder="{{'Common.Name' | translate}}"
+               name="recipeName"
+               required
+               [(ngModel)]="newRecipe.name">
+      </mat-input-container>
+      <mat-input-container class="kub-full-width-input">
+        <input mat-line matInput
+               placeholder="{{'Recipe.NumberOfPortions' | translate}}"
+               name="numberOfPortions"
+               type="number"
+               required
+               [(ngModel)]="newRecipe.numberOfPortions">
+      </mat-input-container>
+      <mat-input-container class="kub-full-width-input">
+        <input mat-line matInput
+               placeholder="{{'Recipe.CategoriesCommaSeparated' | translate}}"
+               name="numberOfPortions"
+               required
+               [(ngModel)]="categoriesAsCommaSeparatedString">
+      </mat-input-container>
+      <mat-input-container class="kub-full-width-input">
+          <textarea matInput
+                    name="instruction"
+                    placeholder="{{'Recipe.Instruction' | translate}}"
+                    rows="4"
+                    required
+                    [(ngModel)]="newRecipe.instruction">
+          </textarea>
+      </mat-input-container>
+    </form>
+
+    <h3 translate>Recipe.Ingredients</h3>
+    <mat-list>
+      <mat-list-item *ngFor="let ingredient of newRecipe.ingredients">
+        <div mat-line style="display: flex;">
+          <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
+            {{ingredient.name}}
+          </div>
+          <mat-icon class="kub-icon-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <form #ingredientForm="ngForm" (ngSubmit)="addIngredient()" onsubmit="ingredientAmount.focus()">
+      <mat-input-container>
+        <input matInput
+               placeholder="{{'Recipe.Amount' | translate}}"
+               type="number"
+               name="ingredientAmount"
+               [(ngModel)]="newIngredient.amount"
+               required>
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput
+               placeholder="{{'Recipe.MeasuringUnit' | translate}}"
+               name="measuringUnit"
+               [(ngModel)]="newIngredient.unitOfMeasurement"
+               required>
+      </mat-input-container>
+      <mat-input-container>
+        <input matInput
+               placeholder="{{'Common.Name' | translate}}"
+               name="ingredientName"
+               [(ngModel)]="newIngredient.name"
+               required>
+      </mat-input-container>
+
+      <button [disabled]="!ingredientForm.form.valid"
+              mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
+    </form>
+
+    <h3 translate>Recipe.Pictures</h3>
+
+    <kub-file-upload (onFileSelected)="addImage($event)"></kub-file-upload>
+
+    <div>
+        <span *ngFor="let image of newRecipe.images">
+          <img src="{{image.content}}" alt="" width="200">
+        </span>
+    </div>
+
+    <mat-divider></mat-divider>
+
+  </mat-card-content>
+  <mat-card-actions>
+    <button mat-button [disabled]="!recipeForm.form.valid || newRecipe.ingredients.length < 1"
+            (click)="recipeForm.ngSubmit.emit()">
+      {{'Recipe.DoSomeAmazingStuff' | translate}}
+    </button>
+  </mat-card-actions>
+</mat-card>

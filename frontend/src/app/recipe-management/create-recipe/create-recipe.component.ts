@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { Ingredient } from '../ingredient';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
@@ -7,28 +7,37 @@ import { CreateRecipeResultState } from '../create-recipe-result-state';
 import { Recipe } from '../recipe';
 import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
 import { TranslateService } from '@ngx-translate/core';
-import { RecipeService } from '../recipe-service';
-import { Router } from '@angular/router';
 
 
 @Component({
-  selector: 'kub-new-recipe',
-  templateUrl: './new-recipe.component.html',
-  styleUrls: ['./new-recipe.component.css']
+  selector: 'kub-create-recipe',
+  templateUrl: './create-recipe.component.html',
+  styleUrls: ['./create-recipe.component.css']
 })
-export class NewRecipeComponent {
+export class CreateRecipeComponent {
 
   newRecipe = new Recipe('', '', null, '', [], [], [], null);
   newIngredient = new Ingredient('', null, '');
   categoriesAsCommaSeparatedString = '';
 
+  @Output()
+  onRecipeCreate = new EventEmitter<Recipe>();
+
+  @Output()
+  onRecipeSuccessFullyCreated = new EventEmitter<void>();
+
+  @Input('createRecipeResult')
+  set setCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
+    console.log('create');
+    this.handleCreateRecipeResult(createRecipeResult)
+  }
+
+
   @ViewChild('ingredientForm') ingredientForm: NgForm;
   @ViewChild('recipeForm') recipeForm: NgForm;
 
   constructor(private snackBar: MatSnackBar,
-              private translate: TranslateService,
-              private router: Router,
-              private recipeService: RecipeService) {
+              private translate: TranslateService) {
   }
 
   addIngredient(): void {
@@ -46,8 +55,7 @@ export class NewRecipeComponent {
   onSubmit() {
     if (this.newRecipe.ingredients.length > 0) {
       this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
-      this.recipeService.create(this.newRecipe)
-        .subscribe(createRecipeResult => this.handleCreateRecipeResult(createRecipeResult));
+      this.onRecipeCreate.emit(this.newRecipe);
     }
   }
 
@@ -57,7 +65,7 @@ export class NewRecipeComponent {
         case CreateRecipeResultState.SUCCESS:
           this.resetIngredientForm();
           this.resetRecipeForm();
-          this.router.navigate(['/recipe-overview']);
+          this.onRecipeSuccessFullyCreated.emit();
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Recipe.SuccessfullySaved').subscribe(text => {
