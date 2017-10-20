@@ -28,7 +28,6 @@ export class CreateRecipeComponent {
 
   @Input('createRecipeResult')
   set setCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
-    console.log('create');
     this.handleCreateRecipeResult(createRecipeResult)
   }
 
