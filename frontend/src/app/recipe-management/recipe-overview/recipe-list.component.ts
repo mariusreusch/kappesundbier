@@ -48,7 +48,7 @@ export class RecipeListComponent {
   }
 
   onSelect(recipe: Recipe) {
-    this.router.navigate(['/recipe-detail', recipe.id]);
+    this.router.navigate(['view-recipe', recipe.id]);
   }
 
   onDelete(recipe: Recipe) {

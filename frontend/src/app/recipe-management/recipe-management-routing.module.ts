@@ -13,7 +13,7 @@ const routes: Routes = [
     canActivate: [AuthGuard]
   },
   {
-    path: 'recipe-detail/:id',
+    path: 'view-recipe/:id',
     component: ViewRecipeSmartComponent,
     canActivate: [AuthGuard]
 
