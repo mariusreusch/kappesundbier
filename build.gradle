@@ -18,7 +18,6 @@ plugins {
 
 apply plugin: 'java'
 apply plugin: 'org.springframework.boot'
-apply from: "server.gradle"
 apply from: "frontend.gradle"
 
 project.ext['flyway.url'] = 'jdbc:mysql://localhost:3306/cookncode'

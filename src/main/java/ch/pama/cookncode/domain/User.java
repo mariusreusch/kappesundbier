@@ -10,6 +10,7 @@ import java.util.Objects;
 @Entity
 public class User {
 
+    @OnlyForFramework
     @GeneratedValue
     @Id
     private Long id;

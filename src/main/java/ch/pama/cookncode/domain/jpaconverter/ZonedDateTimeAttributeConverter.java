@@ -1,4 +1,4 @@
-package ch.pama.cookncode.domain.utils;
+package ch.pama.cookncode.domain.jpaconverter;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
@@ -6,7 +6,6 @@ import java.sql.Timestamp;
 import java.time.ZoneId;
 import java.time.ZonedDateTime;
 
-// => Sql.Date bzw. Timestamp wegen Filterung
 @Converter(autoApply = true)
 public class ZonedDateTimeAttributeConverter implements AttributeConverter<ZonedDateTime, Timestamp> {
 

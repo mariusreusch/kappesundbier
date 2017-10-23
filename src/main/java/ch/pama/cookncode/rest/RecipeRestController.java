@@ -66,7 +66,7 @@ public class RecipeRestController {
     public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
         User user = getOrCreateUser(principal);
 
-        recipeService.deleteReceipe(id, user);
+        recipeService.deleteRecipe(id, user);
 
         return new DeletedRecipeIdDto(id.toString());
     }

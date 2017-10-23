@@ -7,6 +7,7 @@ import javax.persistence.*;
 @Entity
 public class RecipeImage {
 
+    @OnlyForFramework
     @GeneratedValue
     @Id
     private Long id;

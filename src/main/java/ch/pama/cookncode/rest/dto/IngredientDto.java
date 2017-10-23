@@ -1,19 +1,20 @@
 package ch.pama.cookncode.rest.dto;
 
+import ch.pama.cookncode.domain.Amount;
 import ch.pama.cookncode.domain.Ingredient;
 import ch.pama.cookncode.util.OnlyForFramework;
 
 public class IngredientDto {
 
     private String name;
-    private int amount;
+    private Amount amount;
     private String unitOfMeasurement;
 
     @OnlyForFramework
     private IngredientDto() {
     }
 
-    private IngredientDto(String name, int amount, String unitOfMeasurement) {
+    private IngredientDto(String name, Amount amount, String unitOfMeasurement) {
         this.name = name;
         this.amount = amount;
         this.unitOfMeasurement = unitOfMeasurement;
@@ -23,7 +24,7 @@ public class IngredientDto {
         return name;
     }
 
-    public int getAmount() {
+    public Amount getAmount() {
         return amount;
     }
 

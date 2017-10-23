@@ -1,5 +1,7 @@
 package ch.pama.cookncode.domain;
 
+import ch.pama.cookncode.util.OnlyForFramework;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
@@ -13,15 +15,16 @@ public class Ingredient {
     private Long id;
 
     private String name;
-    private int amount;
+    private Amount amount;
     private String unitOfMeasurement;
 
+    @OnlyForFramework
     private Ingredient() {
     }
 
-    public Ingredient(String name, int amount, String unitOfMeasurement) {
+    public Ingredient(String name, Amount amount, String unitOfMeasurement) {
         this.name = Objects.requireNonNull(name);
-        this.amount = Objects.requireNonNull(amount);
+        this.amount = amount;
         this.unitOfMeasurement = Objects.requireNonNull(unitOfMeasurement);
     }
 
@@ -29,7 +32,7 @@ public class Ingredient {
         return name;
     }
 
-    public int getAmount() {
+    public Amount getAmount() {
         return amount;
     }
 

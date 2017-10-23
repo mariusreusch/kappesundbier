@@ -2,15 +2,12 @@ package ch.pama.cookncode.service;
 
 import ch.pama.cookncode.domain.*;
 import ch.pama.cookncode.rest.dto.RecipeDto;
-import ch.pama.cookncode.rest.dto.RecipeImageDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 
-import static java.util.Comparator.comparing;
 import static java.util.stream.Collectors.toList;
 
 @Service
@@ -38,14 +35,9 @@ public class RecipeService {
     }
 
     public List<RecipeDto> findAllRecipesOfUser(User user) {
-
         return user.getRecipes()
                 .stream()
                 .map(RecipeDto::from).collect(toList());
-    }
-
-    public RecipeDto findById(String id) {
-        return RecipeDto.from(this.recipeRepository.findOne(Long.valueOf(id)));
     }
 
     public List<byte[]> findImagesOfRecipe(Long id, User user) {
@@ -57,7 +49,7 @@ public class RecipeService {
                 .collect(toList());
     }
 
-    public void deleteReceipe(Long id, User user) {
+    public void deleteRecipe(Long id, User user) {
         user.getRecipes().removeIf(recipe -> Objects.equals(recipe.getId(), id));
         userRepository.save(user);
     }
