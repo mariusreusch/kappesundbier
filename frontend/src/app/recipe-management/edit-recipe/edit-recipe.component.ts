@@ -16,6 +16,8 @@ export class EditRecipeComponent {
 
   @Input()
   recipe: Recipe;
+  @Input()
+  base64EncodedImages: any[];
   @Output()
   onRecipeCreated = new EventEmitter<Recipe>();
   @ViewChild('ingredientForm')

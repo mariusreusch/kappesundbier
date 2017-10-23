@@ -86,9 +86,9 @@
     <kub-file-upload (onFileSelected)="addImage($event)"></kub-file-upload>
 
     <div>
-    <span *ngFor="let image of recipe.images">
-      <img src="{{image.content}}" alt="" width="200">
-    </span>
+      <span *ngFor="let image of base64EncodedImages">
+        <img src="{{image}}" alt="" width="49%">
+      </span>
     </div>
 
     <mat-divider></mat-divider>
