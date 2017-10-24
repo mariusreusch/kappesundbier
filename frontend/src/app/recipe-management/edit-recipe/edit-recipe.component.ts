@@ -28,6 +28,15 @@ export class EditRecipeComponent {
   constructor() {
   }
 
+  @Input('recipe')
+  set setCreateRecipeResult(recipe: Recipe) {
+    if (recipe != null) {
+      this.recipe = recipe;
+      this.categoriesAsCommaSeparatedString = this.recipe.categories.join(', ');
+      console.log('number: ' + this.recipe.numberOfPortions);
+    }
+  }
+
   addIngredient(): void {
     this.recipe.ingredients.push(this.newIngredient);
     this.resetIngredientForm();
