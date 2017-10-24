@@ -1,9 +1,9 @@
 package ch.pama.cookncode.rest.dto.serializer;
 
 import ch.pama.cookncode.domain.Amount;
-import org.codehaus.jackson.JsonParser;
-import org.codehaus.jackson.map.DeserializationContext;
-import org.codehaus.jackson.map.JsonDeserializer;
+import com.fasterxml.jackson.core.JsonParser;
+import com.fasterxml.jackson.databind.DeserializationContext;
+import com.fasterxml.jackson.databind.JsonDeserializer;
 import org.springframework.boot.jackson.JsonComponent;
 
 import java.io.IOException;
