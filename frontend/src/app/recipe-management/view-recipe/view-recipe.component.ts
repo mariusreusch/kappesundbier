@@ -17,7 +17,6 @@ export class ViewRecipeComponent {
   @Output()
   switchToEditModeEvent = new EventEmitter<Recipe>();
 
-
   constructor() { }
 
   switchToEditMode() {

@@ -32,7 +32,7 @@ public class IngredientDto {
         return unitOfMeasurement;
     }
 
-    Ingredient toIngredient(){
+    public Ingredient toIngredient(){
         return new Ingredient(name, amount, unitOfMeasurement);
     }
 

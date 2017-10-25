@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
-import { DeleteRecipeResultState } from '../delete-recipe-result-state';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 import { TranslateService } from '@ngx-translate/core';
+import { ResponseResultState } from '../response-result-state';
 
 @Component({
   selector: 'kub-recipe-overview',
@@ -34,7 +34,7 @@ export class RecipeListComponent {
 
   @Input('deleteRecipeResult')
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
-    if (deleteRecipeResult && deleteRecipeResult.state === DeleteRecipeResultState.SUCCESS) {
+    if (deleteRecipeResult && deleteRecipeResult.state === ResponseResultState.SUCCESS) {
       this.recipes = this.recipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
       // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
       setTimeout(() => {

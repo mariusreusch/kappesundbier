@@ -1,7 +1,7 @@
-import { DeleteRecipeResultState } from './delete-recipe-result-state';
+import { ResponseResultState } from './response-result-state';
 
 export class DeleteRecipeResult {
 
-  constructor(public state: DeleteRecipeResultState, public deletedRecipeIdResponse?: { deletedRecipeId: string }) {
+  constructor(public state: ResponseResultState, public deletedRecipeIdResponse?: { deletedRecipeId: string }) {
   }
 }

@@ -35,12 +35,16 @@ public class Recipe {
 
     public Recipe(String name, int numberOfPortions, String instruction, Set<Ingredient> ingredients, Set<RecipeCategory> categories) {
         this.name = Objects.requireNonNull(name);
-        this.numberOfPortions = Objects.requireNonNull(numberOfPortions);
+        this.numberOfPortions = numberOfPortions;
         this.instruction = Objects.requireNonNull(instruction);
         this.ingredients = new HashSet<>(ingredients);
         this.categories = new HashSet<>(categories);
         this.creationDate = ZonedDateTime.now();
         this.recipeImages = new HashSet<>();
+    }
+
+    public void addImage(RecipeImage recipeImage) {
+        this.recipeImages.add(recipeImage);
     }
 
     public Long getId() {
@@ -51,31 +55,53 @@ public class Recipe {
         return name;
     }
 
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public int getNumberOfPortions() {
         return numberOfPortions;
+    }
+
+    public void setNumberOfPortions(int numberOfPortions) {
+        this.numberOfPortions = numberOfPortions;
     }
 
     public Set<Ingredient> getIngredients() {
         return ingredients;
     }
 
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
+
     public String getInstruction() {
         return instruction;
+    }
+
+    public void setInstruction(String instruction) {
+        this.instruction = instruction;
     }
 
     public Set<RecipeCategory> getCategories() {
         return categories;
     }
 
-    public void addImage(RecipeImage recipeImage) {
-        this.recipeImages.add(recipeImage);
+    public void setCategories(Set<RecipeCategory> categories) {
+        this.categories = categories;
     }
 
     public Set<RecipeImage> getRecipeImages() {
         return recipeImages;
     }
 
+    public void setRecipeImages(Set<RecipeImage> recipeImages) {
+        this.recipeImages = recipeImages;
+    }
+
     public ZonedDateTime getCreationDate() {
         return creationDate;
     }
+
+
 }

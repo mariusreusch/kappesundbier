@@ -3,7 +3,7 @@ import { Ingredient } from '../ingredient';
 import { NgForm } from '@angular/forms';
 import { MatSnackBar } from '@angular/material';
 import { CreateRecipeResult } from '../create-recipe-result';
-import { CreateRecipeResultState } from '../create-recipe-result-state';
+import { ResponseResultState } from '../response-result-state';
 import { Recipe } from '../recipe';
 import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
 import { TranslateService } from '@ngx-translate/core';
@@ -30,7 +30,6 @@ export class CreateRecipeComponent {
   set setCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
     this.handleCreateRecipeResult(createRecipeResult)
   }
-
 
   @ViewChild('ingredientForm') ingredientForm: NgForm;
   @ViewChild('recipeForm') recipeForm: NgForm;
@@ -61,7 +60,7 @@ export class CreateRecipeComponent {
   handleCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
     if (createRecipeResult) {
       switch (createRecipeResult.state) {
-        case CreateRecipeResultState.SUCCESS:
+        case ResponseResultState.SUCCESS:
           this.resetIngredientForm();
           this.resetRecipeForm();
           this.onRecipeSuccessFullyCreated.emit();
@@ -75,7 +74,7 @@ export class CreateRecipeComponent {
           }, 1);
 
           break;
-        case CreateRecipeResultState.FAILED:
+        case ResponseResultState.FAILED:
           // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Common.Error').subscribe(text => {

@@ -34,4 +34,8 @@ public class User {
     public List<Recipe> getRecipes() {
         return recipes;
     }
+
+    public boolean isOwnerOf(Recipe recipe) {
+        return getRecipes().stream().map(Recipe::getId).anyMatch(recipe.getId()::equals);
+    }
 }

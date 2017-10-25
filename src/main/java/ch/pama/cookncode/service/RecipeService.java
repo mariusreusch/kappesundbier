@@ -1,14 +1,17 @@
 package ch.pama.cookncode.service;
 
 import ch.pama.cookncode.domain.*;
+import ch.pama.cookncode.rest.dto.IngredientDto;
 import ch.pama.cookncode.rest.dto.RecipeDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
 import static java.util.stream.Collectors.toList;
+import static java.util.stream.Collectors.toSet;
 
 @Service
 public class RecipeService {
@@ -21,11 +24,8 @@ public class RecipeService {
         this.userRepository = userRepository;
     }
 
-    public RecipeDto createRecipe(RecipeDto recipeDto, User user, List<byte[]> recipeImageData) {
-        Recipe recipe = recipeDto.toRecipe();
-        recipeImageData.stream()
-                .map(RecipeImage::new)
-                .forEach(recipe::addImage);
+    public RecipeDto createRecipe(RecipeDto recipeDto, List<byte[]> recipeImageData, User user) {
+        Recipe recipe = recipeDto.toRecipeWithImages(recipeImageData);
 
         user.addRecipe(recipe);
 
@@ -47,6 +47,35 @@ public class RecipeService {
                 .flatMap(Collection::stream)
                 .map(RecipeImage::getData)
                 .collect(toList());
+    }
+
+    public RecipeDto updateRecipe(RecipeDto recipeDto, List<byte[]> recipeImageData, User user) {
+        Recipe recipe = recipeRepository.findOne(Long.valueOf(recipeDto.getId()));
+
+        assertRecipeBelongsToUser(user, recipe);
+
+        Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
+        Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
+        Set<RecipeImage> recipeImages = recipeImageData.stream()
+                .map(RecipeImage::new)
+                .collect(toSet());
+
+        recipe.setName(recipeDto.getName());
+        recipe.setCategories(categories);
+        recipe.setIngredients(ingredients);
+        recipe.setInstruction(recipeDto.getInstruction());
+        recipe.setNumberOfPortions(recipeDto.getNumberOfPortions());
+        recipe.setRecipeImages(recipeImages);
+
+        Recipe updatedRecipe = recipeRepository.save(recipe);
+
+        return RecipeDto.from(updatedRecipe);
+    }
+
+    private void assertRecipeBelongsToUser(User user, Recipe recipe) {
+        if (!user.isOwnerOf(recipe)) {
+            throw new IllegalArgumentException("Logged in user is not owner of edited recipe.");
+        }
     }
 
     public void deleteRecipe(Long id, User user) {

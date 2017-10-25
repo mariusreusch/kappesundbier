@@ -3,10 +3,12 @@ package ch.pama.cookncode.rest.dto;
 import ch.pama.cookncode.domain.Ingredient;
 import ch.pama.cookncode.domain.Recipe;
 import ch.pama.cookncode.domain.RecipeCategory;
+import ch.pama.cookncode.domain.RecipeImage;
 import ch.pama.cookncode.util.OnlyForFramework;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import static java.util.stream.Collectors.toSet;
@@ -63,10 +65,14 @@ public class RecipeDto {
         return creationDate;
     }
 
-    public Recipe toRecipe() {
+    public Recipe toRecipeWithImages(List<byte[]> recipeImageData) {
         Set<Ingredient> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient).collect(toSet());
         Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new).collect(toSet());
-        return new Recipe(name, numberOfPortions, instruction, ingredients, categories);
+        Recipe recipe = new Recipe(name, numberOfPortions, instruction, ingredients, categories);
+        recipeImageData.stream()
+                .map(RecipeImage::new)
+                .forEach(recipe::addImage);
+        return recipe;
     }
 
     public static RecipeDto from(Recipe recipe) {

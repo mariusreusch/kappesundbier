@@ -11,7 +11,6 @@ export class FileUploadComponent {
   @Output()
   onFileSelected = new EventEmitter<FileToUpload>();
 
-
   onChange(files: File[]) {
     if (files && files[0]) {
       const fileReader = new FileReader();
@@ -22,9 +21,7 @@ export class FileUploadComponent {
         fileToUpload.content = fileReader.result;
         this.onFileSelected.emit(fileToUpload);
       };
-
       fileReader.readAsDataURL(files[0]);
     }
   }
-
 }
