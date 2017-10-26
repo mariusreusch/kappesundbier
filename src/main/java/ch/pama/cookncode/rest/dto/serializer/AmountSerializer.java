@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AmountSerializer extends JsonSerializer<Amount> {
 
     @Override
-    public void serialize(Amount amount, JsonGenerator jgen, SerializerProvider provider) throws IOException {
-        jgen.writeNumber(amount.getValue());
+    public void serialize(Amount amount, JsonGenerator jsonGenerator, SerializerProvider provider) throws IOException {
+        jsonGenerator.writeNumber(amount.getValue());
     }
 }

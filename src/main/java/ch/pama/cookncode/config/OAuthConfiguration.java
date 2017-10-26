@@ -25,8 +25,12 @@ import javax.servlet.Filter;
 @EnableOAuth2Client
 public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
 
+    private final OAuth2ClientContext oauth2ClientContext;
+
     @Autowired
-    private OAuth2ClientContext oauth2ClientContext;
+    public OAuthConfiguration(OAuth2ClientContext oauth2ClientContext) {
+        this.oauth2ClientContext = oauth2ClientContext;
+    }
 
     @Override
     protected void configure(HttpSecurity http) throws Exception {

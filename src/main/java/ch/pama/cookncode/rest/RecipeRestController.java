@@ -62,7 +62,7 @@ public class RecipeRestController {
     }
 
     @GetMapping("/{id}/images")
-    public ResponseEntity<List<byte[]>> findImgesByRecipeId(@PathVariable Long id, Principal principal) {
+    public ResponseEntity<List<byte[]>> findImagesByRecipeId(@PathVariable Long id, Principal principal) {
         User user = getOrCreateUser(principal);
         List<byte[]> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
 

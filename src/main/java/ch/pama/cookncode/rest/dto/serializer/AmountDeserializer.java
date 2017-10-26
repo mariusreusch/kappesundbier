@@ -12,7 +12,7 @@ import java.io.IOException;
 public class AmountDeserializer extends JsonDeserializer<Amount> {
 
     @Override
-    public Amount deserialize(JsonParser jp, DeserializationContext ctxt) throws IOException {
-        return new Amount(jp.getIntValue());
+    public Amount deserialize(JsonParser jsonParser, DeserializationContext context) throws IOException {
+        return new Amount(jsonParser.getIntValue());
     }
 }

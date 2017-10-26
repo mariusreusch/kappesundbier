@@ -14,6 +14,7 @@ public class User {
     @GeneratedValue
     @Id
     private Long id;
+    @OnlyForFramework
     private String providerId;
     @OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL)
     private List<Recipe> recipes;
