@@ -9,6 +9,4 @@ public class KappesUndBierApp {
     public static void main(String[] args) {
         SpringApplication.run(KappesUndBierApp.class, args);
     }
-
-
 }

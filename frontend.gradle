@@ -33,8 +33,6 @@ task clientArtifacts(type: Copy) {
     into "build/classes/static"
 }
 
-
-
 yarn_install.dependsOn yarnSetup
 clientBuild.dependsOn yarn_install
 clientArtifacts.dependsOn clientBuild
