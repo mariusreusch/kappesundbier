@@ -38,13 +38,13 @@
     </form>
 
     <h3 translate>Recipe.Ingredients</h3>
-    <mat-list>
+    <mat-list class="kub-ingredient-list">
       <mat-list-item *ngFor="let ingredient of newRecipe.ingredients">
         <div mat-line style="display: flex;">
-          <div style="display: flex; align-self: center;"> {{ingredient.amount}} {{ingredient.unitOfMeasurement}}
+          <div style="display: flex; align-items: center;">{{ingredient.amount}} {{ingredient.unitOfMeasurement}}
             {{ingredient.name}}
           </div>
-          <mat-icon class="kub-icon-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
+          <mat-icon class="kub-icon-btn kub-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear</mat-icon>
         </div>
       </mat-list-item>
     </mat-list>
@@ -55,6 +55,7 @@
                placeholder="{{'Recipe.Amount' | translate}}"
                type="number"
                name="ingredientAmount"
+               (blur)="resetFormIfEmpty()"
                [(ngModel)]="newIngredient.amount"
                required>
       </mat-input-container>
@@ -62,6 +63,7 @@
         <input matInput
                placeholder="{{'Recipe.MeasuringUnit' | translate}}"
                name="measuringUnit"
+               (blur)="resetFormIfEmpty()"
                [(ngModel)]="newIngredient.unitOfMeasurement"
                required>
       </mat-input-container>
@@ -69,6 +71,7 @@
         <input matInput
                placeholder="{{'Common.Name' | translate}}"
                name="ingredientName"
+               (blur)="resetFormIfEmpty()"
                [(ngModel)]="newIngredient.name"
                required>
       </mat-input-container>

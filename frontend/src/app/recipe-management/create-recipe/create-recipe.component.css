@@ -2,3 +2,11 @@
   width: 100%;
 }
 
+.kub-remove-ingredient-btn {
+  display: flex;
+  align-items: center;
+}
+
+.kub-ingredient-list * {
+  font-size: 14px;
+}
