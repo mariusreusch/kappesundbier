@@ -7,8 +7,7 @@ import { EditRecipeResult } from '../edit-recipe-result';
 
 @Component({
   selector: 'kub-edit-recipe-smart',
-  templateUrl: './edit-recipe-smart.component.html',
-  styleUrls: ['./edit-recipe-smart.component.css']
+  templateUrl: './edit-recipe-smart.component.html'
 })
 export class EditRecipeSmartComponent implements OnInit {
 

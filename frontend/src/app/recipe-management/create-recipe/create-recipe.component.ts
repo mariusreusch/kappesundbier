@@ -45,10 +45,8 @@ export class CreateRecipeComponent {
 
   resetFormIfEmpty() {
     if (!this.newIngredient.name && !this.newIngredient.unitOfMeasurement && !this.newIngredient.amount) {
-      console.log('reset form');
       this.ingredientForm.resetForm();
     }
-    console.log('say hello to abort');
   }
 
   removeIngredient(ingredientToRemove: Ingredient): void {

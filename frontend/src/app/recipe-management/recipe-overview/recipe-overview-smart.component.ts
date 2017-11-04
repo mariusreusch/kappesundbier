@@ -7,8 +7,7 @@ import { DeleteRecipeResult } from '../delete-recipe-result';
 
 @Component({
   selector: 'kub-recipe-smart-management',
-  templateUrl: './recipe-overview-smart.component.html',
-  styleUrls: ['./recipe-overview-smart.component.css']
+  templateUrl: './recipe-overview-smart.component.html'
 })
 export class RecipeOverviewSmartComponent implements OnInit {
 

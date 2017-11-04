@@ -7,8 +7,7 @@ import { CreateRecipeResult } from '../create-recipe-result';
 
 @Component({
   selector: 'kub-create-recipe-smart',
-  templateUrl: './create-recipe-smart.component.html',
-  styleUrls: ['./create-recipe-smart.component.css']
+  templateUrl: './create-recipe-smart.component.html'
 })
 export class CreateRecipeSmartComponent {
 

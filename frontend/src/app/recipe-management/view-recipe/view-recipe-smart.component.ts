@@ -7,8 +7,7 @@ import { Observable } from 'rxjs/Observable';
 
 @Component({
   selector: 'kub-view-recipe-smart',
-  templateUrl: './view-recipe-smart.component.html',
-  styleUrls: ['./view-recipe-smart.component.css']
+  templateUrl: './view-recipe-smart.component.html'
 })
 export class ViewRecipeSmartComponent implements OnInit {
 
