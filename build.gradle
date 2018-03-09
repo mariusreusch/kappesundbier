@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.8.RELEASE'
+        springBootVersion = '1.5.9.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -13,7 +13,7 @@ buildscript {
 }
 
 plugins {
-    id "org.flywaydb.flyway" version "4.2.0"
+    id "org.flywaydb.flyway" version "5.0.7"
 }
 
 apply plugin: 'java'
@@ -49,16 +49,15 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-security:$springBootVersion")
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     compile("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
-    compile("org.springframework.security.oauth:spring-security-oauth2:2.2.0.RELEASE")
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.2")
-    compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.16")
-    compile("mysql:mysql-connector-java:5.1.44")
-    compile("org.flywaydb:flyway-core:4.2.0")
+    compile("org.springframework.security.oauth:spring-security-oauth2:2.2.1.RELEASE")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
+    compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.18")
+    compile("mysql:mysql-connector-java:5.1.45")
+    compile("org.flywaydb:flyway-core:5.0.7")
 
     runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
-    testCompile("org.assertj:assertj-core:3.8.0")
 }
 
 task startMysqlDockerImage(type: Exec) {
