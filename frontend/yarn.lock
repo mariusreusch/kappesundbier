@@ -119,7 +119,7 @@
   dependencies:
     tslib "^1.9.0"
 
-"@angular/cdk@^7.0.0-beta.0":
+"@angular/cdk@7.0.0-beta.0":
   version "7.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@angular/cdk/-/cdk-7.0.0-beta.0.tgz#a7f376bbd03edc079712a76ea2cf786d6c1398e3"
   dependencies:
@@ -184,7 +184,7 @@
   version "6.1.7"
   resolved "https://registry.yarnpkg.com/@angular/language-service/-/language-service-6.1.7.tgz#f25335c32a7617344cf92736753a434c46678ebb"
 
-"@angular/material@^7.0.0-beta.0":
+"@angular/material@7.0.0-beta.0":
   version "7.0.0-beta.0"
   resolved "https://registry.yarnpkg.com/@angular/material/-/material-7.0.0-beta.0.tgz#27bedc7cc01a64b29ad2bfe8eb0e6feff38ac508"
   dependencies:
@@ -5562,10 +5562,6 @@ run-queue@^1.0.0, run-queue@^1.0.3:
   resolved "https://registry.yarnpkg.com/run-queue/-/run-queue-1.0.3.tgz#e848396f057d223f24386924618e25694161ec47"
   dependencies:
     aproba "^1.1.1"
-
-rxjs-compat@^6.0.0-rc.0:
-  version "6.3.2"
-  resolved "https://registry.yarnpkg.com/rxjs-compat/-/rxjs-compat-6.3.2.tgz#2386ade05e693480fdf96f56042a629aef6c5ea5"
 
 rxjs@6.3.2:
   version "6.3.2"
