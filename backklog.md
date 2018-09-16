@@ -1,20 +1,14 @@
 - switch from AWS to heroku
-  * switch to Postgres
   * change production db credentials
   * configure jasypt password on heroku
   * fix deployment
   * fix travis build
-  * "hibernate_sequence" does not exist
-- update backend dependencies
-  * especially  Spring Boot2 and Spring 5
-- update frontend dependencies
-- fix edit recipe bug
 - switch to Java 10/11
+- Edit recipes (currently there are several bugs)
 - create jasypt readme
 - Switch from yml to properties
 - Kommazahlen in Mengenangaben erlauben
 - Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
-- Rezepte editieren
 - IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
 - Formatierung in Anleitungstext
 - Zutaten vor Beschreibung

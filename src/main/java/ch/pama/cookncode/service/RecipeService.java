@@ -50,7 +50,7 @@ public class RecipeService {
     }
 
     public RecipeDto updateRecipe(RecipeDto recipeDto, List<byte[]> recipeImageData, User user) {
-        Recipe recipe = recipeRepository.findOne(Long.valueOf(recipeDto.getId()));
+        Recipe recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId())).orElseThrow(IllegalStateException::new);
 
         assertRecipeBelongsToUser(user, recipe);
 

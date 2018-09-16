@@ -4,10 +4,6 @@ server:
     max-http-post-size: 200000000 #200MB
 
 spring:
-  http:
-    multipart:
-      max-file-size: 100MB
-      max-request-size: 100MB
   jackson:
     serialization:
       WRITE_DATES_AS_TIMESTAMPS: false
@@ -16,6 +12,14 @@ spring:
       hibernate:
         id:
           new_generator_mappings: true
+        jdbc:
+          lob:
+            non_contextual_creation: true
+
+  servlet:
+    multipart:
+      max-file-size: 100MB
+      max-request-size: 100MB
 
 google:
   client:
