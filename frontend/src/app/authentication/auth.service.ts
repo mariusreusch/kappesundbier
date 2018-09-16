@@ -1,11 +1,6 @@
+import { of as observableOf, Observable } from 'rxjs';
+import { tap, map, catchError } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
-
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/observable/of';
-import 'rxjs/add/operator/map';
-import 'rxjs/add/operator/catch';
-import 'rxjs/add/operator/do';
-import 'rxjs/add/operator/delay';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable()
@@ -20,24 +15,24 @@ export class AuthService {
   }
 
   login(): Observable<boolean> {
-    return this.httpClient.get('./api/user')
-      .map(() => {
+    return this.httpClient.get('./api/user').pipe(
+      map(() => {
         this.isLoggedIn = true;
         return true;
-      })
-      .catch(() => {
+      }),
+      catchError(() => {
         this.isLoggedIn = false;
-        return Observable.of(false);
-      });
+        return observableOf(false);
+      }),);
   }
 
   logout(): void {
-    this.httpClient.post('./logout', {})
-      .do(() => this.isLoggedIn = false)
-      .catch(() => {
+    this.httpClient.post('./logout', {}).pipe(
+      tap(() => this.isLoggedIn = false),
+      catchError(() => {
         this.isLoggedIn = false;
-        return Observable.of('');
-      })
+        return observableOf('');
+      }),)
       .subscribe();
   }
 }

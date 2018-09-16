@@ -1,11 +1,12 @@
 import { Injectable } from '@angular/core';
 import { CreateRecipeResult } from './create-recipe-result';
 import { ResponseResultState } from './response-result-state';
-import { Observable } from 'rxjs/Observable';
 import { Recipe } from './recipe';
 import { DeleteRecipeResult } from './delete-recipe-result';
 import { HttpClient } from '@angular/common/http';
 import { EditRecipeResult } from './edit-recipe-result';
+import { of as observableOf} from 'rxjs';
+import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
 export class RecipeService {
@@ -25,13 +26,13 @@ export class RecipeService {
 
   create(recipe: Recipe) {
     return this.httpClient.post('./api/recipes', RecipeService.createFormDataOf(recipe))
-      .map((response: any) => new CreateRecipeResult(ResponseResultState.SUCCESS, response))
-      .catch(() => Observable.of(new CreateRecipeResult(ResponseResultState.FAILED)));
+      .pipe(
+        map((response: any) => new CreateRecipeResult(ResponseResultState.SUCCESS, response)),
+        catchError(() => observableOf(new CreateRecipeResult(ResponseResultState.FAILED))))
   }
 
   findMyRecipes(): any {
-    return this.httpClient.get('./api/recipes')
-      .map(response => response);
+    return this.httpClient.get('./api/recipes').pipe(map(response => response));
   }
 
   findRecipe(id: string) {
@@ -43,25 +44,26 @@ export class RecipeService {
   }
 
   findRecipeBase64EncodedImages(id: string) {
-    return this.findRecipeImages(id)
-      .map((images: any) => {
+    return this.findRecipeImages(id).pipe(
+      map((images: any) => {
         const base64EncodedImages = [];
         for (let i = 0; i < images.length; i++) {
           base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
         }
         return base64EncodedImages;
-      });
+      }));
   }
 
   update(recipe: Recipe) {
-    return this.httpClient.put('./api/recipes/' + recipe.id, RecipeService.createFormDataOf(recipe))
-      .map((response: any) => new EditRecipeResult(ResponseResultState.SUCCESS, response))
-      .catch(() => Observable.of(new EditRecipeResult(ResponseResultState.FAILED)));
+    return this.httpClient.put('./api/recipes/' + recipe.id, RecipeService.createFormDataOf(recipe)).pipe(
+      map((response: any) => new EditRecipeResult(ResponseResultState.SUCCESS, response)),
+      catchError(() => observableOf(new EditRecipeResult(ResponseResultState.FAILED))));
+
   }
 
   deleteRecipe(recipe: Recipe) {
-    return this.httpClient.delete('./api/recipes/' + recipe.id)
-      .map((response: any) => new DeleteRecipeResult(ResponseResultState.SUCCESS, response))
-      .catch(() => Observable.of(new DeleteRecipeResult(ResponseResultState.FAILED)));
+    return this.httpClient.delete('./api/recipes/' + recipe.id).pipe(
+      map((response: any) => new DeleteRecipeResult(ResponseResultState.SUCCESS, response)),
+      catchError(() => observableOf(new DeleteRecipeResult(ResponseResultState.FAILED))));
   }
 }

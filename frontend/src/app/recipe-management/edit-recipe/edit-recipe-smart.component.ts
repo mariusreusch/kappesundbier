@@ -1,9 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { RecipeService } from '../recipe-service';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { Recipe } from '../recipe';
 import { EditRecipeResult } from '../edit-recipe-result';
+import { switchMap } from 'rxjs/operators';
+
 
 @Component({
   selector: 'kub-edit-recipe-smart',
@@ -21,11 +23,11 @@ export class EditRecipeSmartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipe = this.route.paramMap
-      .switchMap((params: ParamMap) => this.recipeService.findRecipe(params.get('id')));
+    this.recipe = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.recipeService.findRecipe(params.get('id'))));
 
-    this.base64EncodedImages = this.route.paramMap
-      .switchMap((params: ParamMap) => this.recipeService.findRecipeBase64EncodedImages(params.get('id')));
+    this.base64EncodedImages = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.recipeService.findRecipeBase64EncodedImages(params.get('id'))));
   }
 
   updateRecipe(recipe: Recipe) {

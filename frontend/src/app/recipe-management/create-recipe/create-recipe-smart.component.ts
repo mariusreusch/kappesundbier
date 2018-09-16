@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { RecipeService } from '../recipe-service';
 import { Recipe } from '../recipe';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 import { CreateRecipeResult } from '../create-recipe-result';
 
 @Component({

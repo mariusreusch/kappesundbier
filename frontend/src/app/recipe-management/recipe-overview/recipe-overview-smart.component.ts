@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe-service';
-import { Observable } from 'rxjs/Observable';
-import 'rxjs/add/operator/share';
+import { Observable } from 'rxjs';
 import { Recipe } from '../recipe';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 

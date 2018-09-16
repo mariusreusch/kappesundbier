@@ -8,6 +8,7 @@
 - update backend dependencies
   * especially  Spring Boot2 and Spring 5
 - update frontend dependencies
+- fix edit recipe bug
 - switch to Java 10/11
 - create jasypt readme
 - Switch from yml to properties

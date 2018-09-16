@@ -1,9 +1,10 @@
+import { switchMap } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe-service';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import 'rxjs/add/operator/switchMap';
+
 import { Recipe } from '../recipe';
-import { Observable } from 'rxjs/Observable';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'kub-view-recipe-smart',
@@ -20,11 +21,11 @@ export class ViewRecipeSmartComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.recipe = this.route.paramMap
-      .switchMap((params: ParamMap) => this.service.findRecipe(params.get('id')));
+    this.recipe = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.service.findRecipe(params.get('id'))));
 
-    this.base64EncodedImages = this.route.paramMap
-      .switchMap((params: ParamMap) => this.service.findRecipeBase64EncodedImages(params.get('id')));
+    this.base64EncodedImages = this.route.paramMap.pipe(
+      switchMap((params: ParamMap) => this.service.findRecipeBase64EncodedImages(params.get('id'))));
   }
 
   switchToEditMode(recipe: Recipe) {
