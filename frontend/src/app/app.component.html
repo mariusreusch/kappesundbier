@@ -8,7 +8,7 @@
   <span class="kub-fill-remaining-space"></span>
 
   <a class="kub-font-1 logo" routerLink="/">
-    <img src="/assets/logo_without_text.png" width="25">
+    <img src="/assets/logo_without_text.png">
   </a>
 </mat-toolbar>
 
@@ -16,10 +16,6 @@
 <mat-sidenav-container class="kub-sidenav-fab-container">
   <mat-sidenav #sidenav mode="push" class="example-sidenav">
     <mat-nav-list>
-      <a mat-list-item class="kub-font-1 kub-header-button" (click)="sidenav.close()" routerLink="/">
-        <mat-icon style="margin-right: 10px;">weekend</mat-icon>
-        {{'Menu.Home' | translate}}
-      </a>
       <a mat-list-item class="kub-font-1 kub-header-button" (click)="sidenav.close()" routerLink="/week-planner">
         <mat-icon style="margin-right: 10px;">event_node</mat-icon>
         {{'Menu.Weekplanner' | translate}}

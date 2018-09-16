@@ -23,10 +23,9 @@
   },
   "Menu": {
     "Menu": "Menü",
-    "Home": "Nach Hause",
     "Recipes": "Rezepte",
     "Weekplanner": "Wochenplaner",
-    "Logout": "Mach et jut!"
+    "Logout": "Logout"
   },
   "Home": {
     "LoginWithGoogle": "Login with <b>Google.</b>"

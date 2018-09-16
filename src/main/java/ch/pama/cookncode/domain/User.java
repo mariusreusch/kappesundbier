@@ -8,10 +8,11 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity
+@Table(name = "KUB_USER")
 public class User {
 
     @OnlyForFramework
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Id
     private Long id;
     @OnlyForFramework

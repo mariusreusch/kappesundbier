@@ -1,1 +1,0 @@
-In order to access the AWS DB locally you have to add the IP of your local machine to the VPC Security Group of the prod db instance.

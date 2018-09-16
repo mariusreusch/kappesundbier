@@ -4,7 +4,7 @@ jasypt:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/cookncode
+    url: jdbc:postgresql://localhost:5432/cookncode
     username: travis
     password:
 

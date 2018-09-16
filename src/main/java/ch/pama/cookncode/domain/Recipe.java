@@ -14,8 +14,8 @@ import static javax.persistence.FetchType.EAGER;
 @Entity
 public class Recipe {
 
-    @GeneratedValue
     @Id
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
     private String name;
     private int numberOfPortions;

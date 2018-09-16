@@ -1,8 +1,9 @@
+create sequence hibernate_sequence start with 1 increment by 50;
+
 CREATE TABLE IF NOT EXISTS recipe (
-  id   BIGINT(20)   NOT NULL AUTO_INCREMENT,
+  id   BIGSERIAL,
   name VARCHAR(255) NULL     DEFAULT NULL,
   PRIMARY KEY (id)
 );
 
-INSERT INTO recipe (name) VALUE ('A first recipe');
 

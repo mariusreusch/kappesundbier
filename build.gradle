@@ -1,6 +1,6 @@
 buildscript {
     ext {
-        springBootVersion = '1.5.9.RELEASE'
+        springBootVersion = '1.5.16.RELEASE'
     }
     repositories {
         mavenCentral()
@@ -29,16 +29,6 @@ jar {
     }
 }
 
-task createSourceBundleForAwsDeployment(type: Zip, dependsOn: build) {
-    from ('.ebextensions') {
-        into '.ebextensions'
-    }
-    from (jar.outputs.files) {
-        into '.'
-    }
-    destinationDir project.buildDir
-}
-
 repositories {
     mavenCentral()
 }
@@ -50,17 +40,17 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:$springBootVersion")
     compile("org.springframework.boot:spring-boot-configuration-processor:$springBootVersion")
     compile("org.springframework.security.oauth:spring-security-oauth2:2.2.1.RELEASE")
-    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.4")
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.6")
     compile("com.github.ulisesbocchio:jasypt-spring-boot-starter:1.18")
-    compile("mysql:mysql-connector-java:5.1.45")
-    compile("org.flywaydb:flyway-core:5.0.7")
+    compile ("org.postgresql:postgresql:42.2.5")
+    compile("org.flywaydb:flyway-core:5.1.4")
 
     runtime("org.springframework.boot:spring-boot-devtools:$springBootVersion")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:$springBootVersion")
 }
 
-task startMysqlDockerImage(type: Exec) {
-    workingDir 'docker/mysql'
+task startPostgresqlDockerImage(type: Exec) {
+    workingDir 'docker/postgresql'
     commandLine './start.sh'
 }

@@ -9,13 +9,13 @@ env:
   - SPRING_PROFILES_ACTIVE=ci
 
 services:
-  - mysql
+  - postgresql
 
 jdk:
 - oraclejdk8
 
-before_install:
-  - mysql -e 'CREATE DATABASE cookncode;'
+before_script:
+ - psql -c 'create database cookncode;' -U postgres
 
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock
@@ -26,20 +26,4 @@ cache:
   - $HOME/.gradle/caches/
   - $HOME/.gradle/wrapper/
 
-script: ./gradlew createSourceBundleForAwsDeployment
-
-deploy:
-  skip_cleanup: true
-  provider: elasticbeanstalk
-  access_key_id:
-    secure: "ot1Ge92LDzg95yZGpgKqWwYr/iKSH9BjlhoDsa1fxovfE6MTJU49DWeHZo+b2d8v/nJWAN9Y/5yCG6WOSRjqdx1BUnr87BESoR4QYx+zZV6f4D9ymptwUAPK7RqhvChr5yoKtMsL1UjRNVYnoeZWEZm7AxMnjgNRSBg4X9VTzpimgz/KC7GWXUj6bz+4DeY8eNPoVtNQGolic0YWqplx3yjjsZbIrEZSfhHbsa4/FbOacBrWU/etweZIy4ll3cNz6hZ7dBsHkKyAybAwQOtlVBpDuSOo6C5sL/k4QQgjvRc+RHPHAxa+fAN5AvU5HuTReZebdoxOMjblyLR/KGJmIfK9V2VoVwhCNSvdRJakWddsIWTF2x4iHiXFRTa/ebr0Pk7kJGGkoq4wdUCCjiIcgQuX4/Efq3G1NzD3T+MBk/zs9gtCdjo/5pAMLwCqtVpjMXrWITx5kfwl9YJKYlal1PcArO1Yj3+rXyb3WeoQXkLsjGipLuwMB+IRR0cyAxTQbpyQ1Sr34uqfZVB+o2xfQcZGG2QjJySsG3ONjB3VxukgPJpLOIxnQgUvJ8Imekqn7IiVfL/ezqPMOPH0IOZI6NVc6ZBeug+6I56k5eR7jT6dkrLxT1iw704dyNTZPLg7VGHwxaznwLfEfb2KfGH83Mc8q2/daAXLpZsDpIYHzFU="
-  secret_access_key:
-    secure: "h6ctlADm8TA5+p6Qwfqf3atuiTM/iPh4yszA8jVnRdK4oaEwcCcBPJ+6exsLjb3p3/a2NQ5GyWWFhQtR0fZKjV+L7JjEWZas0UAU2sLTa6guhduv6hZQllFr7+yV7r+ZGmexnYjXYq7BWC5OxejccYWuoyNI4O3gq8ABOYMlIk0+fdu+Vqu2cX3MxhRMfQ+EPvdHkz6rp5STJ88kUEtTKQr7o/Dj206KPG2OSVaQSyAkREoFmho04fT81Gprenph3E5OBIH5dJ5lYJ2/rbLHSTsczjO309ck6fleIL9K06lhOOs9ZkP42jL0SshJ013I7lnw36B5/EhzmhhVqzL0Uqk6uc2/lJQsaAULhljlj4hb4W7bqvJJcB/dpZ8/IPjeavF677hGnq0FJ/wQioGlDp5tkKn9LyEjITOR0yRb4zsgOKYbp/mZ9jBfhJJshat7opsnUadOc90GBGGlgZ13emqQrZyXSVKB7Ohgrj5i1W2yibKuq6sAKXnba0P69IzDESma2f/PSt9tSczECeXGTfW7npyIUSW37MfzavptocBOmo/eb0YfeQIeuihXw/5ByvxaZ0ihaXsd/vH7endytqIokqA6uPLUrZ8f5YED59tCD6YlH27KF+LdUQAYu80JoWaD4q1VWEzsiYEVOuXHTzbQxr9geGKqL5cu3BWjZoA="
-  region: us-west-2
-  app: cookandcode
-  env: Custom-env
-  bucket_name: elasticbeanstalk-us-west-2-865145069215
-  zip_file: build/cookncode.zip
-  on:
-    repo: mariusreusch/cookncode
-    branch: master
+script: ./gradlew build

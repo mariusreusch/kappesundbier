@@ -1,11 +1,12 @@
 - switch from AWS to heroku
   * switch to Postgres
   * change production db credentials
-  * fix JPA / AmountConverter problem
   * configure jasypt password on heroku
   * fix deployment
   * fix travis build
+  * "hibernate_sequence" does not exist
 - update backend dependencies
+  * especially  Spring Boot2 and Spring 5
 - update frontend dependencies
 - switch to Java 10/11
 - create jasypt readme
@@ -30,3 +31,4 @@
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
 - Suchmöglichkeit
+- css to scss

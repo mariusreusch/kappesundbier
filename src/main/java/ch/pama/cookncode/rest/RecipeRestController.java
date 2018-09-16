@@ -20,7 +20,7 @@ import java.util.Objects;
 import java.util.Optional;
 
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
-import static org.springframework.http.HttpStatus.*;
+import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("api/recipes")

@@ -1,3 +1,7 @@
+.logo > img{
+  height: 3vh;
+}
+
 .logo {
   font-size: 24pt;
 }
@@ -12,7 +16,7 @@
 }
 
 .kub-header-toolbar {
-  height: 5vh;
+  height: 6vh;
   justify-content: center;
 }
 

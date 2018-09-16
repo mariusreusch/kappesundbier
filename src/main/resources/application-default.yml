@@ -4,9 +4,9 @@ jasypt:
 
 spring:
   datasource:
-    url: jdbc:mysql://localhost:3306/cookncode
-    username: root
-    password: ENC(9UGCMsl14C7CGToInitsJA==)
+    url: jdbc:postgresql://localhost:5432/cookncode
+    username: postgres
+    password: root
 
 endpoints:
   enabled: true
