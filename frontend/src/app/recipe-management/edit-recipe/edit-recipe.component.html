@@ -6,29 +6,29 @@
   </mat-card-header>
   <mat-card-content>
     <form (ngSubmit)="onSubmit()" #recipeForm="ngForm">
-      <mat-input-container class="kub-full-width-input">
+      <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
                placeholder="{{'Common.Name' | translate}}"
                name="recipeName"
                required
                [(ngModel)]="recipe.name">
-      </mat-input-container>
-      <mat-input-container class="kub-full-width-input">
+      </mat-form-field>
+      <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
                placeholder="{{'Recipe.NumberOfPortions' | translate}}"
                name="numberOfPortions"
                type="number"
                required
                [(ngModel)]="recipe.numberOfPortions">
-      </mat-input-container>
-      <mat-input-container class="kub-full-width-input">
+      </mat-form-field>
+      <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
                placeholder="{{'Recipe.CategoriesCommaSeparated' | translate}}"
                name="categoriesAsCommaSeparatedString"
                required
                [(ngModel)]="categoriesAsCommaSeparatedString">
-      </mat-input-container>
-      <mat-input-container class="kub-full-width-input">
+      </mat-form-field>
+      <mat-form-field class="kub-full-width-input">
         <textarea matInput
                   name="instruction"
                   placeholder="{{'Recipe.Instruction' | translate}}"
@@ -36,7 +36,7 @@
                   required
                   [(ngModel)]="recipe.instruction">
         </textarea>
-      </mat-input-container>
+      </mat-form-field>
     </form>
 
     <h3 translate>Recipe.Ingredients</h3>
@@ -52,28 +52,28 @@
     </mat-list>
 
     <form #ingredientForm="ngForm" (ngSubmit)="addIngredient()" onsubmit="ingredientAmount.focus()">
-      <mat-input-container>
+      <mat-form-field>
         <input matInput
                placeholder="{{'Recipe.Amount' | translate}}"
                type="number"
                name="ingredientAmount"
                [(ngModel)]="newIngredient.amount"
                required>
-      </mat-input-container>
-      <mat-input-container>
+      </mat-form-field>
+      <mat-form-field>
         <input matInput
                placeholder="{{'Recipe.MeasuringUnit' | translate}}"
                name="measuringUnit"
                [(ngModel)]="newIngredient.unitOfMeasurement"
                required>
-      </mat-input-container>
-      <mat-input-container>
+      </mat-form-field>
+      <mat-form-field>
         <input matInput
                placeholder="{{'Common.Name' | translate}}"
                name="ingredientName"
                [(ngModel)]="newIngredient.name"
                required>
-      </mat-input-container>
+      </mat-form-field>
 
       <button [disabled]="!ingredientForm.form.valid"
               mat-mini-fab>

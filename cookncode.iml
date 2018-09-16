@@ -5,6 +5,10 @@
     <content url="file://$MODULE_DIR$">
       <excludeFolder url="file://$MODULE_DIR$/.gradle" />
       <excludeFolder url="file://$MODULE_DIR$/build" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/.gradle/nodejs" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/.gradle/yarn" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/dist" />
+      <excludeFolder url="file://$MODULE_DIR$/frontend/node_modules" />
       <excludeFolder url="file://$MODULE_DIR$/out" />
     </content>
     <orderEntry type="sourceFolder" forTests="false" />
