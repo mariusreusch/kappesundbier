@@ -3,13 +3,9 @@
   * configure jasypt password on heroku
   * fix deployment
   * fix travis build
-- switch to Java 10/11
 - Edit recipes (currently there are several bugs)
-- create jasypt readme
-- Switch from yml to properties
 - Kommazahlen in Mengenangaben erlauben
 - Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
-- IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
 - Formatierung in Anleitungstext
 - Zutaten vor Beschreibung
 - HTML 5 URLs
@@ -21,6 +17,7 @@
 - Create e2e tests
 - Google Login Mock
 - Fix Logout
+- switch to Java 11
 - Week Planner
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
@@ -28,4 +25,5 @@
 - css to scss
 - introduce state management
 - replace template driven forms with reactive forms
-- replace travis with heroku CI or deploy the artifact built with travis to heroku instead of building it twice
+- deploy the artifact built with travis to heroku instead of building it on heroku again
+- IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
