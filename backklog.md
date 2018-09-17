@@ -12,7 +12,6 @@
 - IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
 - Formatierung in Anleitungstext
 - Zutaten vor Beschreibung
-- Meine Rezepte Overview ist nicht responsive
 - HTML 5 URLs
 - 413 Entity Too Large im Image Upload too large case mit einer dedizierten Fehlermeldung versehen
 - Logging mechanism for frontend error
