@@ -26,3 +26,6 @@
 - Filtermöglichkeit nach Label
 - Suchmöglichkeit
 - css to scss
+- introduce state management
+- replace template driven forms with reactive forms
+- replace travis with heroku CI or deploy the artifact built with travis to heroku instead of building it twice
