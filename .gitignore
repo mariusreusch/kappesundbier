@@ -8,3 +8,4 @@
 !/.idea/runConfigurations/
 out
 build
+*.DS_Store
