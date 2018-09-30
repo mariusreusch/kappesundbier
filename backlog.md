@@ -1,7 +1,7 @@
-- improve styling and positioning of "Create new recipe" button
+- Week Planner
+- Edit recipes (currently there are several bugs)
 - Bild entfernen im Create Mode
 - replace template driven forms with reactive forms
-- Edit recipes (currently there are several bugs)
 - Kommazahlen in Mengenangaben erlauben
 - Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
 - Move ingredients above description
@@ -13,7 +13,6 @@
 - Google Login Mock
 - Fix Logout
 - switch to Java 11
-- Week Planner
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
 - Suchmöglichkeit
