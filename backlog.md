@@ -1,3 +1,9 @@
+- Introduce Pinterest-like categories
+- Show thumbnail for each category in category search screen
+- Show thumbnail for each recipe
+- Filtermöglichkeit auf Recipe-Overview
+- View / Edit Recipe: Show the first image on top of the details
+- Suchmöglichkeit auf Recipe-Overview
 - Week Planner
 - Edit recipes (currently there are several bugs)
 - Bild entfernen im Create Mode
@@ -15,7 +21,6 @@
 - switch to Java 11
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
-- Suchmöglichkeit
 - css to scss
 - introduce state management
 - deploy the artifact built with travis to heroku instead of building it on heroku again

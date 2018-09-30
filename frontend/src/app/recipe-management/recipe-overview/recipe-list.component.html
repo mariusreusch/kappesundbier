@@ -3,6 +3,10 @@
     <mat-card-title><h1 translate>Recipe.MyRecipes</h1></mat-card-title>
   </mat-card-header>
   <mat-card-content>
+    <mat-chip-list>
+      <mat-chip translate>Recipe.Recipes</mat-chip>
+      <mat-chip translate>Recipe.Categories</mat-chip>
+    </mat-chip-list>
     <span translate *ngIf="recipes.length < 1">Recipe.NoRecipesCreated</span>
     <mat-list>
       <mat-list-item *ngFor="let recipe of recipes">
