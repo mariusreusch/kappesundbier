@@ -1,7 +1,9 @@
 - Introduce Pinterest-like categories
+- move smart stuff from recipe-overview.component.ts to recipe-list-smart.component.ts
+- css to scss and unify colors and font families
+- Filtermöglichkeit auf Recipe-Overview
 - Show thumbnail for each category in category search screen
 - Show thumbnail for each recipe
-- Filtermöglichkeit auf Recipe-Overview
 - View / Edit Recipe: Show the first image on top of the details
 - Suchmöglichkeit auf Recipe-Overview
 - Week Planner
@@ -21,7 +23,6 @@
 - switch to Java 11
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
-- css to scss
 - introduce state management
 - deploy the artifact built with travis to heroku instead of building it on heroku again
 - IDs verschlüsseln insbesondere die, die in URLs angezeigt werden

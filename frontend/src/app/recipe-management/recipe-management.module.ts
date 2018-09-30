@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 import { RecipeManagementRoutingModule } from './recipe-management-routing.module';
-import { RecipeListComponent } from './recipe-overview/recipe-list.component';
+import { RecipeOverviewComponent } from './recipe-overview/recipe-overview.component';
 import { CreateRecipeComponent } from './create-recipe/create-recipe.component';
 import { RecipeOverviewSmartComponent } from './recipe-overview/recipe-overview-smart.component';
 import { ViewRecipeSmartComponent } from './view-recipe/view-recipe-smart.component';
@@ -27,7 +27,7 @@ import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.
     KubCommonModule,
     TranslateModule
   ],
-  declarations: [RecipeOverviewSmartComponent, CreateRecipeComponent, RecipeListComponent, ViewRecipeSmartComponent,
+  declarations: [RecipeOverviewSmartComponent, CreateRecipeComponent, RecipeOverviewComponent, ViewRecipeSmartComponent,
     ViewRecipeComponent, ViewRecipeComponent, EditRecipeComponent, EditRecipeSmartComponent, CreateRecipeSmartComponent],
   providers: [RecipeService]
 })

@@ -6,14 +6,16 @@ import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dial
 import { DeleteRecipeResult } from '../delete-recipe-result';
 import { TranslateService } from '@ngx-translate/core';
 import { ResponseResultState } from '../response-result-state';
+import { zip } from 'rxjs';
+import { ChipListItem } from '../../kub-common/chip-list/chip-list-item';
 
 @Component({
   selector: 'kub-recipe-overview',
-  templateUrl: './recipe-list.component.html',
-  styleUrls: ['./recipe-list.component.css'],
+  templateUrl: './recipe-overview.component.html',
+  styleUrls: ['./recipe-overview.component.css'],
   providers: [MatDialog, MatSnackBar]
 })
-export class RecipeListComponent {
+export class RecipeOverviewComponent {
 
   recipes: Recipe[];
 
@@ -24,12 +26,17 @@ export class RecipeListComponent {
     }
   }
 
-
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
 
+  chipItems: ChipListItem[] = [];
+
   constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
               private translate: TranslateService) {
+    zip(translate.get('Recipe.Recipes'), translate.get('Recipe.Categories'))
+      .subscribe(translations => {
+        this.chipItems = [new ChipListItem('recipes', translations[0]), new ChipListItem('categories', translations[1])];
+      });
   }
 
   @Input('deleteRecipeResult')
@@ -63,6 +70,10 @@ export class RecipeListComponent {
         this.onRecipeDelete.emit(recipe);
       }
     });
+  }
+
+  selectView(item: ChipListItem) {
+
   }
 
   private orderByCreationDateDescending(myRecipes: Recipe[]) {

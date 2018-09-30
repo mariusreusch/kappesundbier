@@ -39,3 +39,6 @@ body#kub-body {
   padding: 2%;
 }
 
+.mat-list-item-content {
+  padding-left: 0 !important;
+}

@@ -1,0 +1,36 @@
+<div style="display: flex; justify-content: flex-end;">
+  <button mat-mini-fab routerLink="/create-recipe" class="kub-create-recipe-btn">
+    <mat-icon>add</mat-icon>
+  </button>
+</div>
+
+<mat-card *ngIf="recipes">
+  <mat-card-header>
+    <mat-card-title><h1 translate>Recipe.Recipes</h1></mat-card-title>
+  </mat-card-header>
+  <mat-card-content>
+
+    <kub-chip-list [items]="chipItems" (onItemSelect)="selectView($event)"></kub-chip-list>
+
+    <span translate *ngIf="recipes.length < 1">Recipe.NoRecipesCreated</span>
+
+    <mat-list>
+      <mat-list-item *ngFor="let recipe of recipes">
+        <div style="display: flex;" mat-line>
+          <button mat-button class="kub-recipe-name-button" (click)="onSelect(recipe)">{{recipe.name}}</button>
+          <button mat-button class="kub-delete-recipe-button" (click)="onDelete(recipe)">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </div>
+        <div style="display: flex;" mat-line>
+
+
+          <span class="kub-category-label" *ngFor="let category of recipe.categories">{{category}}</span>
+        </div>
+
+      </mat-list-item>
+    </mat-list>
+  </mat-card-content>
+</mat-card>
+

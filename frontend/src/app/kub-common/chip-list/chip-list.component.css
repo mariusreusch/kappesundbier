@@ -1,0 +1,10 @@
+.kub-selected-item {
+  background-color: #e0e0e0;
+  color: black;
+}
+
+.kub-non-selected-item {
+  background-color: white;
+  color: grey;
+}
+
