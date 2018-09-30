@@ -16,6 +16,8 @@ import { ViewRecipeComponent } from './view-recipe/view-recipe.component';
 import { EditRecipeComponent } from './edit-recipe/edit-recipe.component';
 import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.component';
 import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.component';
+import { RecipeListComponent } from './recipe-overview/recipe-list/recipe-list.component';
+import { CategoryListComponent } from './recipe-overview/category-list/category-list.component';
 
 @NgModule({
   imports: [
@@ -28,7 +30,8 @@ import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.
     TranslateModule
   ],
   declarations: [RecipeOverviewSmartComponent, CreateRecipeComponent, RecipeOverviewComponent, ViewRecipeSmartComponent,
-    ViewRecipeComponent, ViewRecipeComponent, EditRecipeComponent, EditRecipeSmartComponent, CreateRecipeSmartComponent],
+    ViewRecipeComponent, ViewRecipeComponent, EditRecipeComponent, EditRecipeSmartComponent, CreateRecipeSmartComponent,
+    RecipeListComponent, CategoryListComponent],
   providers: [RecipeService]
 })
 export class RecipeManagementModule {

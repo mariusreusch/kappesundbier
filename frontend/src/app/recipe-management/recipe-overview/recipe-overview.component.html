@@ -12,25 +12,11 @@
 
     <kub-chip-list [items]="chipItems" (onItemSelect)="selectView($event)"></kub-chip-list>
 
-    <span translate *ngIf="recipes.length < 1">Recipe.NoRecipesCreated</span>
+    <kub-recipe-list *ngIf="currentView.id === 'recipes'" [recipes]="recipes"
+                     (onRecipeSelect)="onRecipeSelect($event)"
+                     (onRecipeDelete)="onRecipeDeleted($event)"></kub-recipe-list>
 
-    <mat-list>
-      <mat-list-item *ngFor="let recipe of recipes">
-        <div style="display: flex;" mat-line>
-          <button mat-button class="kub-recipe-name-button" (click)="onSelect(recipe)">{{recipe.name}}</button>
-          <button mat-button class="kub-delete-recipe-button" (click)="onDelete(recipe)">
-            <mat-icon>delete</mat-icon>
-          </button>
-
-        </div>
-        <div style="display: flex;" mat-line>
-
-
-          <span class="kub-category-label" *ngFor="let category of recipe.categories">{{category}}</span>
-        </div>
-
-      </mat-list-item>
-    </mat-list>
+    <kub-category-list *ngIf="currentView.id === 'categories'" [categories]="getAllRecipeCategories()"></kub-category-list>
   </mat-card-content>
 </mat-card>
 

@@ -17,25 +17,21 @@ import { ChipListItem } from '../../kub-common/chip-list/chip-list-item';
 })
 export class RecipeOverviewComponent {
 
+  @Input()
   recipes: Recipe[];
-
-  @Input('myRecipes')
-  set setMyRecipes(myRecipes: Recipe[]) {
-    if (myRecipes) {
-      this.recipes = this.orderByCreationDateDescending(myRecipes);
-    }
-  }
 
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
 
   chipItems: ChipListItem[] = [];
+  currentView: ChipListItem;
 
   constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
               private translate: TranslateService) {
     zip(translate.get('Recipe.Recipes'), translate.get('Recipe.Categories'))
       .subscribe(translations => {
         this.chipItems = [new ChipListItem('recipes', translations[0]), new ChipListItem('categories', translations[1])];
+        this.currentView = this.chipItems[0];
       });
   }
 
@@ -54,11 +50,11 @@ export class RecipeOverviewComponent {
     }
   }
 
-  onSelect(recipe: Recipe) {
+  onRecipeSelect(recipe: Recipe) {
     this.router.navigate(['view-recipe', recipe.id]);
   }
 
-  onDelete(recipe: Recipe) {
+  onRecipeDeleted(recipe: Recipe) {
     const dialogRef = this.dialog.open(YesNoDialogComponent, {
       data: {
         question: 'Biste sicher?',
@@ -73,12 +69,14 @@ export class RecipeOverviewComponent {
   }
 
   selectView(item: ChipListItem) {
-
+    this.currentView = item;
   }
 
-  private orderByCreationDateDescending(myRecipes: Recipe[]) {
-    return myRecipes.sort((a, b) => {
-      return new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime();
-    });
+  getAllRecipeCategories(): string[] {
+    const categories: string[] = [];
+    for (const recipe of this.recipes) {
+      categories.push(...recipe.categories);
+    }
+    return Array.from(new Set(categories));
   }
 }

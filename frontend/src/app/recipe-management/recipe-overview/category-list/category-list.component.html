@@ -1,0 +1,9 @@
+<span translate *ngIf="categories.length < 1">Recipe.NoRecipeCategoriesCreated</span>
+
+<mat-list>
+  <mat-list-item *ngFor="let category of categories">
+    <div style="display: flex;" mat-line>
+      <button mat-button class="kub-category-name-button" (click)="onSelect(category)">{{category}}</button>
+    </div>
+  </mat-list-item>
+</mat-list>

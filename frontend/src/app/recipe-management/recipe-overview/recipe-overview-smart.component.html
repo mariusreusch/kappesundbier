@@ -1,5 +1,5 @@
 <div class="kub-area">
-  <kub-recipe-overview [myRecipes]="myRecipes | async"
+  <kub-recipe-overview [recipes]="myRecipes | async"
                        [deleteRecipeResult]="deleteRecipeResult | async"
                        (onRecipeDelete)="deleteRecipe($event)"></kub-recipe-overview>
 </div>
