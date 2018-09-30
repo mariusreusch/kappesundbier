@@ -2,6 +2,7 @@
 - move smart stuff from recipe-overview.component.ts to recipe-list-smart.component.ts
 - css to scss and unify colors and font families
 - use spring security mechanism to get user in REST controller
+- fix home screen icon on iPhone
 - Filtermöglichkeit auf Recipe-Overview
 - Show thumbnail for each category in category search screen
 - Show thumbnail for each recipe
