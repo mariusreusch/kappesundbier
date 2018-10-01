@@ -1,7 +1,8 @@
-import { of as observableOf, Observable } from 'rxjs';
-import { tap, map, catchError } from 'rxjs/operators';
+import { Observable, of as observableOf } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Injectable()
 export class AuthService {
@@ -11,7 +12,7 @@ export class AuthService {
   // store the URL so we can redirect after logging in
   redirectUrl: string;
 
-  constructor(private httpClient: HttpClient) {
+  constructor(private httpClient: HttpClient, private router: Router) {
   }
 
   login(): Observable<boolean> {
@@ -33,7 +34,9 @@ export class AuthService {
         this.isLoggedIn = false;
         return observableOf('');
       }))
-      .subscribe();
+      .subscribe(() => {
+        return this.router.navigate(['/login']);
+      });
   }
 }
 
