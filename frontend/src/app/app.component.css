@@ -4,29 +4,9 @@
 
 .logo {
   font-size: 24pt;
-}
-
-.kub-fill-remaining-space {
-  flex: 1 1 auto;
-}
-
-.kub-header-button {
-  font-size: 16pt;
-  font-weight: bold;
+  margin-right: 1rem;
 }
 
 .kub-header-toolbar {
   height: 6vh;
-  justify-content: center;
 }
-
-.kub-sidenav-fab-container mat-sidenav {
-  max-width: 200px;
-}
-
-.kub-sidenav-fab-container .mat-sidenav-content,
-.kub-sidenav-fab-container mat-sidenav {
-  display: flex;
-  overflow: visible;
-}
-

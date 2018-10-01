@@ -32,7 +32,6 @@ export function HttpLoaderFactory(http: HttpClient) {
       }
     }),
     KubMaterialModule,
-    HomeModule,
     AuthenticationModule,
     RecipeManagementModule,
     WeekPlannerModule

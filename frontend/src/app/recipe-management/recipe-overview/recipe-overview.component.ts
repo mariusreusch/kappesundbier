@@ -8,6 +8,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { ResponseResultState } from '../response-result-state';
 import { zip } from 'rxjs';
 import { ChipListItem } from '../../kub-common/chip-list/chip-list-item';
+import { User } from '../../authentication/user';
 
 @Component({
   selector: 'kub-recipe-overview',
@@ -26,14 +27,8 @@ export class RecipeOverviewComponent {
   chipItems: ChipListItem[] = [];
   currentView: ChipListItem;
 
-  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
-              private translate: TranslateService) {
-    zip(translate.get('Recipe.Recipes'), translate.get('Recipe.Categories'))
-      .subscribe(translations => {
-        this.chipItems = [new ChipListItem('recipes', translations[0]), new ChipListItem('categories', translations[1])];
-        this.currentView = this.chipItems[0];
-      });
-  }
+  @Input()
+  user: User;
 
   @Input('deleteRecipeResult')
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
@@ -48,6 +43,15 @@ export class RecipeOverviewComponent {
         });
       }, 1);
     }
+  }
+
+  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
+              private translate: TranslateService) {
+    zip(translate.get('Recipe.Recipes'), translate.get('Recipe.Categories'))
+      .subscribe(translations => {
+        this.chipItems = [new ChipListItem('recipes', translations[0]), new ChipListItem('categories', translations[1])];
+        this.currentView = this.chipItems[0];
+      });
   }
 
   onRecipeSelect(recipe: Recipe) {

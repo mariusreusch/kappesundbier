@@ -1,3 +1,13 @@
 .kub-create-recipe-btn {
-  margin-bottom: 0.8rem;
+margin-left: auto;
+}
+
+.kub-hello {
+  font-size: 1rem;
+}
+
+.kub-user-greeting-area {
+  color: black;
+  font-size: 2rem;
+  padding: 0.4rem;
 }

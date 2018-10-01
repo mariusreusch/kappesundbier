@@ -1,22 +1,23 @@
-<div style="display: flex; justify-content: flex-end;">
-  <button mat-mini-fab routerLink="/create-recipe" class="kub-create-recipe-btn">
-    <mat-icon>add</mat-icon>
-  </button>
+<div *ngIf="user" class="kub-user-greeting-area kub-font-1">
+  <span class="kub-hello">Hello </span>
+  <b>{{user.firstName}}</b>.
 </div>
 
 <mat-card *ngIf="recipes">
-  <mat-card-header>
-    <mat-card-title><h1 translate>Recipe.Recipes</h1></mat-card-title>
-  </mat-card-header>
   <mat-card-content>
+    <div style="display: flex; align-items: center;">
+      <kub-chip-list [items]="chipItems" (onItemSelect)="selectView($event)"></kub-chip-list>
+      <button mat-mini-fab routerLink="/create-recipe" class="kub-create-recipe-btn">
+        <mat-icon>add</mat-icon>
+      </button>
 
-    <kub-chip-list [items]="chipItems" (onItemSelect)="selectView($event)"></kub-chip-list>
-
+    </div>
     <kub-recipe-list *ngIf="currentView.id === 'recipes'" [recipes]="recipes"
                      (onRecipeSelect)="onRecipeSelect($event)"
                      (onRecipeDelete)="onRecipeDeleted($event)"></kub-recipe-list>
 
-    <kub-category-list *ngIf="currentView.id === 'categories'" [categories]="getAllRecipeCategories()"></kub-category-list>
+    <kub-category-list *ngIf="currentView.id === 'categories'"
+                       [categories]="getAllRecipeCategories()"></kub-category-list>
   </mat-card-content>
 </mat-card>
 

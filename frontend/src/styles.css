@@ -23,12 +23,6 @@ body#kub-body {
   cursor: pointer;
 }
 
-.front-page-text {
-  color: black;
-  font-size: 30pt;
-  padding-top: 5%;
-}
-
 .subtitle-text {
   color: black;
   font-size: 14pt;

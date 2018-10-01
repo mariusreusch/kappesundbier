@@ -3,6 +3,8 @@ import { RecipeService } from '../recipe-service';
 import { Observable } from 'rxjs';
 import { Recipe } from '../recipe';
 import { DeleteRecipeResult } from '../delete-recipe-result';
+import { UserService } from '../../authentication/user.service';
+import { User } from '../../authentication/user';
 
 @Component({
   selector: 'kub-recipe-smart-management',
@@ -12,12 +14,14 @@ export class RecipeOverviewSmartComponent implements OnInit {
 
   deleteRecipeResult: Observable<DeleteRecipeResult>;
   myRecipes: Observable<Recipe[]>;
+  user: Observable<User>;
 
-  constructor(private recipeService: RecipeService) {
+  constructor(private recipeService: RecipeService, private userService: UserService) {
   }
 
   ngOnInit(): void {
     this.myRecipes = this.recipeService.findMyRecipes();
+    this.user = this.userService.getUser();
   }
 
   deleteRecipe(recipe: Recipe) {

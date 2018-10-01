@@ -23,7 +23,7 @@ export class AuthService {
       catchError(() => {
         this.isLoggedIn = false;
         return observableOf(false);
-      }),);
+      }));
   }
 
   logout(): void {
@@ -32,7 +32,7 @@ export class AuthService {
       catchError(() => {
         this.isLoggedIn = false;
         return observableOf('');
-      }),)
+      }))
       .subscribe();
   }
 }
