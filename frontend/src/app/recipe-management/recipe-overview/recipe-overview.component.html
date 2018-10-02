@@ -1,9 +1,8 @@
-<div *ngIf="user" class="kub-user-greeting-area kub-font-1">
-  <span class="kub-hello">Hello </span>
-  <b>{{user.firstName}}</b>.
+<div *ngIf="user">
+  <h1><small>Hello </small>{{user.firstName}}.</h1>
 </div>
 
-<mat-card *ngIf="recipes">
+<mat-card>
   <mat-card-content>
     <div style="display: flex; align-items: center;">
       <kub-chip-list [items]="chipItems" (onItemSelect)="selectView($event)"></kub-chip-list>
@@ -13,10 +12,11 @@
 
     </div>
     <kub-recipe-list *ngIf="currentView.id === 'recipes'" [recipes]="recipes"
-                     (onRecipeSelect)="onRecipeSelect($event)"
+                     (onRecipeSelect)="onRecipeSelected($event)"
                      (onRecipeDelete)="onRecipeDeleted($event)"></kub-recipe-list>
 
     <kub-category-list *ngIf="currentView.id === 'categories'"
+                       (onCategorySelect)="onCategorySelected($event)"
                        [categories]="getAllRecipeCategories()"></kub-category-list>
   </mat-card-content>
 </mat-card>

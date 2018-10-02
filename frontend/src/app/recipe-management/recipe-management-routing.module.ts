@@ -5,6 +5,7 @@ import { AuthGuard } from '../authentication/auth-guard.service';
 import { RecipeOverviewSmartComponent } from './recipe-overview/recipe-overview-smart.component';
 import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.component';
 import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.component';
+import { RecipeCategoryOverviewSmartComponent } from './recipe-category-overview/recipe-category-overview-smart.component';
 
 const routes: Routes = [
   {
@@ -26,6 +27,12 @@ const routes: Routes = [
   {
     path: 'edit-recipe/:id',
     component: EditRecipeSmartComponent,
+    canActivate: [AuthGuard]
+
+  },
+  {
+    path: 'recipe-category/:category-name',
+    component: RecipeCategoryOverviewSmartComponent,
     canActivate: [AuthGuard]
 
   },

@@ -1,12 +1,19 @@
-.logo > img{
-  height: 3vh;
+.logo > img {
+  height: 5vh;
 }
 
 .logo {
-  font-size: 24pt;
-  margin-right: 1rem;
+  margin-right: 1.2rem;
+}
+
+.logo > mat-icon {
+  font-size: 1.8rem;
 }
 
 .kub-header-toolbar {
-  height: 6vh;
+  height: 8vh;
+}
+
+.kub-area {
+  padding: 0.8rem;
 }

@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -18,7 +19,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
+import static java.util.stream.Collectors.toList;
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -48,15 +51,22 @@ public class RecipeRestController {
     }
 
     @GetMapping
-    public List<RecipeDto> findAll(Principal principal) {
-        User user = getOrCreateUser(principal);
-        return recipeService.findAllRecipesOfUser(user);
+    public List<RecipeDto> findRecipes(@RequestParam(required = false) String category, Principal principal) {
+        List<RecipeDto> allRecipes = findAll(principal);
+
+        if (StringUtils.isEmpty(category)) {
+            return allRecipes;
+        }
+
+        return allRecipes.stream()
+                .filter(recipe -> recipe.getCategories().contains(category))
+                .collect(toList());
     }
 
     @GetMapping("/{id}")
     public RecipeDto findById(@PathVariable String id, Principal principal) {
         return findAll(principal).stream()
-                .filter(recipeDto -> recipeDto.getId().equals(id))
+                .filter(recipe -> recipe.getId().equals(id))
                 .findFirst()
                 .orElseThrow(IllegalArgumentException::new);
     }
@@ -95,6 +105,11 @@ public class RecipeRestController {
         recipeService.deleteRecipe(id, user);
 
         return new DeletedRecipeIdDto(id.toString());
+    }
+
+    private List<RecipeDto> findAll(Principal principal) {
+        User user = getOrCreateUser(principal);
+        return recipeService.findAllRecipesOfUser(user);
     }
 
     private User getOrCreateUser(Principal principal) {

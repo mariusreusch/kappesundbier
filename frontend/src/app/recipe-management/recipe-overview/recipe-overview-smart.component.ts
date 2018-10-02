@@ -5,6 +5,7 @@ import { Recipe } from '../recipe';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 import { UserService } from '../../authentication/user.service';
 import { User } from '../../authentication/user';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'kub-recipe-smart-management',
@@ -16,7 +17,7 @@ export class RecipeOverviewSmartComponent implements OnInit {
   myRecipes: Observable<Recipe[]>;
   user: Observable<User>;
 
-  constructor(private recipeService: RecipeService, private userService: UserService) {
+  constructor(private recipeService: RecipeService, private userService: UserService, private router: Router) {
   }
 
   ngOnInit(): void {
@@ -26,5 +27,13 @@ export class RecipeOverviewSmartComponent implements OnInit {
 
   deleteRecipe(recipe: Recipe) {
     this.deleteRecipeResult = this.recipeService.deleteRecipe(recipe);
+  }
+
+  navigateToCategoryRecipes(category: string) {
+    this.router.navigate(['recipe-category', category]);
+  }
+
+  navigateToRecipeView(recipe: Recipe) {
+    this.router.navigate(['view-recipe', recipe.id]);
   }
 }

@@ -6,16 +6,37 @@ a {
   text-decoration: none;
 }
 
-body#kub-body {
+h1 {
+  font-size: 2rem;
+}
+
+h1 small {
+  font-size: 1rem;
+}
+
+h2 {
+  font-size: 1.6rem;
+}
+
+h2 small {
+  font-size: 0.8rem;
+}
+
+h3 {
+  font-size: 1.2rem;
+}
+
+h3 small {
+  font-size: 0.7rem;
+}
+
+small {
+  font-weight: normal;
+}
+
+body {
   margin: 0;
-}
-
-.kub-font-1 {
   font-family: Roboto, "Helvetica Neue", sans-serif;
-}
-
-.kub-background {
-  background-color: white;
 }
 
 .kub-icon-btn {
@@ -23,16 +44,6 @@ body#kub-body {
   cursor: pointer;
 }
 
-.subtitle-text {
-  color: black;
-  font-size: 14pt;
-  padding-top: 5%;
-}
-
-.kub-area {
-  padding: 2%;
-}
-
-.mat-list-item-content {
-  padding-left: 0 !important;
+.flex {
+  display: flex;
 }

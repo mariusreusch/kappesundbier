@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'kub-category-list',
@@ -10,7 +10,10 @@ export class CategoryListComponent {
   @Input()
   categories: string[] = [];
 
-  onSelect(kcategory: string) {
-    // TODO implement routing to view that shows all recipes of this category
+  @Output()
+  onCategorySelect = new EventEmitter<string>();
+
+  onCategorySelected(category: string) {
+    this.onCategorySelect.emit(category);
   }
 }

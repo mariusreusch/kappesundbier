@@ -29,7 +29,7 @@
     "Weekplanner": "Wochenplaner",
     "Logout": "Logout"
   },
-  "Home": {
-    "LoginWithGoogle": "Login with <b>Google.</b>"
+  "Login": {
+    "LoginWith": "Login mit"
   }
 }

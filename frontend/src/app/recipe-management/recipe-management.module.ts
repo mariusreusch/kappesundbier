@@ -18,6 +18,8 @@ import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.compon
 import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.component';
 import { RecipeListComponent } from './recipe-overview/recipe-list/recipe-list.component';
 import { CategoryListComponent } from './recipe-overview/category-list/category-list.component';
+import { RecipeCategoryOverviewComponent } from './recipe-category-overview/recipe-category-overview.component';
+import { RecipeCategoryOverviewSmartComponent } from './recipe-category-overview/recipe-category-overview-smart.component';
 
 @NgModule({
   imports: [
@@ -31,7 +33,7 @@ import { CategoryListComponent } from './recipe-overview/category-list/category-
   ],
   declarations: [RecipeOverviewSmartComponent, CreateRecipeComponent, RecipeOverviewComponent, ViewRecipeSmartComponent,
     ViewRecipeComponent, ViewRecipeComponent, EditRecipeComponent, EditRecipeSmartComponent, CreateRecipeSmartComponent,
-    RecipeListComponent, CategoryListComponent],
+    RecipeListComponent, CategoryListComponent, RecipeCategoryOverviewComponent, RecipeCategoryOverviewSmartComponent],
   providers: [RecipeService]
 })
 export class RecipeManagementModule {

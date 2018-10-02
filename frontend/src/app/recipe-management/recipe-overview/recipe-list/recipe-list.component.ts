@@ -7,6 +7,7 @@ import { Recipe } from '../../recipe';
   styleUrls: ['./recipe-list.component.css']
 })
 export class RecipeListComponent {
+
   recipes: Recipe[];
 
   @Input('recipes')

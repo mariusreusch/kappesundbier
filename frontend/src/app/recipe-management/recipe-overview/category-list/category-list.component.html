@@ -3,7 +3,7 @@
 <mat-list>
   <mat-list-item *ngFor="let category of categories">
     <div style="display: flex;" mat-line>
-      <button mat-button class="kub-category-name-button" (click)="onSelect(category)">{{category}}</button>
+      <button mat-button class="kub-category-name-button" (click)="onCategorySelected(category)">{{category}}</button>
     </div>
   </mat-list-item>
 </mat-list>

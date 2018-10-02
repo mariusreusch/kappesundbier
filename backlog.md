@@ -1,3 +1,5 @@
+- fix login route issue
+- Introduce object for category
 - Introduce Pinterest-like categories
 - move smart stuff from recipe-overview.component.ts to recipe-list-smart.component.ts
 - css to scss and unify colors and font families

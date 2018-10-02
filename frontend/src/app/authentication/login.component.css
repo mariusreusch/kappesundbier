@@ -1,5 +1,11 @@
-.login-page {
-  height: 60vh;
-  background-size: cover;
-  text-align: center;
+.login-area {
+  display: flex;
+  flex-wrap: wrap;
+  height: 96vh;
+}
+
+.login-area > *.flex {
+  flex: 0 1 100%;
+  align-items: center;
+  justify-content: center;
 }

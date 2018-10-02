@@ -5,7 +5,7 @@ import { Recipe } from './recipe';
 import { DeleteRecipeResult } from './delete-recipe-result';
 import { HttpClient } from '@angular/common/http';
 import { EditRecipeResult } from './edit-recipe-result';
-import { of as observableOf} from 'rxjs';
+import { of as observableOf } from 'rxjs';
 import { map, catchError } from 'rxjs/operators';
 
 @Injectable()
@@ -31,8 +31,12 @@ export class RecipeService {
         catchError(() => observableOf(new CreateRecipeResult(ResponseResultState.FAILED))))
   }
 
-  findMyRecipes(): any {
-    return this.httpClient.get('./api/recipes').pipe(map(response => response));
+  findMyRecipes() {
+    return this.httpClient.get<Recipe[]>('./api/recipes');
+  }
+
+  findMyRecipesWithCategory(category: string) {
+    return this.httpClient.get<Recipe[]>('./api/recipes?category=' + category);
   }
 
   findRecipe(id: string) {

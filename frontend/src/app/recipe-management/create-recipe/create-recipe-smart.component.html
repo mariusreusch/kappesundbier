@@ -1,6 +1,4 @@
-<div class="kub-area">
-  <kub-create-recipe (onRecipeCreate)="createRecipe($event)"
-                     [createRecipeResult]="createRecipeResult | async"
-                     (onRecipeSuccessFullyCreated)="navigateToOverview()">
-  </kub-create-recipe>
-</div>
+<kub-create-recipe (onRecipeCreate)="createRecipe($event)"
+                   [createRecipeResult]="createRecipeResult | async"
+                   (onRecipeSuccessFullyCreated)="navigateToOverview()">
+</kub-create-recipe>

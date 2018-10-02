@@ -1,5 +1,4 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Router } from '@angular/router';
 import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
 import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
@@ -19,16 +18,19 @@ import { User } from '../../authentication/user';
 export class RecipeOverviewComponent {
 
   @Input()
+  user: User;
+  @Input()
   recipes: Recipe[];
-
   @Output()
   onRecipeDelete = new EventEmitter<Recipe>();
+  @Output()
+  onRecipeSelect = new EventEmitter<Recipe>();
+  @Output()
+  onCategorySelect = new EventEmitter<string>();
 
   chipItems: ChipListItem[] = [];
   currentView: ChipListItem;
 
-  @Input()
-  user: User;
 
   @Input('deleteRecipeResult')
   set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
@@ -45,7 +47,7 @@ export class RecipeOverviewComponent {
     }
   }
 
-  constructor(private router: Router, private dialog: MatDialog, private snackBar: MatSnackBar,
+  constructor(private dialog: MatDialog, private snackBar: MatSnackBar,
               private translate: TranslateService) {
     zip(translate.get('Recipe.Recipes'), translate.get('Recipe.Categories'))
       .subscribe(translations => {
@@ -54,8 +56,8 @@ export class RecipeOverviewComponent {
       });
   }
 
-  onRecipeSelect(recipe: Recipe) {
-    this.router.navigate(['view-recipe', recipe.id]);
+  onRecipeSelected(recipe: Recipe) {
+    this.onRecipeSelect.emit(recipe);
   }
 
   onRecipeDeleted(recipe: Recipe) {
@@ -82,5 +84,9 @@ export class RecipeOverviewComponent {
       categories.push(...recipe.categories);
     }
     return Array.from(new Set(categories));
+  }
+
+  onCategorySelected(category: string) {
+    this.onCategorySelect.emit(category);
   }
 }

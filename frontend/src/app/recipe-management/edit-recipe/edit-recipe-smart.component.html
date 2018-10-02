@@ -1,7 +1,5 @@
-<div class="kub-area" *ngIf="recipe">
-  <kub-edit-recipe [recipe]="recipe | async"
-                   [base64EncodedImages]="base64EncodedImages | async"
-                   [editRecipeResult]="editRecipeResult | async"
-                   (onRecipeEdited)="updateRecipe($event)"
-                   (onRecipeSuccessfullyEdited)="navigateToOverview()"></kub-edit-recipe>
-</div>
+<kub-edit-recipe [recipe]="recipe | async"
+                 [base64EncodedImages]="base64EncodedImages | async"
+                 [editRecipeResult]="editRecipeResult | async"
+                 (onRecipeEdited)="updateRecipe($event)"
+                 (onRecipeSuccessfullyEdited)="navigateToOverview()"></kub-edit-recipe>

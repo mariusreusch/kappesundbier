@@ -1,5 +1,4 @@
-<div *ngIf="isLoggedIn()" style="display: flex; margin-top: auto" class="kub-background kub-header-toolbar"
-     style="display: flex; justify-content: flex-end; align-items: center;">
+<div *ngIf="isLoggedIn()" class="kub-header-toolbar" style="display: flex; justify-content: flex-end; align-items: center;">
   <a class="logo" routerLink="/">
     <img src="/assets/logo_without_text.png">
   </a>
@@ -8,5 +7,6 @@
   </a>
 </div>
 
-<router-outlet></router-outlet>
-
+<div class="kub-area">
+  <router-outlet></router-outlet>
+</div>
