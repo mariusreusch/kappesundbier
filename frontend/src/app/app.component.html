@@ -1,4 +1,4 @@
-<div *ngIf="isLoggedIn()" class="kub-background kub-header-toolbar"
+<div *ngIf="isLoggedIn()" style="display: flex; margin-top: auto" class="kub-background kub-header-toolbar"
      style="display: flex; justify-content: flex-end; align-items: center;">
   <a class="logo" routerLink="/">
     <img src="/assets/logo_without_text.png">
@@ -7,7 +7,6 @@
     <mat-icon>exit_to_app</mat-icon>
   </a>
 </div>
-
 
 <router-outlet></router-outlet>
 
