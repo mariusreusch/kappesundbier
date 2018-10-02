@@ -18,7 +18,10 @@ export class LoginComponent {
     this.authService.login().subscribe(() => {
       if (this.authService.isLoggedIn) {
         const redirect = this.authService.redirectUrl;
-        this.router.navigate([redirect]);
+        if (redirect) {
+          this.router.navigate([redirect]);
+        }
+        this.router.navigate(['/']);
       }
     });
   }

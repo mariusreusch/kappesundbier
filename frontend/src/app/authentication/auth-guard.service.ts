@@ -26,5 +26,4 @@ export class AuthGuard implements CanActivate {
   private storeAttemptedUrl(state: RouterStateSnapshot) {
     this.authService.redirectUrl = state.url;
   }
-
 }

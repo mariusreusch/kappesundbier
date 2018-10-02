@@ -1,7 +1,5 @@
-- fix login route issue
+- Edit recipes (currently there are several bugs)
 - Introduce object for category
-- Introduce Pinterest-like categories
-- move smart stuff from recipe-overview.component.ts to recipe-list-smart.component.ts
 - css to scss and unify colors and font families
 - use spring security mechanism to get user in REST controller
 - fix home screen icon on iPhone
@@ -9,25 +7,23 @@
 - Show thumbnail for each category in category search screen
 - Show thumbnail for each recipe
 - View / Edit Recipe: Show the first image on top of the details
-- Suchmöglichkeit auf Recipe-Overview
+- Suchmöglichkeit auf Recipe-Overview (integrated in header bar. Recipes, categories and ingredients are searchable)
+- Move ingredients above description
 - Week Planner
-- Edit recipes (currently there are several bugs)
 - Bild entfernen im Create Mode
 - replace template driven forms with reactive forms
 - Kommazahlen in Mengenangaben erlauben
 - Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
-- Move ingredients above description
 - 413 Entity Too Large im Image Upload too large case mit einer dedizierten Fehlermeldung versehen
 - Logging mechanism for frontend error
 - Ladebalken beim Rezept erstellen
 - Bild entfernen im Edit Mode
 - Create e2e tests
 - Google Login Mock
-- Fix Logout
 - switch to Java 11
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
 - introduce state management
 - deploy the artifact built with travis to heroku instead of building it on heroku again
 - IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
-- Formatierung in Anleitungstext
+- Formati   erung in Anleitungstext

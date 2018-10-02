@@ -3,7 +3,7 @@
     "target": "http://localhost:5000",
     "secure": false
   },
-  "/login": {
+  "/login/google": {
     "target": "http://localhost:5000",
     "secure": false
   },
