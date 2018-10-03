@@ -23,7 +23,7 @@ export class EditRecipeComponent {
   @Input()
   base64EncodedImages: any[];
   @Output()
-  onRecipeEdited = new EventEmitter<Recipe>();
+  onRecipeEdit = new EventEmitter<Recipe>();
   @Output()
   onRecipeSuccessfullyEdited = new EventEmitter<void>();
   @ViewChild('ingredientForm')
@@ -75,7 +75,7 @@ export class EditRecipeComponent {
         this.recipe.images.push(fileToUpload);
       }
 
-      this.onRecipeEdited.emit(this.recipe);
+      this.onRecipeEdit.emit(this.recipe);
     }
   }
 
@@ -95,7 +95,7 @@ export class EditRecipeComponent {
           this.onRecipeSuccessfullyEdited.emit();
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
-            this.translate.get('Recipe.SuccessfullySaved').subscribe(text => {
+            this.translate.get('Recipe.SuccessfullyUpdated').subscribe(text => {
               this.snackBar.open(text, null, {
                 duration: 4000,
               });

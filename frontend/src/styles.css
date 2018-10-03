@@ -39,6 +39,10 @@ body {
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
 
+button.mat-button, button.mat-raised-button {
+  font-weight: normal;
+}
+
 .kub-icon-btn {
   color: grey;
   cursor: pointer;

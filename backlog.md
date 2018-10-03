@@ -1,5 +1,7 @@
 - Edit recipes (currently there are several bugs)
+- Enable deletion and navigation from recipe-category-overview
 - Introduce object for category
+- Introduce progress spinner
 - css to scss and unify colors and font families
 - use spring security mechanism to get user in REST controller
 - fix home screen icon on iPhone

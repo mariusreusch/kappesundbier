@@ -9,13 +9,14 @@
     "Amount": "Menge",
     "MeasuringUnit": "Masseinheit",
     "Pictures": "Bilder",
-    "DoSomeAmazingStuff": "Tue Fantastisches!",
-    "EditRecipe": "Mach dein Rezept noch fantatischer!",
-    "DeleteRecipe": "Schade dass du dieses bezaubernde Rezept gelöscht hast!",
+    "CreateRecipe": "Rezept erstellen",
+    "SaveRecipe": "Rezept speichern",
+    "EditRecipe": "Rezept bearbeiten",
+    "DeleteRecipe": "Schade dass du dieses bezauberndea Rezept gelöscht hast!",
     "SuccessfullySaved": "Ein neues fabelhaftes Rezept wurde erfolgreich gespeichert.",
     "SuccessfullyUpdated": "Ein fabelhaftes Rezept ist jetzt noch phänomenaler.",
     "NoRecipesCreated": "Du hast noch keine Rezepte erstellt.",
-    "NoRecipeCategoriesCreated": "Du hast in deinen Rezeoten noch keine Kategorien angegeben.",
+    "NoRecipeCategoriesCreated": "Du hast in deinen Rezepten noch keine Kategorien angegeben.",
     "Recipes": "Rezepte"
   },
   "Common": {
