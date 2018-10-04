@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { RecipeService } from '../recipe-service';
 import { Observable } from 'rxjs';
 import { Recipe } from '../recipe';
-import { DeleteRecipeResult } from '../delete-recipe-result';
 import { UserService } from '../../authentication/user.service';
 import { User } from '../../authentication/user';
 import { Router } from '@angular/router';
@@ -13,7 +12,6 @@ import { Router } from '@angular/router';
 })
 export class RecipeOverviewSmartComponent implements OnInit {
 
-  deleteRecipeResult: Observable<DeleteRecipeResult>;
   myRecipes: Observable<Recipe[]>;
   user: Observable<User>;
 
@@ -23,10 +21,6 @@ export class RecipeOverviewSmartComponent implements OnInit {
   ngOnInit(): void {
     this.myRecipes = this.recipeService.findMyRecipes();
     this.user = this.userService.getUser();
-  }
-
-  deleteRecipe(recipe: Recipe) {
-    this.deleteRecipeResult = this.recipeService.deleteRecipe(recipe);
   }
 
   navigateToCategoryRecipes(category: string) {

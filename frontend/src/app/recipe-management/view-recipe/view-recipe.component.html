@@ -1,6 +1,10 @@
 <mat-card *ngIf="recipe">
   <mat-card-content>
-    <h1>{{recipe.name}} <mat-icon class="kub-icon-btn" (click)="switchToEditMode()">create</mat-icon></h1>
+    <h1>
+      {{recipe.name}}
+      <mat-icon class="kub-icon-btn" style="margin-left: 0.5rem" (click)="switchToEditMode()">create</mat-icon>
+      <mat-icon class="kub-icon-btn" style="margin-left: 0.5rem" (click)="onDelete(recipe)">delete</mat-icon>
+    </h1>
 
     <h3 translate>Recipe.NumberOfPortions</h3>
     {{recipe.numberOfPortions}}

@@ -7,11 +7,9 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class CategoryListComponent {
 
-  @Input()
-  categories: string[] = [];
+  @Input() categories: string[] = [];
 
-  @Output()
-  onCategorySelect = new EventEmitter<string>();
+  @Output() onCategorySelect = new EventEmitter<string>();
 
   onCategorySelected(category: string) {
     this.onCategorySelect.emit(category);

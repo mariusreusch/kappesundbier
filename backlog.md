@@ -1,5 +1,4 @@
 - Edit recipes (currently there are several bugs)
-- Move delete button to detail view
 - Enable deletion and navigation from recipe-category-overview
 - Introduce object for category
 - Introduce progress spinner

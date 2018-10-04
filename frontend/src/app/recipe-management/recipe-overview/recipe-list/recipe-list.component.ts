@@ -20,15 +20,8 @@ export class RecipeListComponent {
   @Output()
   onRecipeSelect = new EventEmitter<Recipe>();
 
-  @Output()
-  onRecipeDelete = new EventEmitter<Recipe>();
-
   onSelect(recipe: Recipe) {
     this.onRecipeSelect.emit(recipe);
-  }
-
-  onDelete(recipe: Recipe) {
-    this.onRecipeDelete.emit(recipe);
   }
 
   private orderByCreationDateDescending(myRecipes: Recipe[]) {

@@ -12,8 +12,7 @@
 
     </div>
     <kub-recipe-list *ngIf="currentView.id === 'recipes'" [recipes]="recipes"
-                     (onRecipeSelect)="onRecipeSelected($event)"
-                     (onRecipeDelete)="onRecipeDeleted($event)"></kub-recipe-list>
+                     (onRecipeSelect)="onRecipeSelected($event)"></kub-recipe-list>
 
     <kub-category-list *ngIf="currentView.id === 'categories'"
                        (onCategorySelect)="onCategorySelected($event)"

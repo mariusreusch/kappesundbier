@@ -1,5 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../recipe';
+import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
+import { MatDialog } from '@angular/material';
 
 @Component({
   selector: 'kub-view-recipe',
@@ -8,18 +10,32 @@ import { Recipe } from '../recipe';
 })
 export class ViewRecipeComponent {
 
-  @Input()
-  recipe: Recipe;
+  @Input() recipe: Recipe;
+  @Input() base64EncodedImages: any[];
+  @Input() deleteDialogTitle: string;
+  @Input() deleteDialogQuestion: string;
 
-  @Input()
-  base64EncodedImages: any[];
+  @Output() switchToEditModeEvent = new EventEmitter<Recipe>();
+  @Output() onRecipeDelete = new EventEmitter<Recipe>();
 
-  @Output()
-  switchToEditModeEvent = new EventEmitter<Recipe>();
-
-  constructor() { }
+  constructor(private dialog: MatDialog) {
+  }
 
   switchToEditMode() {
     this.switchToEditModeEvent.emit(this.recipe);
+  }
+
+  onDelete(recipe: Recipe) {
+    const dialogRef = this.dialog.open(YesNoDialogComponent, {
+      data: {
+        question: this.deleteDialogQuestion,
+        title: this.deleteDialogTitle
+      }
+    });
+    dialogRef.afterClosed().subscribe(result => {
+      if (result === true) {
+        this.onRecipeDelete.emit(recipe);
+      }
+    });
   }
 }

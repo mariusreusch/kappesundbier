@@ -1,6 +1,4 @@
 <kub-recipe-overview [recipes]="myRecipes | async"
-                     [deleteRecipeResult]="deleteRecipeResult | async"
                      [user]="user | async"
                      (onCategorySelect)="navigateToCategoryRecipes($event)"
-                     (onRecipeSelect)="navigateToRecipeView($event)"
-                     (onRecipeDelete)="deleteRecipe($event)"></kub-recipe-overview>
+                     (onRecipeSelect)="navigateToRecipeView($event)"></kub-recipe-overview>

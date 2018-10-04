@@ -1,10 +1,7 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../recipe';
 import { MatDialog, MatSnackBar } from '@angular/material';
-import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
-import { DeleteRecipeResult } from '../delete-recipe-result';
 import { TranslateService } from '@ngx-translate/core';
-import { ResponseResultState } from '../response-result-state';
 import { zip } from 'rxjs';
 import { ChipListItem } from '../../kub-common/chip-list/chip-list-item';
 import { User } from '../../authentication/user';
@@ -22,30 +19,12 @@ export class RecipeOverviewComponent {
   @Input()
   recipes: Recipe[];
   @Output()
-  onRecipeDelete = new EventEmitter<Recipe>();
-  @Output()
   onRecipeSelect = new EventEmitter<Recipe>();
   @Output()
   onCategorySelect = new EventEmitter<string>();
 
   chipItems: ChipListItem[] = [];
   currentView: ChipListItem;
-
-
-  @Input('deleteRecipeResult')
-  set setDeleteRecipeResult(deleteRecipeResult: DeleteRecipeResult) {
-    if (deleteRecipeResult && deleteRecipeResult.state === ResponseResultState.SUCCESS) {
-      this.recipes = this.recipes.filter(recipe => recipe.id !== deleteRecipeResult.deletedRecipeIdResponse.deletedRecipeId);
-      // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
-      setTimeout(() => {
-        this.translate.get('Recipe.DeleteRecipe').subscribe(text => {
-          this.snackBar.open(text, null, {
-            duration: 4000,
-          });
-        });
-      }, 1);
-    }
-  }
 
   constructor(private dialog: MatDialog, private snackBar: MatSnackBar,
               private translate: TranslateService) {
@@ -58,20 +37,6 @@ export class RecipeOverviewComponent {
 
   onRecipeSelected(recipe: Recipe) {
     this.onRecipeSelect.emit(recipe);
-  }
-
-  onRecipeDeleted(recipe: Recipe) {
-    const dialogRef = this.dialog.open(YesNoDialogComponent, {
-      data: {
-        question: 'Biste sicher?',
-        title: 'Rezept löschen'
-      }
-    });
-    dialogRef.afterClosed().subscribe(result => {
-      if (result === true) {
-        this.onRecipeDelete.emit(recipe);
-      }
-    });
   }
 
   selectView(item: ChipListItem) {

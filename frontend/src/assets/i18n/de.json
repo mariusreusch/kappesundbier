@@ -17,7 +17,9 @@
     "SuccessfullyUpdated": "Ein fabelhaftes Rezept ist jetzt noch phänomenaler.",
     "NoRecipesCreated": "Du hast noch keine Rezepte erstellt.",
     "NoRecipeCategoriesCreated": "Du hast in deinen Rezepten noch keine Kategorien angegeben.",
-    "Recipes": "Rezepte"
+    "Recipes": "Rezepte",
+    "DeleteDialogTitle": "Rezept löschen",
+    "DeleteDialogQuestion": "Biste sicher?"
   },
   "Common": {
     "Name": "Name",
