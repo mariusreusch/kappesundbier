@@ -18,22 +18,14 @@ export class EditRecipeComponent {
   newIngredient = new Ingredient('', null, '');
   categoriesAsCommaSeparatedString = '';
 
-  @Input()
-  recipe: Recipe;
-  @Input()
-  base64EncodedImages: any[];
-  @Output()
-  onRecipeEdit = new EventEmitter<Recipe>();
-  @Output()
-  onRecipeSuccessfullyEdited = new EventEmitter<void>();
-  @ViewChild('ingredientForm')
-  ingredientForm: NgForm;
-  @ViewChild('recipeForm')
-  recipeForm: NgForm;
+  @Input() recipe: Recipe;
+  @Input() base64EncodedImages: any[];
 
-  constructor(private snackBar: MatSnackBar,
-              private translate: TranslateService) {
-  }
+  @Output() onRecipeEdit = new EventEmitter<Recipe>();
+  @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
+
+  @ViewChild('ingredientForm') ingredientForm: NgForm;
+  @ViewChild('recipeForm') recipeForm: NgForm;
 
   @Input('recipe')
   set setRecipe(recipe: Recipe) {
@@ -46,6 +38,10 @@ export class EditRecipeComponent {
   @Input('editRecipeResult')
   set setCreateRecipeResult(editRecipeResult: EditRecipeResult) {
     this.handleEditRecipeResult(editRecipeResult)
+  }
+
+  constructor(private snackBar: MatSnackBar,
+              private translate: TranslateService) {
   }
 
   addIngredient(): void {
