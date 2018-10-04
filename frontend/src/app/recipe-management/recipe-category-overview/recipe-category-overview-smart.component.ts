@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, ParamMap } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
 import { RecipeService } from '../recipe-service';
 import { Observable } from 'rxjs';
@@ -15,7 +15,8 @@ export class RecipeCategoryOverviewSmartComponent implements OnInit {
   category: string;
 
   constructor(private recipeService: RecipeService,
-              private route: ActivatedRoute) {
+              private route: ActivatedRoute,
+              private router: Router) {
   }
 
   ngOnInit() {
@@ -27,5 +28,7 @@ export class RecipeCategoryOverviewSmartComponent implements OnInit {
       }));
   }
 
-
+  navigateToRecipeDetailView(recipe: Recipe) {
+    this.router.navigate(['view-recipe', recipe.id]);
+  }
 }

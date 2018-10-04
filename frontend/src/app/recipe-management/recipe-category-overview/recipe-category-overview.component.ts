@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Recipe } from '../recipe';
 
 @Component({
@@ -8,13 +8,12 @@ import { Recipe } from '../recipe';
 })
 export class RecipeCategoryOverviewComponent {
 
-  @Input()
-  recipes: Recipe[];
+  @Input() recipes: Recipe[];
+  @Input() category: string;
 
-  @Input()
-  category: string;
+  @Output() onRecipeSelect = new EventEmitter<Recipe>();
 
-  constructor() {
+  onRecipeSelected(recipe: Recipe) {
+    this.onRecipeSelect.emit(recipe);
   }
-
 }

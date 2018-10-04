@@ -1,4 +1,5 @@
 <kub-recipe-category-overview
   [recipes]="recipes | async"
-  [category]="category">
+  [category]="category"
+  (onRecipeSelect)="navigateToRecipeDetailView($event)">
 </kub-recipe-category-overview>

@@ -1,6 +1,6 @@
 <h1>{{category}}</h1>
 <mat-card>
   <mat-card-content>
-    <kub-recipe-list [recipes]="recipes"></kub-recipe-list>
+    <kub-recipe-list [recipes]="recipes" (onRecipeSelect)="onRecipeSelected($event)"></kub-recipe-list>
   </mat-card-content>
 </mat-card>
