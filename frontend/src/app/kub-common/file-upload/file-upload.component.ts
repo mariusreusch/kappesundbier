@@ -9,7 +9,7 @@ import { FileToUpload } from './file-to-upload';
 export class FileUploadComponent {
 
   @Output()
-  onFileSelected = new EventEmitter<FileToUpload>();
+  onFileSelect = new EventEmitter<FileToUpload>();
 
   onChange(files: File[]) {
     if (files && files[0]) {
@@ -19,7 +19,7 @@ export class FileUploadComponent {
         const fileToUpload = new FileToUpload();
         fileToUpload.file = files[0];
         fileToUpload.content = fileReader.result;
-        this.onFileSelected.emit(fileToUpload);
+        this.onFileSelect.emit(fileToUpload);
       };
       fileReader.readAsDataURL(files[0]);
     }

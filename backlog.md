@@ -1,4 +1,5 @@
 - Edit recipes (currently there are several bugs)
+- Move delete button to detail view
 - Enable deletion and navigation from recipe-category-overview
 - Introduce object for category
 - Introduce progress spinner
@@ -28,4 +29,4 @@
 - introduce state management
 - deploy the artifact built with travis to heroku instead of building it on heroku again
 - IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
-- Formati   erung in Anleitungstext
+- Formatierung in Anleitungstext
