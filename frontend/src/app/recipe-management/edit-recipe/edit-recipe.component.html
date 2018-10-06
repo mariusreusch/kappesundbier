@@ -18,14 +18,12 @@
                placeholder="{{'Recipe.NumberOfPortions' | translate}}"
                name="numberOfPortions"
                type="number"
-               required
                [(ngModel)]="recipe.numberOfPortions">
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
                placeholder="{{'Recipe.CategoriesCommaSeparated' | translate}}"
                name="categoriesAsCommaSeparatedString"
-               required
                [(ngModel)]="categoriesAsCommaSeparatedString">
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
@@ -33,7 +31,6 @@
                   name="instruction"
                   placeholder="{{'Recipe.Instruction' | translate}}"
                   rows="4"
-                  required
                   [(ngModel)]="recipe.instruction">
         </textarea>
       </mat-form-field>
@@ -96,7 +93,7 @@
   </mat-card-content>
 
   <mat-card-actions>
-    <button mat-raised-button color="accent" [disabled]="!recipeForm.form.valid || recipe.ingredients.length < 1"
+    <button mat-raised-button color="accent" [disabled]="!recipeForm.form.valid"
             (click)="recipeForm.ngSubmit.emit()">
       {{'Recipe.SaveRecipe' | translate}}
     </button>

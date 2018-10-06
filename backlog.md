@@ -1,4 +1,5 @@
 - Edit recipes (currently there are several bugs)
+- Introduce Zubereitungszeit
 - Better layout for ingredients deletion in edit and create mode
 - Introduce object for category
 - Introduce progress spinner
