@@ -12,18 +12,20 @@ public class RecipeImage {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
-
     @Lob
     @Column
     @Type(type="org.hibernate.type.BinaryType")
     private byte[] data;
+    private String fileName;
+
 
     @OnlyForFramework
     private RecipeImage() {
     }
 
-    public RecipeImage(byte[] data) {
+    public RecipeImage(String fileName, byte[] data) {
         this.data = data;
+        this.fileName = fileName;
     }
 
     public byte[] getData() {

@@ -57,10 +57,8 @@ export class CreateRecipeComponent {
   }
 
   onSubmit() {
-    if (this.newRecipe.ingredients.length > 0) {
-      this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
-      this.onRecipeCreate.emit(this.newRecipe);
-    }
+    this.newRecipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
+    this.onRecipeCreate.emit(this.newRecipe);
   }
 
   handleCreateRecipeResult(createRecipeResult: CreateRecipeResult) {

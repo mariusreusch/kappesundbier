@@ -3,6 +3,7 @@ package ch.pama.cookncode.rest;
 import ch.pama.cookncode.domain.User;
 import ch.pama.cookncode.domain.UserRepository;
 import ch.pama.cookncode.rest.dto.DeletedRecipeIdDto;
+import ch.pama.cookncode.rest.dto.RecipeImageDto;
 import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.service.RecipeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -19,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
-import java.util.stream.Collectors;
 
 import static java.util.stream.Collectors.toList;
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
@@ -119,10 +119,10 @@ public class RecipeRestController {
                 .orElseGet(() -> userRepository.save(new User(userId)));
     }
 
-    private List<byte[]> from(MultipartFile[] multipartFiles) throws IOException {
-        List<byte[]> recipeImageData = new ArrayList<>();
+    private List<RecipeImageDto> from(MultipartFile[] multipartFiles) throws IOException {
+        List<RecipeImageDto> recipeImageData = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
-            recipeImageData.add(multipartFile.getBytes());
+            recipeImageData.add(new RecipeImageDto(multipartFile.getBytes(), multipartFile.getOriginalFilename()));
         }
         return recipeImageData;
     }

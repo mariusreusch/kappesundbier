@@ -6,7 +6,7 @@ import { DeleteRecipeResult } from './delete-recipe-result';
 import { HttpClient } from '@angular/common/http';
 import { EditRecipeResult } from './edit-recipe-result';
 import { of as observableOf } from 'rxjs';
-import { map, catchError } from 'rxjs/operators';
+import { catchError, map } from 'rxjs/operators';
 
 @Injectable()
 export class RecipeService {
@@ -43,12 +43,8 @@ export class RecipeService {
     return this.httpClient.get<Recipe>('./api/recipes/' + id);
   }
 
-  findRecipeImages(id: string) {
-    return this.httpClient.get<any>('./api/recipes/' + id + '/images');
-  }
-
   findRecipeBase64EncodedImages(id: string) {
-    return this.findRecipeImages(id).pipe(
+    return this.httpClient.get<any>('./api/recipes/' + id + '/images').pipe(
       map((images: any) => {
         const base64EncodedImages = [];
         for (let i = 0; i < images.length; i++) {

@@ -65,12 +65,12 @@ public class RecipeDto {
         return creationDate;
     }
 
-    public Recipe toRecipeWithImages(List<byte[]> recipeImageData) {
+    public Recipe toRecipeWithImages(List<RecipeImageDto> recipeImageData) {
         Set<Ingredient> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient).collect(toSet());
         Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new).collect(toSet());
         Recipe recipe = new Recipe(name, numberOfPortions, instruction, ingredients, categories);
         recipeImageData.stream()
-                .map(RecipeImage::new)
+                .map(image -> new RecipeImage(image.getFileName(), image.getContent()))
                 .forEach(recipe::addImage);
         return recipe;
     }

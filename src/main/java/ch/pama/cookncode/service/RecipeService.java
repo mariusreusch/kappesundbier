@@ -3,6 +3,7 @@ package ch.pama.cookncode.service;
 import ch.pama.cookncode.domain.*;
 import ch.pama.cookncode.rest.dto.IngredientDto;
 import ch.pama.cookncode.rest.dto.RecipeDto;
+import ch.pama.cookncode.rest.dto.RecipeImageDto;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -24,7 +25,7 @@ public class RecipeService {
         this.userRepository = userRepository;
     }
 
-    public RecipeDto createRecipe(RecipeDto recipeDto, List<byte[]> recipeImageData, User user) {
+    public RecipeDto createRecipe(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData, User user) {
         Recipe recipe = recipeDto.toRecipeWithImages(recipeImageData);
 
         user.addRecipe(recipe);
@@ -49,7 +50,7 @@ public class RecipeService {
                 .collect(toList());
     }
 
-    public RecipeDto updateRecipe(RecipeDto recipeDto, List<byte[]> recipeImageData, User user) {
+    public RecipeDto updateRecipe(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData, User user) {
         Recipe recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId())).orElseThrow(IllegalStateException::new);
 
         assertRecipeBelongsToUser(user, recipe);
@@ -57,7 +58,7 @@ public class RecipeService {
         Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
         Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
         Set<RecipeImage> recipeImages = recipeImageData.stream()
-                .map(RecipeImage::new)
+                .map(image -> new RecipeImage(image.getFileName(), image.getContent()))
                 .collect(toSet());
 
         recipe.setName(recipeDto.getName());

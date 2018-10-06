@@ -90,10 +90,10 @@
     </div>
 
     <mat-divider></mat-divider>
-
   </mat-card-content>
+
   <mat-card-actions>
-    <button mat-raised-button [disabled]="!recipeForm.form.valid"
+    <button mat-raised-button color="accent" [disabled]="!recipeForm.form.valid"
             (click)="recipeForm.ngSubmit.emit()">
       {{'Recipe.CreateRecipe' | translate}}
     </button>

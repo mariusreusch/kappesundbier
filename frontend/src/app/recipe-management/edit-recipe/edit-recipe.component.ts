@@ -57,13 +57,9 @@ export class EditRecipeComponent {
   }
 
   onSubmit() {
-    if (this.recipe.ingredients.length > 0) {
       this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
 
-      if ((!this.recipe.images || this.recipe.images.length === 0)
-        && (!this.base64EncodedImages || this.base64EncodedImages.length === 0)) {
-        this.recipe.images = [];
-      }
+    this.recipe.images = [];
 
       for (const image of this.base64EncodedImages) {
         const fileToUpload = new FileToUpload();
@@ -72,7 +68,6 @@ export class EditRecipeComponent {
       }
 
       this.onRecipeEdit.emit(this.recipe);
-    }
   }
 
   addImage(file: FileToUpload) {
