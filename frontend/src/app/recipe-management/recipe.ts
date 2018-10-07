@@ -1,5 +1,5 @@
 import { Ingredient } from './ingredient';
-import { FileToUpload } from '../kub-common/file-upload/file-to-upload';
+import { RecipeImage } from './recipe-image';
 
 export class Recipe {
 
@@ -9,7 +9,7 @@ export class Recipe {
               public instruction: string,
               public ingredients: Ingredient[],
               public categories: string[],
-              public images: FileToUpload[],
+              public images: RecipeImage[],
               public creationDate: Date) {
   }
 }

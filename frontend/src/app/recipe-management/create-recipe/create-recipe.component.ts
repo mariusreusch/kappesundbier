@@ -5,8 +5,9 @@ import { MatSnackBar } from '@angular/material';
 import { CreateRecipeResult } from '../create-recipe-result';
 import { ResponseResultState } from '../response-result-state';
 import { Recipe } from '../recipe';
-import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
+import { UploadedImage } from '../../kub-common/image-upload/uploaded-image';
 import { TranslateService } from '@ngx-translate/core';
+import { RecipeImage } from '../recipe-image';
 
 
 @Component({
@@ -92,8 +93,8 @@ export class CreateRecipeComponent {
     }
   }
 
-  addImage(file: FileToUpload) {
-    this.newRecipe.images.push(file);
+  addImage(image: UploadedImage) {
+    this.newRecipe.images.push(new RecipeImage(image.file.name, image.content));
   }
 
   private resetIngredientForm() {

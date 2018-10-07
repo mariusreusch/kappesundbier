@@ -72,9 +72,9 @@ public class RecipeRestController {
     }
 
     @GetMapping("/{id}/images")
-    public ResponseEntity<List<byte[]>> findImagesByRecipeId(@PathVariable Long id, Principal principal) {
+    public ResponseEntity<List<RecipeImageDto>> findImagesByRecipeId(@PathVariable Long id, Principal principal) {
         User user = getOrCreateUser(principal);
-        List<byte[]> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
+        List<RecipeImageDto> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
 
         HttpHeaders headers = new HttpHeaders();
 
@@ -122,7 +122,7 @@ public class RecipeRestController {
     private List<RecipeImageDto> from(MultipartFile[] multipartFiles) throws IOException {
         List<RecipeImageDto> recipeImageData = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
-            recipeImageData.add(new RecipeImageDto(multipartFile.getBytes(), multipartFile.getOriginalFilename()));
+            recipeImageData.add(new RecipeImageDto(multipartFile.getOriginalFilename(), multipartFile.getBytes(), multipartFile.getContentType()));
         }
         return recipeImageData;
     }

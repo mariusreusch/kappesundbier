@@ -11,7 +11,6 @@ import { MatDialog } from '@angular/material';
 export class ViewRecipeComponent {
 
   @Input() recipe: Recipe;
-  @Input() base64EncodedImages: any[];
   @Input() deleteDialogTitle: string;
   @Input() deleteDialogQuestion: string;
 

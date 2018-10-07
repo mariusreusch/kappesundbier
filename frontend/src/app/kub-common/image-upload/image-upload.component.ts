@@ -1,22 +1,22 @@
 import { Component, EventEmitter, Output } from '@angular/core';
-import { FileToUpload } from './file-to-upload';
+import { UploadedImage } from './uploaded-image';
 
 @Component({
   selector: 'kub-file-upload',
-  templateUrl: './file-upload.component.html',
-  styleUrls: ['./file-upload.component.css']
+  templateUrl: './image-upload.component.html',
+  styleUrls: ['./image-upload.component.css']
 })
-export class FileUploadComponent {
+export class ImageUploadComponent {
 
   @Output()
-  onFileSelect = new EventEmitter<FileToUpload>();
+  onFileSelect = new EventEmitter<UploadedImage>();
 
   onChange(files: File[]) {
     if (files && files[0]) {
       const fileReader = new FileReader();
 
       fileReader.onload = () => {
-        const fileToUpload = new FileToUpload();
+        const fileToUpload = new UploadedImage();
         fileToUpload.file = files[0];
         fileToUpload.content = fileReader.result;
         this.onFileSelect.emit(fileToUpload);

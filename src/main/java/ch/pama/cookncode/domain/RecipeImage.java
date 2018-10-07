@@ -17,18 +17,27 @@ public class RecipeImage {
     @Type(type="org.hibernate.type.BinaryType")
     private byte[] data;
     private String fileName;
-
+    private String contentType;
 
     @OnlyForFramework
     private RecipeImage() {
     }
 
-    public RecipeImage(String fileName, byte[] data) {
+    public RecipeImage(String fileName, byte[] data, String contentType) {
         this.data = data;
         this.fileName = fileName;
+        this.contentType = contentType;
     }
 
     public byte[] getData() {
         return data;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public String getContentType() {
+        return contentType;
     }
 }

@@ -6,7 +6,8 @@ import { EditRecipeResult } from '../edit-recipe-result';
 import { ResponseResultState } from '../response-result-state';
 import { TranslateService } from '@ngx-translate/core';
 import { MatSnackBar } from '@angular/material';
-import { FileToUpload } from '../../kub-common/file-upload/file-to-upload';
+import { UploadedImage } from '../../kub-common/image-upload/uploaded-image';
+import { RecipeImage } from '../recipe-image';
 
 @Component({
   selector: 'kub-edit-recipe',
@@ -19,7 +20,6 @@ export class EditRecipeComponent {
   categoriesAsCommaSeparatedString = '';
 
   @Input() recipe: Recipe;
-  @Input() base64EncodedImages: any[];
 
   @Output() onRecipeEdit = new EventEmitter<Recipe>();
   @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
@@ -57,24 +57,19 @@ export class EditRecipeComponent {
   }
 
   onSubmit() {
-      this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
+    this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
 
-    this.recipe.images = [];
-
-      for (const image of this.base64EncodedImages) {
-        const fileToUpload = new FileToUpload();
-        fileToUpload.content = image;
-        this.recipe.images.push(fileToUpload);
-      }
-
-      this.onRecipeEdit.emit(this.recipe);
+    if (!this.recipe.images || this.recipe.images.length === 0) {
+      this.recipe.images = []
+    }
+    this.onRecipeEdit.emit(this.recipe);
   }
 
-  addImage(file: FileToUpload) {
+  addImage(image: UploadedImage) {
     if (!this.recipe.images || this.recipe.images.length === 0) {
       this.recipe.images = [];
     }
-    this.recipe.images.push(file);
+    this.recipe.images.push(new RecipeImage(image.file.name, image.content));
   }
 
   private handleEditRecipeResult(editRecipeResult: EditRecipeResult) {

@@ -5,20 +5,52 @@ import { Recipe } from './recipe';
 import { DeleteRecipeResult } from './delete-recipe-result';
 import { HttpClient } from '@angular/common/http';
 import { EditRecipeResult } from './edit-recipe-result';
-import { of as observableOf } from 'rxjs';
+import { forkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { RecipeImage } from './recipe-image';
 
 @Injectable()
 export class RecipeService {
 
   private static createFormDataOf(recipe: Recipe) {
     const formData = new FormData();
-    for (const file of recipe.images.map(img => img.file)) {
-      formData.append('file', file, file.name);
+    for (const image of recipe.images) {
+
+      const block = image.imageData.split(';');
+      const contentType = block[0].split(':')[1];
+      const realData = block[1].split(',')[1];
+      const blob = RecipeService.b64toBlob(realData, contentType);
+
+      formData.append('file', blob, image.fileName);
     }
 
     formData.set('recipe', JSON.stringify(recipe));
     return formData;
+  }
+
+
+  private static b64toBlob(b64Data, contentType) {
+    // https://stackoverflow.com/a/16245768/1992820
+    contentType = contentType || '';
+
+    const sliceSize = 512;
+    const byteCharacters = atob(b64Data);
+    const byteArrays = [];
+
+    for (let offset = 0; offset < byteCharacters.length; offset += sliceSize) {
+      const slice = byteCharacters.slice(offset, offset + sliceSize);
+
+      const byteNumbers = new Array(slice.length);
+      for (let i = 0; i < slice.length; i++) {
+        byteNumbers[i] = slice.charCodeAt(i);
+      }
+
+      const byteArray = new Uint8Array(byteNumbers);
+
+      byteArrays.push(byteArray);
+    }
+
+    return new Blob(byteArrays, {type: contentType});
   }
 
   constructor(private httpClient: HttpClient) {
@@ -35,20 +67,31 @@ export class RecipeService {
     return this.httpClient.get<Recipe[]>('./api/recipes');
   }
 
-  findMyRecipesWithCategory(category: string) {
+  findMyRecipesByCategory(category: string) {
     return this.httpClient.get<Recipe[]>('./api/recipes?category=' + category);
   }
 
-  findRecipe(id: string) {
+  findRecipeWithImages(id: string): Observable<Recipe> {
+    return forkJoin(
+      this.findRecipe(id),
+      this.findRecipeBase64EncodedImages(id)
+    ).pipe(map(data => {
+      const recipe: Recipe = data[0];
+      recipe.images = data[1];
+      return recipe;
+    }));
+  }
+
+  private findRecipe(id: string): Observable<Recipe> {
     return this.httpClient.get<Recipe>('./api/recipes/' + id);
   }
 
-  findRecipeBase64EncodedImages(id: string) {
+  private findRecipeBase64EncodedImages(id: string): Observable<RecipeImage[]> {
     return this.httpClient.get<any>('./api/recipes/' + id + '/images').pipe(
-      map((images: any) => {
+      map((images: RecipeImage[]) => {
         const base64EncodedImages = [];
-        for (let i = 0; i < images.length; i++) {
-          base64EncodedImages.push('data:image/jpg;base64,' + images[i]);
+        for (const image of images) {
+          base64EncodedImages.push(new RecipeImage(image.fileName, 'data:' + image.contentType + ';base64,' + image.imageData));
         }
         return base64EncodedImages;
       }));

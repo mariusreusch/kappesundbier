@@ -17,7 +17,6 @@ import { TranslateService } from '@ngx-translate/core';
 export class ViewRecipeSmartComponent implements OnInit {
 
   recipe: Observable<Recipe>;
-  base64EncodedImages: Observable<any[]>;
   deleteDialogTitle: Observable<string>;
   deleteDialogQuestion: Observable<string>;
 
@@ -30,10 +29,7 @@ export class ViewRecipeSmartComponent implements OnInit {
 
   ngOnInit() {
     this.recipe = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.recipeService.findRecipe(params.get('id'))));
-
-    this.base64EncodedImages = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.recipeService.findRecipeBase64EncodedImages(params.get('id'))));
+      switchMap((params: ParamMap) => this.recipeService.findRecipeWithImages(params.get('id'))));
 
     this.deleteDialogQuestion = this.translate.get('Recipe.DeleteDialogQuestion');
     this.deleteDialogTitle = this.translate.get('Recipe.DeleteDialogTitle');

@@ -1,4 +1,4 @@
-- Edit recipes (currently there are several bugs)
+- keep URL when hot refresh
 - Introduce Zubereitungszeit
 - Better layout for ingredients deletion in edit and create mode
 - Introduce object for category
@@ -9,7 +9,7 @@
 - Filtermöglichkeit auf Recipe-Overview
 - Show thumbnail for each category in category search screen
 - Show thumbnail for each recipe
-- View / Edit Recipe: Show the first image on top of the details
+- move forkJoin( this.findRecipe(id), this.findRecipeBase64EncodedImages(id) - View / Edit Recipe: Show the first image on top of the details to server
 - Suchmöglichkeit auf Recipe-Overview (integrated in header bar. Recipes, categories and ingredients are searchable)
 - Move ingredients above description
 - Week Planner
@@ -23,7 +23,7 @@
 - Bild entfernen im Edit Mode
 - Create e2e tests
 - Google Login Mock
-- switch to Java 11
+- switch to Java 11 or Kotlin
 - Bildreihenfolge persistieren
 - Filtermöglichkeit nach Label
 - introduce state management

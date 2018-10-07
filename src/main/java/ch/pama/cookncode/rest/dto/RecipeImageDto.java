@@ -1,20 +1,32 @@
 package ch.pama.cookncode.rest.dto;
 
+import ch.pama.cookncode.util.OnlyForFramework;
+
 public class RecipeImageDto {
 
-    private final byte[] content;
-    private final String fileName;
+    private String fileName;
+    private byte[] imageData;
+    private String contentType;
 
-    public RecipeImageDto(byte[] content, String fileName) {
-        this.content = content;
-        this.fileName = fileName;
+    @OnlyForFramework
+    private RecipeImageDto() {
     }
 
-    public byte[] getContent() {
-        return content;
+    public RecipeImageDto(String fileName, byte[] imageData, String contentType) {
+        this.imageData = imageData;
+        this.fileName = fileName;
+        this.contentType = contentType;
+    }
+
+    public byte[] getImageData() {
+        return imageData;
     }
 
     public String getFileName() {
         return fileName;
+    }
+
+    public String getContentType() {
+        return contentType;
     }
 }

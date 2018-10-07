@@ -41,12 +41,12 @@ public class RecipeService {
                 .map(RecipeDto::from).collect(toList());
     }
 
-    public List<byte[]> findImagesOfRecipe(Long id, User user) {
+    public List<RecipeImageDto> findImagesOfRecipe(Long id, User user) {
         return user.getRecipes().stream()
                 .filter(recipe -> Objects.equals(recipe.getId(), id))
                 .map(Recipe::getRecipeImages)
                 .flatMap(Collection::stream)
-                .map(RecipeImage::getData)
+                .map(image -> new RecipeImageDto(image.getFileName(), image.getData(), image.getContentType()))
                 .collect(toList());
     }
 
@@ -58,7 +58,7 @@ public class RecipeService {
         Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
         Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
         Set<RecipeImage> recipeImages = recipeImageData.stream()
-                .map(image -> new RecipeImage(image.getFileName(), image.getContent()))
+                .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
                 .collect(toSet());
 
         recipe.setName(recipeDto.getName());

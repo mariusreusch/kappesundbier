@@ -70,7 +70,7 @@ public class RecipeDto {
         Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new).collect(toSet());
         Recipe recipe = new Recipe(name, numberOfPortions, instruction, ingredients, categories);
         recipeImageData.stream()
-                .map(image -> new RecipeImage(image.getFileName(), image.getContent()))
+                .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
                 .forEach(recipe::addImage);
         return recipe;
     }

@@ -24,7 +24,7 @@ export class RecipeCategoryOverviewSmartComponent implements OnInit {
       switchMap((params: ParamMap) => {
         const categoryName = params.get('category-name');
         this.category = categoryName;
-        return this.recipeService.findMyRecipesWithCategory(categoryName);
+        return this.recipeService.findMyRecipesByCategory(categoryName);
       }));
   }
 

@@ -1,4 +1,4 @@
-export class FileToUpload {
+export class UploadedImage {
   content: any;
   file: File;
 }

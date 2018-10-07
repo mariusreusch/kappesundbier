@@ -22,8 +22,8 @@
       </mat-list-item>
     </mat-list>
 
-    <span *ngFor="let image of base64EncodedImages">
-      <img src="{{image}}" alt="" width="100%">
+    <span *ngFor="let image of recipe.images">
+      <img src="{{image.imageData}}" alt="" width="100%">
     </span>
 
   </mat-card-content>

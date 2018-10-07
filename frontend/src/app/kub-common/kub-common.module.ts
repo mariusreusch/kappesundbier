@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { YesNoDialogComponent } from './yes-no-dialog/yes-no-dialog.component';
-import { FileUploadComponent } from './file-upload/file-upload.component';
+import { ImageUploadComponent } from './image-upload/image-upload.component';
 import { KubMaterialModule } from '../kub-material/kub-material.module';
 import { ChipListComponent } from './chip-list/chip-list.component';
 
@@ -10,7 +10,7 @@ import { ChipListComponent } from './chip-list/chip-list.component';
     CommonModule,
     KubMaterialModule
   ],
-  declarations: [YesNoDialogComponent, FileUploadComponent, ChipListComponent],
-  exports: [YesNoDialogComponent, FileUploadComponent, ChipListComponent]
+  declarations: [YesNoDialogComponent, ImageUploadComponent, ChipListComponent],
+  exports: [YesNoDialogComponent, ImageUploadComponent, ChipListComponent]
 })
 export class KubCommonModule { }
