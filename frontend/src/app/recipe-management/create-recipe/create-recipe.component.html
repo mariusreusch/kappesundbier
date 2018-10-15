@@ -20,16 +20,23 @@
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
+               placeholder="{{'Recipe.PreparationTimeInMinutes' | translate}}"
+               name="preparationTime"
+               type="number"
+               [(ngModel)]="newRecipe.preparationTime">
+      </mat-form-field>
+      <mat-form-field class="kub-full-width-input">
+        <input mat-line matInput
                placeholder="{{'Recipe.CategoriesCommaSeparated' | translate}}"
                name="categoriesAsCommaSeparatedString"
                [(ngModel)]="categoriesAsCommaSeparatedString">
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
-          <textarea matInput
-                    name="instruction"
-                    placeholder="{{'Recipe.Instruction' | translate}}"
-                    rows="4"
-                    [(ngModel)]="newRecipe.instruction">
+        <textarea matInput
+                  name="instruction"
+                  placeholder="{{'Recipe.Instruction' | translate}}"
+                  rows="4"
+                  [(ngModel)]="newRecipe.instruction">
           </textarea>
       </mat-form-field>
     </form>

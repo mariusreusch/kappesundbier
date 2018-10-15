@@ -1,6 +1,7 @@
 {
   "Recipe": {
     "Ingredients": "Zutaten",
+    "PreparationTimeInMinutes": "Zubereitungszeit (min)",
     "CreateNewRecipe": "Erstelle ein neues Rezept",
     "NumberOfPortions": "Anzahl Personen",
     "CategoriesCommaSeparated": "Kategorien (kommasepariert)",

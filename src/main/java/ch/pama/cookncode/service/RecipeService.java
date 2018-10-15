@@ -67,6 +67,7 @@ public class RecipeService {
         recipe.setInstruction(recipeDto.getInstruction());
         recipe.setNumberOfPortions(recipeDto.getNumberOfPortions());
         recipe.setRecipeImages(recipeImages);
+        recipe.setPreparationTime(recipeDto.getPreparationTime());
 
         Recipe updatedRecipe = recipeRepository.save(recipe);
 

@@ -10,6 +10,7 @@ export class Recipe {
               public ingredients: Ingredient[],
               public categories: string[],
               public images: RecipeImage[],
-              public creationDate: Date) {
+              public creationDate: Date,
+              public preparationTime: number) {
   }
 }

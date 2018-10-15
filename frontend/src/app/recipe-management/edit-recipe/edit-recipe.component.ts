@@ -109,7 +109,7 @@ export class EditRecipeComponent {
   }
 
   private resetRecipeForm() {
-    this.recipe = new Recipe('', '', null, '', [], [], [], null);
+    this.recipe = new Recipe('', '', null, '', [], [], [], null, null);
     this.categoriesAsCommaSeparatedString = '';
     this.recipeForm.resetForm();
   }

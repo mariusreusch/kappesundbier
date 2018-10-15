@@ -28,17 +28,20 @@ public class Recipe {
     @OneToMany(cascade = ALL)
     @JoinColumn(name = "fk_recipe_id")
     private Set<RecipeImage> recipeImages;
+    @Column(name = "preparation_time_in_minutes")
+    private PreparationTime preparationTime;
 
     @OnlyForFramework
     private Recipe() {
     }
 
-    public Recipe(String name, int numberOfPortions, String instruction, Set<Ingredient> ingredients, Set<RecipeCategory> categories) {
+    public Recipe(String name, int numberOfPortions, String instruction, Set<Ingredient> ingredients, Set<RecipeCategory> categories, PreparationTime preparationTime) {
         this.name = Objects.requireNonNull(name);
         this.numberOfPortions = numberOfPortions;
         this.instruction = Objects.requireNonNull(instruction);
         this.ingredients = new HashSet<>(ingredients);
         this.categories = new HashSet<>(categories);
+        this.preparationTime = preparationTime;
         this.creationDate = ZonedDateTime.now();
         this.recipeImages = new HashSet<>();
     }
@@ -99,9 +102,16 @@ public class Recipe {
         this.recipeImages = recipeImages;
     }
 
+    public PreparationTime getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(PreparationTime preparationTime) {
+        this.preparationTime = preparationTime;
+    }
+
     public ZonedDateTime getCreationDate() {
         return creationDate;
     }
-
 
 }

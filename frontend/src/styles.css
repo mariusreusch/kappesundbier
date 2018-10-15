@@ -51,3 +51,11 @@ button.mat-button, button.mat-raised-button {
 .flex {
   display: flex;
 }
+
+.mt-1 {
+  margin-top: 1rem;
+}
+
+.mt-2 {
+  margin-top: 2rem;
+}
