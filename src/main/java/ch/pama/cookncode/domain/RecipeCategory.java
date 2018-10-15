@@ -11,35 +11,39 @@ import java.util.Objects;
 @Entity
 public class RecipeCategory {
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    private final String name;
+  @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long id;
+  private final String name;
 
-    public RecipeCategory(String name) {
-        this.name = Objects.requireNonNull(name);
-    }
+  public RecipeCategory(String name) {
+    this.name = Objects.requireNonNull(name);
+  }
 
-    @OnlyForFramework
-    private RecipeCategory() {
-        this.name = "";
-    }
+  @OnlyForFramework
+  private RecipeCategory() {
+    this.name = "";
+  }
 
-    public String getName() {
-        return name;
-    }
+  public String getName() {
+    return name;
+  }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RecipeCategory that = (RecipeCategory) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
     }
+    if (o == null || getClass() != o.getClass()) {
+      return false;
+    }
+    RecipeCategory that = (RecipeCategory) o;
+    return Objects.equals(id, that.id) &&
+        Objects.equals(name, that.name);
+  }
 
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name);
-    }
+  @Override
+  public int hashCode() {
+    return Objects.hash(id, name);
+  }
 }

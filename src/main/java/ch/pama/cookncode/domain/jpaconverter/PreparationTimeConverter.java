@@ -11,13 +11,13 @@ import java.math.BigDecimal;
 @Converter(autoApply = true)
 public class PreparationTimeConverter implements AttributeConverter<PreparationTime, BigDecimal> {
 
-    @Override
-    public BigDecimal convertToDatabaseColumn(PreparationTime preparationTime) {
-        return (preparationTime ==  null ? null : preparationTime.getValue());
-    }
+  @Override
+  public BigDecimal convertToDatabaseColumn(PreparationTime preparationTime) {
+    return (preparationTime == null ? null : preparationTime.getValue());
+  }
 
-    @Override
-    public PreparationTime convertToEntityAttribute(BigDecimal minutes) {
-        return minutes == null ? null : new PreparationTime(minutes);
-    }
+  @Override
+  public PreparationTime convertToEntityAttribute(BigDecimal minutes) {
+    return minutes == null ? null : new PreparationTime(minutes);
+  }
 }

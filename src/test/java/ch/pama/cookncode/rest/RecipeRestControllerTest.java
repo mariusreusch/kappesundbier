@@ -17,17 +17,17 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @WebMvcTest(RecipeRestController.class)
 public class RecipeRestControllerTest {
 
-    @Autowired
-    private MockMvc mockMvc;
+  @Autowired
+  private MockMvc mockMvc;
 
-    @MockBean
-    private RecipeService recipeService;
+  @MockBean
+  private RecipeService recipeService;
 
-    @Test
-    @Ignore
-    public void testRandomRest() throws Exception {
-        mockMvc.perform(get("/api/recipes/random"))
-                .andExpect(content().string("This is a random recipe."));
+  @Test
+  @Ignore
+  public void testRandomRest() throws Exception {
+    mockMvc.perform(get("/api/recipes/random"))
+        .andExpect(content().string("This is a random recipe."));
 
-    }
+  }
 }

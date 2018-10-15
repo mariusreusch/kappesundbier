@@ -1,4 +1,3 @@
-- use Google Code Style
 - keep URL when hot refresh
 - Better layout for ingredients deletion in edit and create mode
 - Introduce object for category
