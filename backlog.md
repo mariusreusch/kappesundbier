@@ -1,5 +1,4 @@
 - use Google Code Style
-- merge serializer and deserializer to one class. name of this class could be BlablSerialization
 - keep URL when hot refresh
 - Better layout for ingredients deletion in edit and create mode
 - Introduce object for category
