@@ -1,2 +1,1 @@
-alter table ingredient
-  alter column amount type numeric;
+alter table ingredient alter column amount type numeric;

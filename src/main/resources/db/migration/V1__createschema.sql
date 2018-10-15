@@ -1,6 +1,4 @@
-create sequence hibernate_sequence
-  start with 1
-  increment by 50;
+create sequence hibernate_sequence start with 1 increment by 50;
 
 CREATE TABLE IF NOT EXISTS recipe (
   id   BIGSERIAL,
