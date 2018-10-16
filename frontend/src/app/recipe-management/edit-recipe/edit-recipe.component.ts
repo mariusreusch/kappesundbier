@@ -57,7 +57,9 @@ export class EditRecipeComponent {
   }
 
   onSubmit() {
-    this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',').map(s => s.trim());
+    this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',')
+    .map(s => s.trim())
+    .filter((s: string) => s.length > 0);
 
     if (!this.recipe.images || this.recipe.images.length === 0) {
       this.recipe.images = []

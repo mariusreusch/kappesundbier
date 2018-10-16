@@ -3,3 +3,11 @@
   color: grey;
   margin-right: 0.5rem;
 }
+
+.kub-attribute-label {
+  font-weight: bold;
+}
+
+.kub-attribute {
+  margin-bottom: 0.5rem;
+}

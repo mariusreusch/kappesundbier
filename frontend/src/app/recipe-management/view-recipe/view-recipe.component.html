@@ -9,21 +9,29 @@
       <span class="kub-category-label" *ngFor="let category of recipe.categories">{{category}}</span>
     </div>
 
-    <h4 translate>Recipe.NumberOfPortions</h4>
-    {{recipe.numberOfPortions}}
+    <div *ngIf="recipe.numberOfPortions && recipe.numberOfPortions > 0" class="kub-attribute">
+      <span class="kub-attribute-label">{{'Recipe.NumberOfPortions' | translate}}:</span>
+      {{recipe.numberOfPortions}}
+    </div>
 
-    <h4 translate>Recipe.PreparationTimeInMinutes</h4>
-    {{recipe.preparationTime}}
+    <div *ngIf="recipe.preparationTime && recipe.preparationTime > 0" class="kub-attribute">
+      <span class="kub-attribute-label">{{'Recipe.PreparationTimeInMinutes' | translate}}</span>
+      {{recipe.preparationTime}}
+    </div>
 
-    <h4 translate>Recipe.Instruction</h4>
-    <span mat-line>{{recipe.instruction}}</span>
+    <div *ngIf="recipe.instruction" class="kub-attribute">
+      <span class="kub-attribute-label">{{'Recipe.Instruction' | translate}}</span>
+      {{recipe.instruction}}
+    </div>
 
-    <h4 translate>Recipe.Ingredients</h4>
-    <mat-list>
-      <mat-list-item *ngFor="let ingredient of recipe.ingredients">
-        {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
-      </mat-list-item>
-    </mat-list>
+    <div *ngIf="recipe.ingredients && recipe.ingredients.length > 0" class="kub-attribute">
+      <span class="kub-attribute-label">{{'Recipe.Ingredients' | translate}}</span>
+      <mat-list>
+        <mat-list-item *ngFor="let ingredient of recipe.ingredients">
+          {{ingredient.amount}} {{ingredient.unitOfMeasurement}} {{ingredient.name}}
+        </mat-list-item>
+      </mat-list>
+    </div>
 
     <kub-recipe-images [editMode]="false" [images]="recipe.images"></kub-recipe-images>
 
