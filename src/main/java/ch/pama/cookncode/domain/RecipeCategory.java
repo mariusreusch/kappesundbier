@@ -7,6 +7,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import java.util.Objects;
+import org.springframework.util.StringUtils;
 
 @Entity
 public class RecipeCategory {
@@ -17,7 +18,14 @@ public class RecipeCategory {
   private final String name;
 
   public RecipeCategory(String name) {
-    this.name = Objects.requireNonNull(name);
+    this.name = requireNotEmpty(name);
+  }
+
+  private String requireNotEmpty(String name) {
+    if (StringUtils.isEmpty(name)) {
+      throw new IllegalArgumentException("Category name must not be empty.");
+    }
+    return name;
   }
 
   @OnlyForFramework

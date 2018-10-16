@@ -52,20 +52,18 @@ public class RecipeService {
         .collect(toList());
   }
 
-  public RecipeDto updateRecipe(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData,
-      User user) {
-    Recipe recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId()))
-        .orElseThrow(IllegalStateException::new);
+  public RecipeDto updateRecipe(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData, User user) {
+
+    Recipe recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId())).orElseThrow(IllegalStateException::new);
 
     assertRecipeBelongsToUser(user, recipe);
 
-    Set<Ingredient> ingredients = recipeDto.getIngredients().stream()
-        .map(IngredientDto::toIngredient).collect(toSet());
-    Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new)
-        .collect(toSet());
+    Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
+
+    Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
+
     Set<RecipeImage> recipeImages = recipeImageData.stream()
-        .map(image -> new RecipeImage(image.getFileName(), image.getImageData(),
-            image.getContentType()))
+        .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
         .collect(toSet());
 
     recipe.setName(recipeDto.getName());
