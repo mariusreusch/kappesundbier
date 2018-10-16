@@ -1,13 +1,13 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Ingredient } from '../ingredient';
-import { NgForm } from '@angular/forms';
-import { MatSnackBar } from '@angular/material';
-import { CreateRecipeResult } from '../create-recipe-result';
-import { ResponseResultState } from '../response-result-state';
-import { Recipe } from '../recipe';
-import { UploadedImage } from '../../kub-common/image-upload/uploaded-image';
-import { TranslateService } from '@ngx-translate/core';
-import { RecipeImage } from '../recipe-image';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Ingredient} from '../ingredient';
+import {NgForm} from '@angular/forms';
+import {MatSnackBar} from '@angular/material';
+import {CreateRecipeResult} from '../create-recipe-result';
+import {ResponseResultState} from '../response-result-state';
+import {Recipe} from '../recipe';
+import {UploadedImage} from '../../kub-common/image-upload/uploaded-image';
+import {TranslateService} from '@ngx-translate/core';
+import {RecipeImage} from '../recipe-image';
 
 
 @Component({
@@ -95,6 +95,10 @@ export class CreateRecipeComponent {
 
   addImage(image: UploadedImage) {
     this.newRecipe.images.push(new RecipeImage(image.file.name, image.content));
+  }
+
+  deleteImage(imageToDelete: RecipeImage) {
+    this.newRecipe.images = this.newRecipe.images.filter(image => image !== imageToDelete)
   }
 
   private resetIngredientForm() {

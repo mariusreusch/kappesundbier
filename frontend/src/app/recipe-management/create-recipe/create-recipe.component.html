@@ -91,11 +91,7 @@
 
     <kub-file-upload (onFileSelect)="addImage($event)"></kub-file-upload>
 
-    <div>
-        <span *ngFor="let image of newRecipe.images">
-            <img src="{{image.imageData}}" alt="" width="100%">
-        </span>
-    </div>
+    <kub-recipe-images [editMode]="true" [images]="newRecipe.images" (onImageDelete)="deleteImage($event)"></kub-recipe-images>
 
     <mat-divider></mat-divider>
   </mat-card-content>

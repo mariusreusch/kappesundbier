@@ -1,4 +1,3 @@
-- keep URL when hot refresh
 - Better layout for ingredients deletion in edit and create mode
 - Introduce object for category
 - Introduce progress spinner
@@ -7,19 +6,18 @@
 - fix home screen icon on iPhone
 - Filtermöglichkeit auf Recipe-Overview
 - Show thumbnail for each category in category search screen
+- keep URL when hot refresh
 - Show thumbnail for each recipe
-- move forkJoin( this.findRecipe(id), this.findRecipeBase64EncodedImages(id) - View / Edit Recipe: Show the first image on top of the details to server
+- move forkJoin( this.findRecipe(id), this.findRecipeBase64EncodedImages(id) to server
+- View / Edit Recipe: Show the first image on top of the details 
 - Suchmöglichkeit auf Recipe-Overview (integrated in header bar. Recipes, categories and ingredients are searchable)
 - Move ingredients above description
 - Week Planner
-- Bild entfernen im Create Mode
 - replace template driven forms with reactive forms
-- Kommazahlen in Mengenangaben erlauben
 - Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
 - 413 Entity Too Large im Image Upload too large case mit einer dedizierten Fehlermeldung versehen
 - Logging mechanism for frontend error
 - Ladebalken beim Rezept erstellen
-- Bild entfernen im Edit Mode
 - Create e2e tests
 - Google Login Mock
 - switch to Java 11 or Kotlin

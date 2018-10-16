@@ -72,6 +72,10 @@ export class EditRecipeComponent {
     this.recipe.images.push(new RecipeImage(image.file.name, image.content));
   }
 
+  deleteImage(imageToDelete: RecipeImage) {
+    this.recipe.images = this.recipe.images.filter(image => image !== imageToDelete)
+  }
+
   private handleEditRecipeResult(editRecipeResult: EditRecipeResult) {
     if (editRecipeResult) {
       switch (editRecipeResult.state) {

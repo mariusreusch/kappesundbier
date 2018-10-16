@@ -87,13 +87,7 @@
 
     <h3 translate>Recipe.Pictures</h3>
 
-
-    <div>
-      <span *ngFor="let image of recipe.images">
-        <img src="{{image.imageData}}" alt="" width="100%">
-      </span>
-    </div>
-    <kub-file-upload (onFileSelect)="addImage($event)"></kub-file-upload>
+    <kub-recipe-images [editMode]="true" [images]="recipe.images" (onImageDelete)="deleteImage($event)"></kub-recipe-images>
 
     <mat-divider></mat-divider>
 
