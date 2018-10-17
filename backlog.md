@@ -1,29 +1,29 @@
-- Better layout for ingredients deletion in edit and create mode
-- Introduce object for category
-- Introduce progress spinner
-- css to scss and unify colors and font families
-- use spring security mechanism to get user in REST controller
-- fix home screen icon on iPhone
-- Filtermöglichkeit auf Recipe-Overview
-- Show thumbnail for each category in category search screen
-- keep URL when hot refresh
+##Business
+- Make category mandatory
 - Show thumbnail for each recipe
-- move forkJoin( this.findRecipe(id), this.findRecipeBase64EncodedImages(id) to server
+- Show thumbnail for each category in category search screen
+- Better layout for ingredients and their deletion in edit and create mode
+- Enable formatting for instruction text
+- Introduce progress spinner
 - View / Edit Recipe: Show the first image on top of the details 
-- Suchmöglichkeit auf Recipe-Overview (integrated in header bar. Recipes, categories and ingredients are searchable)
+- Persist image order
+- Introduce search field on recipe overview (integrated in header bar. Recipes, categories and ingredients are searchable)
 - Move ingredients above description
 - Week Planner
-- replace template driven forms with reactive forms
-- Fehlermeldung im Frontend wenn falsche Anzahl eingegebn wird
-- 413 Entity Too Large im Image Upload too large case mit einer dedizierten Fehlermeldung versehen
-- Logging mechanism for frontend error
-- Ladebalken beim Rezept erstellen
+- Share Recipes
+
+##Technical
+- Use spring security mechanism to get user in REST controller
+- Introduce state management (maybe redux)
+- Keep URL when hot refresh
+- Deploy the artifact built with travis to heroku instead of building it on heroku again
 - Create e2e tests
+- Replace template driven forms with reactive forms
+- Css to scss and unify colors and font families
+- Move forkJoin( this.findRecipe(id), this.findRecipeBase64EncodedImages(id) to server
+- Fix home screen icon on iPhone
+- Introduce "413 Entity Too Large" in image upload in case of too large images 
+- Logging mechanism for frontend error
 - Google Login Mock
-- switch to Java 11 or Kotlin
-- Bildreihenfolge persistieren
-- Filtermöglichkeit nach Label
-- introduce state management
-- deploy the artifact built with travis to heroku instead of building it on heroku again
-- IDs verschlüsseln insbesondere die, die in URLs angezeigt werden
-- Formatierung in Anleitungstext
+- Switch to Java 11 or Kotlin
+- Encrypt IDs in frontend
