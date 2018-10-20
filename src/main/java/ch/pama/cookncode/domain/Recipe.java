@@ -41,10 +41,17 @@ public class Recipe {
     this.numberOfPortions = numberOfPortions;
     this.instruction = Objects.requireNonNull(instruction);
     this.ingredients = new HashSet<>(ingredients);
-    this.categories = new HashSet<>(categories);
+    this.categories = new HashSet<>(requireNotEmpty(categories));
     this.preparationTime = preparationTime;
     this.creationDate = ZonedDateTime.now();
     this.recipeImages = new HashSet<>();
+  }
+
+  private Set<RecipeCategory> requireNotEmpty(Set<RecipeCategory> categories) {
+    if (categories == null || categories.isEmpty()) {
+      throw new IllegalArgumentException("A recipe must have at least one category.");
+    }
+    return categories;
   }
 
   public void addImage(RecipeImage recipeImage) {

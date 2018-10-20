@@ -78,8 +78,7 @@ public class RecipeDto {
     Recipe recipe = new Recipe(name, numberOfPortions, instruction, ingredients, categories,
         preparationTime);
     recipeImageData.stream()
-        .map(image -> new RecipeImage(image.getFileName(), image.getImageData(),
-            image.getContentType()))
+        .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
         .forEach(recipe::addImage);
     return recipe;
   }
