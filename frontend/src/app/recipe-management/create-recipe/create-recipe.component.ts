@@ -8,6 +8,7 @@ import {Recipe} from '../recipe';
 import {UploadedImage} from '../../kub-common/image-upload/uploaded-image';
 import {TranslateService} from '@ngx-translate/core';
 import {RecipeImage} from '../recipe-image';
+import {InstructionStep} from '../instruction-step';
 
 
 @Component({
@@ -17,8 +18,9 @@ import {RecipeImage} from '../recipe-image';
 })
 export class CreateRecipeComponent {
 
-  newRecipe = new Recipe('', '', null, '', [], [], [], null, null);
+  newRecipe = new Recipe('', '', null, [], [], [], [], null, null);
   newIngredient = new Ingredient('', null, '');
+  newInstructionStep = new InstructionStep(1, "");
   categoriesAsCommaSeparatedString = '';
 
   @Output()
@@ -33,6 +35,7 @@ export class CreateRecipeComponent {
   }
 
   @ViewChild('ingredientForm') ingredientForm: NgForm;
+  @ViewChild('instructionStepForm') instructionStepForm: NgForm;
   @ViewChild('recipeForm') recipeForm: NgForm;
 
   constructor(private snackBar: MatSnackBar,
@@ -41,12 +44,23 @@ export class CreateRecipeComponent {
 
   addIngredient(): void {
     this.newRecipe.ingredients.push(this.newIngredient);
-    this.resetIngredientForm();
+    this.initializeIngredientForm();
   }
 
-  resetFormIfEmpty() {
+  addInstructionStep() {
+    this.newRecipe.instructionSteps.push(this.newInstructionStep);
+    this.initializeInstructionStepForm();
+  }
+
+  resetIngredientFormIfEmpty() {
     if (!this.newIngredient.name && !this.newIngredient.unitOfMeasurement && !this.newIngredient.amount) {
       this.ingredientForm.resetForm();
+    }
+  }
+
+  resetInstructionStepFormIfEmpty() {
+    if (!this.newInstructionStep.stepInstruction) {
+      this.instructionStepForm.resetForm();
     }
   }
 
@@ -55,6 +69,20 @@ export class CreateRecipeComponent {
     if (index > -1) {
       this.newRecipe.ingredients.splice(index, 1);
     }
+  }
+
+  removeInstructionStep(instructionStepToRemove: InstructionStep) {
+    let instructionStepsWithoutRemovedStepOrderedBySequenceNumber = this.newRecipe.instructionSteps
+    .filter(step => step !== instructionStepToRemove)
+    .sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+
+    let newSequenceNumber = 1;
+    let newInstructionSteps = [];
+    for (const instructionStep of instructionStepsWithoutRemovedStepOrderedBySequenceNumber) {
+      newInstructionSteps.push(new InstructionStep(newSequenceNumber, instructionStep.stepInstruction));
+      newSequenceNumber++;
+    }
+    this.newRecipe.instructionSteps = newInstructionSteps;
   }
 
   onSubmit() {
@@ -68,7 +96,8 @@ export class CreateRecipeComponent {
     if (createRecipeResult) {
       switch (createRecipeResult.state) {
         case ResponseResultState.SUCCESS:
-          this.resetIngredientForm();
+          this.initializeIngredientForm();
+          this.initializeInstructionStepForm();
           this.resetRecipeForm();
           this.onRecipeSuccessFullyCreated.emit();
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
@@ -103,13 +132,19 @@ export class CreateRecipeComponent {
     this.newRecipe.images = this.newRecipe.images.filter(image => image !== imageToDelete)
   }
 
-  private resetIngredientForm() {
+  private initializeIngredientForm() {
     this.newIngredient = new Ingredient('', null, '');
     this.ingredientForm.resetForm();
   }
 
+  private initializeInstructionStepForm() {
+    let highestExistingSequenceNumber = Math.max(...this.newRecipe.instructionSteps.map(step => step.sequenceNumber));
+    this.newInstructionStep = new InstructionStep(++highestExistingSequenceNumber, this.newInstructionStep.stepInstruction);
+    this.instructionStepForm.resetForm();
+  }
+
   private resetRecipeForm() {
-    this.newRecipe = new Recipe('', '', null, '', [], [], [], null, null);
+    this.newRecipe = new Recipe('', '', null, [], [], [], [], null, null);
     this.categoriesAsCommaSeparatedString = '';
     this.recipeForm.resetForm();
   }

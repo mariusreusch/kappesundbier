@@ -21,11 +21,11 @@
                [(ngModel)]="recipe.numberOfPortions">
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
-          <input mat-line matInput
-                    name="preparationTime"
-                    placeholder="{{'Recipe.PreparationTimeInMinutes' | translate}}"
-                    type="number"
-                    [(ngModel)]="recipe.preparationTime">
+        <input mat-line matInput
+               name="preparationTime"
+               placeholder="{{'Recipe.PreparationTimeInMinutes' | translate}}"
+               type="number"
+               [(ngModel)]="recipe.preparationTime">
       </mat-form-field>
       <mat-form-field class="kub-full-width-input">
         <input mat-line matInput
@@ -34,14 +34,33 @@
                name="categoriesAsCommaSeparatedString"
                [(ngModel)]="categoriesAsCommaSeparatedString">
       </mat-form-field>
+    </form>
+
+
+    <h3 translate>Recipe.Instruction</h3>
+    <mat-list class="kub-list">
+      <mat-list-item *ngFor="let instructionStep of getInstructionStepsOrderedBySequence()">
+        <div mat-line>
+          {{instructionStep.stepInstruction}}
+          <mat-icon class="kub-icon-btn kub-remove-btn" (click)="removeInstructionStep(instructionStep)">clear
+          </mat-icon>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <form #instructionStepForm="ngForm" (ngSubmit)="addInstructionStep()" onsubmit="stepInstruction.focus()">
       <mat-form-field class="kub-full-width-input">
         <textarea matInput
-                  name="instruction"
-                  placeholder="{{'Recipe.Instruction' | translate}}"
-                  rows="4"
-                  [(ngModel)]="recipe.instruction">
+                  name="stepInstruction"
+                  placeholder="{{'Recipe.StepInstruction' | translate}}"
+                  [(ngModel)]="newInstructionStep.stepInstruction"
+                  rows="4">
         </textarea>
       </mat-form-field>
+      <button [disabled]="!instructionStepForm.form.valid"
+              mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
     </form>
 
     <h3 translate>Recipe.Ingredients</h3>

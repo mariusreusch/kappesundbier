@@ -21,7 +21,9 @@ public class Recipe {
   private int numberOfPortions;
   @ManyToMany(fetch = EAGER, cascade = ALL)
   private Set<Ingredient> ingredients;
-  private String instruction;
+  @OneToMany(cascade = ALL, orphanRemoval = true)
+  @JoinColumn(name = "fk_recipe_id")
+  private Set<InstructionStep> instructionSteps;
   @ManyToMany(fetch = EAGER, cascade = ALL)
   private Set<RecipeCategory> categories;
   private ZonedDateTime creationDate;
@@ -35,11 +37,11 @@ public class Recipe {
   private Recipe() {
   }
 
-  public Recipe(String name, int numberOfPortions, String instruction, Set<Ingredient> ingredients,
+  public Recipe(String name, int numberOfPortions, Set<InstructionStep> instructionSteps, Set<Ingredient> ingredients,
       Set<RecipeCategory> categories, PreparationTime preparationTime) {
     this.name = Objects.requireNonNull(name);
     this.numberOfPortions = numberOfPortions;
-    this.instruction = Objects.requireNonNull(instruction);
+    this.instructionSteps = new HashSet<>(instructionSteps);
     this.ingredients = new HashSet<>(ingredients);
     this.categories = new HashSet<>(requireNotEmpty(categories));
     this.preparationTime = preparationTime;
@@ -86,12 +88,13 @@ public class Recipe {
     this.ingredients = ingredients;
   }
 
-  public String getInstruction() {
-    return instruction;
+  public Set<InstructionStep> getInstructionSteps() {
+    return instructionSteps;
   }
 
-  public void setInstruction(String instruction) {
-    this.instruction = instruction;
+  public void setInstructionSteps(Set<InstructionStep> instructionSteps) {
+    this.instructionSteps.clear();
+    this.instructionSteps.addAll(instructionSteps);
   }
 
   public Set<RecipeCategory> getCategories() {

@@ -32,24 +32,44 @@
                required
                [(ngModel)]="categoriesAsCommaSeparatedString">
       </mat-form-field>
+    </form>
+
+    <h3 translate>Recipe.Instruction</h3>
+    <mat-list class="kub-list">
+      <mat-list-item *ngFor="let instructionStep of newRecipe.instructionSteps">
+        <div mat-line>
+          {{instructionStep.stepInstruction}}
+          <mat-icon class="kub-icon-btn kub-remove-btn" (click)="removeInstructionStep(instructionStep)">clear
+          </mat-icon>
+        </div>
+      </mat-list-item>
+    </mat-list>
+
+    <form #instructionStepForm="ngForm" (ngSubmit)="addInstructionStep()" onsubmit="stepInstruction.focus()">
       <mat-form-field class="kub-full-width-input">
         <textarea matInput
-                  name="instruction"
-                  placeholder="{{'Recipe.Instruction' | translate}}"
+                  name="stepInstruction"
+                  placeholder="{{'Recipe.StepInstruction' | translate}}"
+                  (blur)="resetInstructionStepFormIfEmpty()"
+                  [(ngModel)]="newInstructionStep.stepInstruction"
                   rows="4"
-                  [(ngModel)]="newRecipe.instruction">
-          </textarea>
+                  required>
+        </textarea>
       </mat-form-field>
+      <button [disabled]="!instructionStepForm.form.valid"
+              mat-mini-fab>
+        <mat-icon>add</mat-icon>
+      </button>
     </form>
 
     <h3 translate>Recipe.Ingredients</h3>
-    <mat-list class="kub-ingredient-list">
+    <mat-list class="kub-list">
       <mat-list-item *ngFor="let ingredient of newRecipe.ingredients">
         <div mat-line style="display: flex;">
           <div style="display: flex; align-items: center;">{{ingredient.amount}} {{ingredient.unitOfMeasurement}}
             {{ingredient.name}}
           </div>
-          <mat-icon class="kub-icon-btn kub-remove-ingredient-btn" (click)="removeIngredient(ingredient)">clear
+          <mat-icon class="kub-icon-btn kub-remove-btn" (click)="removeIngredient(ingredient)">clear
           </mat-icon>
         </div>
       </mat-list-item>
@@ -61,7 +81,7 @@
                placeholder="{{'Recipe.Amount' | translate}}"
                type="number"
                name="ingredientAmount"
-               (blur)="resetFormIfEmpty()"
+               (blur)="resetIngredientFormIfEmpty()"
                [(ngModel)]="newIngredient.amount"
                required>
       </mat-form-field>
@@ -69,7 +89,7 @@
         <input matInput
                placeholder="{{'Recipe.MeasuringUnit' | translate}}"
                name="measuringUnit"
-               (blur)="resetFormIfEmpty()"
+               (blur)="resetIngredientFormIfEmpty()"
                [(ngModel)]="newIngredient.unitOfMeasurement"
                required>
       </mat-form-field>
@@ -77,7 +97,7 @@
         <input matInput
                placeholder="{{'Common.Name' | translate}}"
                name="ingredientName"
-               (blur)="resetFormIfEmpty()"
+               (blur)="resetIngredientFormIfEmpty()"
                [(ngModel)]="newIngredient.name"
                required>
       </mat-form-field>

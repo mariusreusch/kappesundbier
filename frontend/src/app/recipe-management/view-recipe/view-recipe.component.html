@@ -19,9 +19,13 @@
       {{recipe.preparationTime}}
     </div>
 
-    <div *ngIf="recipe.instruction" class="kub-attribute">
+    <div *ngIf="recipe.instructionSteps && recipe.instructionSteps.length > 0" class="kub-attribute">
       <span class="kub-attribute-label">{{'Recipe.Instruction' | translate}}</span>
-      {{recipe.instruction}}
+      <mat-list>
+        <mat-list-item *ngFor="let instructionStep of getInstructionStepsOrderedBySequence()">
+          {{instructionStep.stepInstruction}}
+        </mat-list-item>
+      </mat-list>
     </div>
 
     <div *ngIf="recipe.ingredients && recipe.ingredients.length > 0" class="kub-attribute">

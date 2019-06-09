@@ -1,13 +1,14 @@
-import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
-import { Ingredient } from '../ingredient';
-import { Recipe } from '../recipe';
-import { NgForm } from '@angular/forms';
-import { EditRecipeResult } from '../edit-recipe-result';
-import { ResponseResultState } from '../response-result-state';
-import { TranslateService } from '@ngx-translate/core';
-import { MatSnackBar } from '@angular/material';
-import { UploadedImage } from '../../kub-common/image-upload/uploaded-image';
-import { RecipeImage } from '../recipe-image';
+import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
+import {Ingredient} from '../ingredient';
+import {Recipe} from '../recipe';
+import {NgForm} from '@angular/forms';
+import {EditRecipeResult} from '../edit-recipe-result';
+import {ResponseResultState} from '../response-result-state';
+import {TranslateService} from '@ngx-translate/core';
+import {MatSnackBar} from '@angular/material';
+import {UploadedImage} from '../../kub-common/image-upload/uploaded-image';
+import {RecipeImage} from '../recipe-image';
+import {InstructionStep} from '../instruction-step';
 
 @Component({
   selector: 'kub-edit-recipe',
@@ -17,6 +18,7 @@ import { RecipeImage } from '../recipe-image';
 export class EditRecipeComponent {
 
   newIngredient = new Ingredient('', null, '');
+  newInstructionStep: InstructionStep;
   categoriesAsCommaSeparatedString = '';
 
   @Input() recipe: Recipe;
@@ -25,6 +27,7 @@ export class EditRecipeComponent {
   @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
 
   @ViewChild('ingredientForm') ingredientForm: NgForm;
+  @ViewChild('instructionStepForm') instructionStepForm: NgForm;
   @ViewChild('recipeForm') recipeForm: NgForm;
 
   @Input('recipe')
@@ -32,6 +35,8 @@ export class EditRecipeComponent {
     if (recipe != null) {
       this.recipe = recipe;
       this.categoriesAsCommaSeparatedString = this.recipe.categories.join(', ');
+      let highestExistingSequenceNumber = Math.max(0, ...this.recipe.instructionSteps.map(step => step.sequenceNumber));
+      this.newInstructionStep = new InstructionStep(++highestExistingSequenceNumber, "")
     }
   }
 
@@ -46,7 +51,7 @@ export class EditRecipeComponent {
 
   addIngredient(): void {
     this.recipe.ingredients.push(this.newIngredient);
-    this.resetIngredientForm();
+    this.initializeIngredientForm();
   }
 
   removeIngredient(ingredientToRemove: Ingredient): void {
@@ -54,6 +59,25 @@ export class EditRecipeComponent {
     if (index > -1) {
       this.recipe.ingredients.splice(index, 1);
     }
+  }
+
+  addInstructionStep() {
+    this.recipe.instructionSteps.push(this.newInstructionStep);
+    this.initializeInstructionStepForm();
+  }
+
+  removeInstructionStep(instructionStepToRemove: InstructionStep) {
+    let instructionStepsWithoutRemovedStepOrderedBySequenceNumber = this.recipe.instructionSteps
+    .filter(step => step !== instructionStepToRemove)
+    .sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+
+    let newSequenceNumber = 1;
+    let newInstructionSteps = [];
+    for (const instructionStep of instructionStepsWithoutRemovedStepOrderedBySequenceNumber) {
+      newInstructionSteps.push(new InstructionStep(newSequenceNumber, instructionStep.stepInstruction));
+      newSequenceNumber++;
+    }
+    this.recipe.instructionSteps = newInstructionSteps;
   }
 
   onSubmit() {
@@ -78,11 +102,16 @@ export class EditRecipeComponent {
     this.recipe.images = this.recipe.images.filter(image => image !== imageToDelete)
   }
 
+  getInstructionStepsOrderedBySequence() {
+    return this.recipe.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+  }
+
   private handleEditRecipeResult(editRecipeResult: EditRecipeResult) {
     if (editRecipeResult) {
       switch (editRecipeResult.state) {
         case ResponseResultState.SUCCESS:
-          this.resetIngredientForm();
+          this.initializeIngredientForm();
+          this.initializeInstructionStepForm();
           this.resetRecipeForm();
           this.onRecipeSuccessfullyEdited.emit();
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
@@ -109,13 +138,19 @@ export class EditRecipeComponent {
     }
   }
 
-  private resetIngredientForm() {
+  private initializeInstructionStepForm() {
+    let highestExistingSequenceNumber = Math.max(...this.recipe.instructionSteps.map(step => step.sequenceNumber));
+    this.newInstructionStep = new InstructionStep(++highestExistingSequenceNumber, this.newInstructionStep.stepInstruction);
+    this.instructionStepForm.resetForm();
+  }
+
+  private initializeIngredientForm() {
     this.newIngredient = new Ingredient('', null, '');
     this.ingredientForm.resetForm();
   }
 
   private resetRecipeForm() {
-    this.recipe = new Recipe('', '', null, '', [], [], [], null, null);
+    this.recipe = new Recipe('', '', null, [], [], [], [], null, null);
     this.categoriesAsCommaSeparatedString = '';
     this.recipeForm.resetForm();
   }

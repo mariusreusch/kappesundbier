@@ -2,11 +2,11 @@
   width: 100%;
 }
 
-.kub-remove-ingredient-btn {
+.kub-remove-btn {
   display: flex;
   align-items: center;
 }
 
-.kub-ingredient-list * {
+.kub-list * {
   font-size: 14px;
 }

@@ -37,4 +37,8 @@ export class ViewRecipeComponent {
       }
     });
   }
+
+  getInstructionStepsOrderedBySequence() {
+    return this.recipe.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+  }
 }

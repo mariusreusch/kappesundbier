@@ -15,7 +15,7 @@ public class RecipeDto {
   private String id;
   private String name;
   private int numberOfPortions;
-  private String instruction;
+  private Set<InstructionStepDto> instructionSteps;
   private Set<IngredientDto> ingredients = new HashSet<>();
   private Set<String> categories = new HashSet<>();
   private PreparationTime preparationTime;
@@ -25,13 +25,13 @@ public class RecipeDto {
   private RecipeDto() {
   }
 
-  private RecipeDto(String id, String name, int numberOfPortions, String instruction,
+  private RecipeDto(String id, String name, int numberOfPortions, Set<InstructionStepDto> instructionSteps,
       Set<IngredientDto> ingredients, Set<String> categories, PreparationTime preparationTime,
       ZonedDateTime creationDate) {
     this.id = id;
     this.name = name;
     this.numberOfPortions = numberOfPortions;
-    this.instruction = instruction;
+    this.instructionSteps = instructionSteps;
     this.ingredients = new HashSet<>(ingredients);
     this.categories = new HashSet<>(categories);
     this.preparationTime = preparationTime;
@@ -54,8 +54,8 @@ public class RecipeDto {
     return ingredients;
   }
 
-  public String getInstruction() {
-    return instruction;
+  public Set<InstructionStepDto> getInstructionSteps() {
+    return instructionSteps;
   }
 
   public Set<String> getCategories() {
@@ -71,12 +71,10 @@ public class RecipeDto {
   }
 
   public Recipe toRecipeWithImages(List<RecipeImageDto> recipeImageData) {
-    Set<Ingredient> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient)
-        .collect(toSet());
-    Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new)
-        .collect(toSet());
-    Recipe recipe = new Recipe(name, numberOfPortions, instruction, ingredients, categories,
-        preparationTime);
+    Set<Ingredient> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient).collect(toSet());
+    Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new).collect(toSet());
+    Set<InstructionStep> instructionSteps = this.instructionSteps.stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
+    Recipe recipe = new Recipe(name, numberOfPortions, instructionSteps, ingredients, categories, preparationTime);
     recipeImageData.stream()
         .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
         .forEach(recipe::addImage);
@@ -84,12 +82,12 @@ public class RecipeDto {
   }
 
   public static RecipeDto from(Recipe recipe) {
-    Set<IngredientDto> ingredients = recipe.getIngredients().stream().map(IngredientDto::from)
-        .collect(toSet());
-    Set<String> categories = recipe.getCategories().stream().map(RecipeCategory::getName)
-        .collect(toSet());
+    Set<IngredientDto> ingredients = recipe.getIngredients().stream().map(IngredientDto::from).collect(toSet());
+    Set<String> categories = recipe.getCategories().stream().map(RecipeCategory::getName).collect(toSet());
+    Set<InstructionStepDto> instructionSteps = recipe.getInstructionSteps().stream().map(InstructionStepDto::from).collect(toSet());
+
     return new RecipeDto(recipe.getId().toString(), recipe.getName(), recipe.getNumberOfPortions(),
-        recipe.getInstruction(), ingredients, categories,
+        instructionSteps, ingredients, categories,
         recipe.getPreparationTime(), recipe.getCreationDate());
   }
 }

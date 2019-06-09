@@ -2,8 +2,10 @@ package ch.pama.cookncode.service;
 
 import ch.pama.cookncode.domain.*;
 import ch.pama.cookncode.rest.dto.IngredientDto;
+import ch.pama.cookncode.rest.dto.InstructionStepDto;
 import ch.pama.cookncode.rest.dto.RecipeDto;
 import ch.pama.cookncode.rest.dto.RecipeImageDto;
+import javax.transaction.Transactional;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -15,6 +17,7 @@ import static java.util.stream.Collectors.toList;
 import static java.util.stream.Collectors.toSet;
 
 @Service
+@Transactional
 public class RecipeService {
 
   private final RecipeRepository recipeRepository;
@@ -59,17 +62,15 @@ public class RecipeService {
     assertRecipeBelongsToUser(user, recipe);
 
     Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
-
     Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
-
-    Set<RecipeImage> recipeImages = recipeImageData.stream()
-        .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
+    Set<RecipeImage> recipeImages = recipeImageData.stream().map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
         .collect(toSet());
+    Set<InstructionStep> instructionSteps = recipeDto.getInstructionSteps().stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
 
     recipe.setName(recipeDto.getName());
     recipe.setCategories(categories);
     recipe.setIngredients(ingredients);
-    recipe.setInstruction(recipeDto.getInstruction());
+    recipe.setInstructionSteps(instructionSteps);
     recipe.setNumberOfPortions(recipeDto.getNumberOfPortions());
     recipe.setRecipeImages(recipeImages);
     recipe.setPreparationTime(recipeDto.getPreparationTime());
