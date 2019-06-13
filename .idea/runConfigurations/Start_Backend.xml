@@ -1,10 +1,10 @@
 <component name="ProjectRunConfigurationManager">
   <configuration default="false" name="Start Backend" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot">
-    <extension name="coverage" enabled="false" merge="false" sample_coverage="true" runner="idea" />
+    <module name="cookncode.main" />
     <option name="SPRING_BOOT_MAIN_CLASS" value="ch.pama.cookncode.KappesUndBierApp" />
     <option name="ALTERNATIVE_JRE_PATH" />
-    <module name="cookncode_main" />
-    <envs />
-    <method />
+    <method v="2">
+      <option name="Make" enabled="true" />
+    </method>
   </configuration>
 </component>
