@@ -26,9 +26,9 @@ export class EditRecipeComponent {
   @Output() onRecipeEdit = new EventEmitter<Recipe>();
   @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
 
-  @ViewChild('ingredientForm') ingredientForm: NgForm;
-  @ViewChild('instructionStepForm') instructionStepForm: NgForm;
-  @ViewChild('recipeForm') recipeForm: NgForm;
+  @ViewChild('ingredientForm', { static: false }) ingredientForm: NgForm;
+  @ViewChild('instructionStepForm', { static: false }) instructionStepForm: NgForm;
+  @ViewChild('recipeForm', { static: false }) recipeForm: NgForm;
 
   @Input('recipe')
   set setRecipe(recipe: Recipe) {

@@ -34,9 +34,9 @@ export class CreateRecipeComponent {
     this.handleCreateRecipeResult(createRecipeResult)
   }
 
-  @ViewChild('ingredientForm') ingredientForm: NgForm;
-  @ViewChild('instructionStepForm') instructionStepForm: NgForm;
-  @ViewChild('recipeForm') recipeForm: NgForm;
+  @ViewChild('ingredientForm', { static: true }) ingredientForm: NgForm;
+  @ViewChild('instructionStepForm', { static: true }) instructionStepForm: NgForm;
+  @ViewChild('recipeForm', { static: true }) recipeForm: NgForm;
 
   constructor(private snackBar: MatSnackBar,
               private translate: TranslateService) {
