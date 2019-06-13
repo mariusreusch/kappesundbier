@@ -4,20 +4,18 @@ def clientRoot = file("${project.rootDir}/frontend")
 def clientDist = file("${clientRoot.getAbsolutePath()}/dist")
 
 node {
-    version = '8.12.0'
-    yarnVersion = '1.9.4'
+    version = '10.16.0'
+    npmVersion = '6.9.0'
     distBaseUrl = 'https://nodejs.org/dist'
     // If false, it will try to use globally installed node.
     download = true
     // Set the work directory for unpacking node
     workDir = new File(clientRoot, ".gradle/nodejs")
-    // Set the work directory for unpacking yarn
-    yarnWorkDir = new File(clientRoot, ".gradle/yarn")
-    // Set the work directory where node_modules should be located
+    npmWorkDir = file(".gradle/npm")
     nodeModulesDir = clientRoot
 }
 
-task clientBuild(type: YarnTask) {
+task clientBuild(type: NpmTask) {
     group = 'Client'
 
     description = 'Builds the client'
@@ -33,7 +31,7 @@ task clientArtifacts(type: Copy) {
     into "build/classes/static"
 }
 
-yarn_install.dependsOn yarnSetup
-clientBuild.dependsOn yarn_install
+npm_install.dependsOn npmSetup
+clientBuild.dependsOn npm_install
 clientArtifacts.dependsOn clientBuild
 
