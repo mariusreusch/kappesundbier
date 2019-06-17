@@ -8,9 +8,7 @@ plugins {
 apply from: "frontend.gradle"
 
 bootJar {
-    baseName = 'cookncode'
     version = '0.1.0'
-    archiveName = baseName + '.jar'
     into("static") {
         from clientArtifacts
     }

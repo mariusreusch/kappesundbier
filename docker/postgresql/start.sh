@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 cd "${0%/*}"
-docker stop cooksql || true &&
-docker rm cooksql || true &&
-docker build -t cooksql . &&
-docker run -d --name cooksql -p 5432:5432 cooksql
+docker stop kappesundbierdb || true &&
+docker rm kappesundbierdb || true &&
+docker build -t kappesundbierdb . &&
+docker run -d --name kappesundbierdb -p 5432:5432 kappesundbierdb

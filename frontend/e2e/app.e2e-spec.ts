@@ -1,10 +1,10 @@
-import { CookncodePage } from './app.po';
+import { KappesUndBierPage } from './app.po';
 
-describe('cookncode App', () => {
-  let page: CookncodePage;
+describe('kappesundbier App', () => {
+  let page: KappesUndBierPage;
 
   beforeEach(() => {
-    page = new CookncodePage();
+    page = new KappesUndBierPage();
   });
 
   it('should display welcome message', done => {

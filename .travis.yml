@@ -15,7 +15,7 @@ jdk:
 - oraclejdk8
 
 before_script:
- - psql -c 'create database cookncode;' -U postgres
+ - psql -c 'create database kappesundbier;' -U postgres
 
 before_cache:
 - rm -f  $HOME/.gradle/caches/modules-2/modules-2.lock

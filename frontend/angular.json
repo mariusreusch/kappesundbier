@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "cookncode": {
+    "kappesundbier": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -48,18 +48,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "cookncode:build"
+            "browserTarget": "kappesundbier:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "cookncode:build:production"
+              "browserTarget": "kappesundbier:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "cookncode:build"
+            "browserTarget": "kappesundbier:build"
           }
         },
         "test": {
@@ -91,7 +91,7 @@
         }
       }
     },
-    "cookncode-e2e": {
+    "kappesundbier-e2e": {
       "root": "e2e",
       "sourceRoot": "e2e",
       "projectType": "application",
@@ -100,7 +100,7 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "./protractor.conf.js",
-            "devServerTarget": "cookncode:serve"
+            "devServerTarget": "kappesundbier:serve"
           }
         },
         "lint": {
@@ -115,7 +115,7 @@
       }
     }
   },
-  "defaultProject": "cookncode",
+  "defaultProject": "kappesundbier",
   "schematics": {
     "@schematics/angular:component": {
       "prefix": "app",
