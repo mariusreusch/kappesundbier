@@ -26,7 +26,7 @@ import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FO
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
-@RequestMapping("recipes")
+@RequestMapping("api/recipes")
 public class RecipeRestController {
 
   private final RecipeService recipeService;

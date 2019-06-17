@@ -6,9 +6,9 @@ import org.springframework.web.bind.annotation.RestController;
 import java.security.Principal;
 
 @RestController
-@RequestMapping("user")
 public class UserRestController {
 
+  @RequestMapping("/api/user")
   public Principal user(Principal principal) {
     return principal;
   }
