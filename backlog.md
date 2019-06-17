@@ -1,9 +1,8 @@
 ##Business
-- Make category mandatory
+- Export cookbook in epub format
 - Show thumbnail for each recipe
 - Show thumbnail for each category in category search screen
 - Better layout for ingredients and their deletion in edit and create mode
-- Enable formatting for instruction text
 - Introduce progress spinner
 - View / Edit Recipe: Show the first image on top of the details 
 - Persist image order
