@@ -5,7 +5,7 @@ import {MatSnackBar} from '@angular/material';
 import {CreateRecipeResult} from '../create-recipe-result';
 import {ResponseResultState} from '../response-result-state';
 import {Recipe} from '../recipe';
-import {UploadedImage} from '../../kub-common/image-upload/uploaded-image';
+import {UploadedImage} from '../../common/components/image-upload/uploaded-image';
 import {TranslateService} from '@ngx-translate/core';
 import {RecipeImage} from '../recipe-image';
 import {InstructionStep} from '../instruction-step';

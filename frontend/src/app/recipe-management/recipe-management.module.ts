@@ -6,10 +6,10 @@ import {RecipeOverviewComponent} from './recipe-overview/recipe-overview.compone
 import {CreateRecipeComponent} from './create-recipe/create-recipe.component';
 import {RecipeOverviewSmartComponent} from './recipe-overview/recipe-overview-smart.component';
 import {ViewRecipeSmartComponent} from './view-recipe/view-recipe-smart.component';
-import {KubMaterialModule} from '../kub-material/kub-material.module';
+import {KubMaterialModule} from '../common/material/kub-material.module';
 import {HttpClientModule} from '@angular/common/http';
 import {FormsModule} from '@angular/forms';
-import {KubCommonModule} from '../kub-common/kub-common.module';
+import {KubComponentsModule} from '../common/components/kub-components.module';
 import {TranslateModule} from '@ngx-translate/core';
 import {RecipeService} from './recipe-service';
 import {ViewRecipeComponent} from './view-recipe/view-recipe.component';
@@ -29,7 +29,7 @@ import {RecipeImagesComponent} from './recipe-images/recipe-images.component';
     HttpClientModule,
     RecipeManagementRoutingModule,
     KubMaterialModule,
-    KubCommonModule,
+    KubComponentsModule,
     TranslateModule
   ],
   declarations: [RecipeOverviewSmartComponent, CreateRecipeComponent, RecipeOverviewComponent, ViewRecipeSmartComponent,

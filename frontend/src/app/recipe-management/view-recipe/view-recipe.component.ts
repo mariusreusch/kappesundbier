@@ -1,7 +1,7 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Recipe } from '../recipe';
-import { YesNoDialogComponent } from '../../kub-common/yes-no-dialog/yes-no-dialog.component';
-import { MatDialog } from '@angular/material';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Recipe} from '../recipe';
+import {YesNoDialogComponent} from '../../common/components/yes-no-dialog/yes-no-dialog.component';
+import {MatDialog} from '@angular/material';
 
 @Component({
   selector: 'kub-view-recipe',

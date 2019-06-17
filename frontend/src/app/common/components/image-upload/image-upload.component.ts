@@ -1,5 +1,5 @@
-import { Component, EventEmitter, Output } from '@angular/core';
-import { UploadedImage } from './uploaded-image';
+import {Component, EventEmitter, Output} from '@angular/core';
+import {UploadedImage} from './uploaded-image';
 
 @Component({
   selector: 'kub-file-upload',

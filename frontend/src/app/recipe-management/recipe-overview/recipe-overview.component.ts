@@ -1,10 +1,10 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Recipe } from '../recipe';
-import { MatDialog, MatSnackBar } from '@angular/material';
-import { TranslateService } from '@ngx-translate/core';
-import { zip } from 'rxjs';
-import { ChipListItem } from '../../kub-common/chip-list/chip-list-item';
-import { User } from '../../authentication/user';
+import {Component, EventEmitter, Input, Output} from '@angular/core';
+import {Recipe} from '../recipe';
+import {MatDialog, MatSnackBar} from '@angular/material';
+import {TranslateService} from '@ngx-translate/core';
+import {zip} from 'rxjs';
+import {ChipListItem} from '../../common/components/chip-list/chip-list-item';
+import {User} from '../../authentication/user';
 
 @Component({
   selector: 'kub-recipe-overview',

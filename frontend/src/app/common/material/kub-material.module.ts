@@ -6,12 +6,13 @@ import {
   MatIconModule,
   MatInputModule,
   MatListModule,
-  MatSidenavModule, MatSnackBar,
+  MatSidenavModule,
+  MatSnackBar,
   MatSnackBarModule,
   MatToolbarModule
 } from '@angular/material';
 
-import { NgModule } from '@angular/core';
+import {NgModule} from '@angular/core';
 
 const kubMaterialModules = [MatButtonModule, MatCardModule, MatInputModule, MatToolbarModule, MatIconModule,
   MatSnackBarModule, MatChipsModule, MatSidenavModule, MatListModule, MatDialogModule];

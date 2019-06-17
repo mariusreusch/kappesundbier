@@ -6,7 +6,7 @@ import {EditRecipeResult} from '../edit-recipe-result';
 import {ResponseResultState} from '../response-result-state';
 import {TranslateService} from '@ngx-translate/core';
 import {MatSnackBar} from '@angular/material';
-import {UploadedImage} from '../../kub-common/image-upload/uploaded-image';
+import {UploadedImage} from '../../common/components/image-upload/uploaded-image';
 import {RecipeImage} from '../recipe-image';
 import {InstructionStep} from '../instruction-step';
 
