@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { RecipeService } from '../recipe-service';
+import { RecipeService } from '../recipe-management/recipe-service';
 import { Observable } from 'rxjs';
-import { Recipe } from '../recipe';
-import { UserService } from '../../authentication/user.service';
-import { User } from '../../authentication/user';
+import { Recipe } from '../recipe-management/recipe';
+import { UserService } from '../authentication/user.service';
+import { User } from '../authentication/user';
 import { Router } from '@angular/router';
 
 @Component({

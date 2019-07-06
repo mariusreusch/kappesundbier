@@ -1,6 +1,6 @@
-<div class="mt-1" translate *ngIf="recipes && recipes.length < 1">Recipe.NoRecipesCreated</div>
+<div class="mt-1" translate *ngIf="_recipes && _recipes.length < 1">Recipe.NoRecipesCreated</div>
 <mat-list>
-  <mat-list-item *ngFor="let recipe of recipes">
+  <mat-list-item *ngFor="let recipe of _recipes">
     <div style="display: flex;" mat-line>
       <button mat-button class="kub-recipe-name-button" (click)="onSelect(recipe)">{{recipe.name}}</button>
     </div>

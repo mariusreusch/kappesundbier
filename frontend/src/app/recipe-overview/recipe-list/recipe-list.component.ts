@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Recipe } from '../../recipe';
+import { Recipe } from '../../recipe-management/recipe';
 
 @Component({
   selector: 'kub-recipe-list',
@@ -8,12 +8,12 @@ import { Recipe } from '../../recipe';
 })
 export class RecipeListComponent {
 
-  recipes: Recipe[];
+  _recipes: Recipe[];
 
-  @Input('recipes')
-  set setMyRecipes(myRecipes: Recipe[]) {
-    if (myRecipes) {
-      this.recipes = this.orderByCreationDateDescending(myRecipes);
+  @Input()
+  set recipes(recipes: Recipe[]) {
+    if (recipes) {
+      this._recipes = this.orderByCreationDateDescending(recipes);
     }
   }
 

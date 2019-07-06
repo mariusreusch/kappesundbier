@@ -1,15 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { switchMap } from 'rxjs/operators';
-import { RecipeService } from '../recipe-service';
+import { RecipeService } from '../../recipe-management/recipe-service';
 import { Observable } from 'rxjs';
-import { Recipe } from '../recipe';
+import { Recipe } from '../../recipe-management/recipe';
 
 @Component({
   selector: 'kub-recipe-category-overview-smart',
-  templateUrl: './recipe-category-overview-smart.component.html'
+  templateUrl: './view-category-smart.component.html'
 })
-export class RecipeCategoryOverviewSmartComponent implements OnInit {
+export class ViewCategorySmartComponent implements OnInit {
 
   recipes: Observable<Recipe[]>;
   category: string;

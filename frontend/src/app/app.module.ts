@@ -12,6 +12,8 @@ import {AuthenticationModule} from './authentication/authentication.module';
 import {RecipeManagementModule} from './recipe-management/recipe-management.module';
 import {TranslateLoader, TranslateModule} from '@ngx-translate/core';
 import {TranslateHttpLoader} from '@ngx-translate/http-loader';
+import {CookbookManagementModule} from './cookbook-management/cookbook-management.module';
+import {RecipeOverviewModule} from './recipe-overview/recipe-overview.module';
 
 export function HttpLoaderFactory(http: HttpClient) {
   return new TranslateHttpLoader(http, 'assets/i18n/', '.json');
@@ -32,8 +34,10 @@ export function HttpLoaderFactory(http: HttpClient) {
     }),
     KubMaterialModule,
     AuthenticationModule,
+    RecipeOverviewModule,
     RecipeManagementModule,
-    WeekPlannerModule
+    WeekPlannerModule,
+    CookbookManagementModule
   ],
   entryComponents: [
     YesNoDialogComponent

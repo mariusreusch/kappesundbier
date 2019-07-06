@@ -1,12 +1,12 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { Recipe } from '../recipe';
+import { Recipe } from '../../recipe-management/recipe';
 
 @Component({
   selector: 'kub-recipe-category-overview',
-  templateUrl: './recipe-category-overview.component.html',
-  styleUrls: ['./recipe-category-overview.component.css']
+  templateUrl: './view-category.component.html',
+  styleUrls: ['./view-category.component.css']
 })
-export class RecipeCategoryOverviewComponent {
+export class ViewCategoryComponent {
 
   @Input() recipes: Recipe[];
   @Input() category: string;

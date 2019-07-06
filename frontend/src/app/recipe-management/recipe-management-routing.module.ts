@@ -1,23 +1,11 @@
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
-import { ViewRecipeSmartComponent } from './view-recipe/view-recipe-smart.component';
-import { AuthGuard } from '../authentication/auth-guard.service';
-import { RecipeOverviewSmartComponent } from './recipe-overview/recipe-overview-smart.component';
-import { EditRecipeSmartComponent } from './edit-recipe/edit-recipe-smart.component';
-import { CreateRecipeSmartComponent } from './create-recipe/create-recipe-smart.component';
-import { RecipeCategoryOverviewSmartComponent } from './recipe-category-overview/recipe-category-overview-smart.component';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
+import {ViewRecipeSmartComponent} from './view-recipe/view-recipe-smart.component';
+import {AuthGuard} from '../authentication/auth-guard.service';
+import {EditRecipeSmartComponent} from './edit-recipe/edit-recipe-smart.component';
+import {CreateRecipeSmartComponent} from './create-recipe/create-recipe-smart.component';
 
 const routes: Routes = [
-  {
-    path: '',
-    redirectTo: 'recipe-overview',
-    pathMatch: 'full'
-  },
-  {
-    path: 'recipe-overview',
-    component: RecipeOverviewSmartComponent,
-    canActivate: [AuthGuard]
-  },
   {
     path: 'view-recipe/:id',
     component: ViewRecipeSmartComponent,
@@ -27,12 +15,6 @@ const routes: Routes = [
   {
     path: 'edit-recipe/:id',
     component: EditRecipeSmartComponent,
-    canActivate: [AuthGuard]
-
-  },
-  {
-    path: 'recipe-category/:category-name',
-    component: RecipeCategoryOverviewSmartComponent,
     canActivate: [AuthGuard]
 
   },
