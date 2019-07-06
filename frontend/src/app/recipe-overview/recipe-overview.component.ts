@@ -4,7 +4,6 @@ import {MatDialog, MatSnackBar} from '@angular/material';
 import {TranslateService} from '@ngx-translate/core';
 import {zip} from 'rxjs';
 import {ChipListItem} from '../common/components/chip-list/chip-list-item';
-import {User} from '../authentication/user';
 
 @Component({
   selector: 'kub-recipe-overview',
@@ -14,8 +13,6 @@ import {User} from '../authentication/user';
 })
 export class RecipeOverviewComponent {
 
-  @Input()
-  user: User;
   @Input()
   recipes: Recipe[];
   @Output()

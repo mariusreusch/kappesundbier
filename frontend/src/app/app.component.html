@@ -7,6 +7,17 @@
   </a>
 </div>
 
+
+
 <div class="kub-area">
+
+  <div *ngIf="user">
+    <h1>
+      <small>Hello</small>
+      {{user.firstName}}.
+    </h1>
+  </div>
+
   <router-outlet></router-outlet>
+
 </div>
