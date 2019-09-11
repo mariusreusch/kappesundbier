@@ -1,14 +1,13 @@
 plugins {
     id 'java'
     id "com.moowork.node" version "1.3.1"
-    id 'org.springframework.boot' version '2.1.5.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.7.RELEASE'
+    id 'org.springframework.boot' version '2.1.8.RELEASE'
+    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
 }
 
 apply from: "frontend.gradle"
 
 bootJar {
-    version = '0.1.0'
     into("static") {
         from clientArtifacts
     }
@@ -26,10 +25,9 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.postgresql:postgresql")
     implementation("org.flywaydb:flyway-core")
-    implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.5.RELEASE")
+    implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.7.RELEASE")
     implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.6.RELEASE")
-    implementation("com.fasterxml.jackson.datatype:jackson-datatype-jsr310:2.9.9")
-    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.1")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2")
 
     runtime("org.springframework.boot:spring-boot-devtools")
 
