@@ -6,38 +6,38 @@ import ch.pama.kappesundbier.util.OnlyForFramework;
 
 public class IngredientDto {
 
-  private String name;
-  private Amount amount;
-  private String unitOfMeasurement;
+    private String name;
+    private Amount amount;
+    private String unitOfMeasurement;
 
-  @OnlyForFramework
-  private IngredientDto() {
-  }
+    @OnlyForFramework
+    private IngredientDto() {
+    }
 
-  private IngredientDto(String name, Amount amount, String unitOfMeasurement) {
-    this.name = name;
-    this.amount = amount;
-    this.unitOfMeasurement = unitOfMeasurement;
-  }
+    private IngredientDto(String name, Amount amount, String unitOfMeasurement) {
+        this.name = name;
+        this.amount = amount;
+        this.unitOfMeasurement = unitOfMeasurement;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public Amount getAmount() {
-    return amount;
-  }
+    public Amount getAmount() {
+        return amount;
+    }
 
-  public String getUnitOfMeasurement() {
-    return unitOfMeasurement;
-  }
+    public String getUnitOfMeasurement() {
+        return unitOfMeasurement;
+    }
 
-  public Ingredient toIngredient() {
-    return new Ingredient(name, amount, unitOfMeasurement);
-  }
+    public Ingredient toIngredient() {
+        return new Ingredient(name, amount, unitOfMeasurement);
+    }
 
-  static IngredientDto from(Ingredient ingredient) {
-    return new IngredientDto(ingredient.getName(), ingredient.getAmount(),
-        ingredient.getUnitOfMeasurement());
-  }
+    static IngredientDto from(Ingredient ingredient) {
+        return new IngredientDto(ingredient.getName(), ingredient.getAmount(),
+                ingredient.getUnitOfMeasurement());
+    }
 }

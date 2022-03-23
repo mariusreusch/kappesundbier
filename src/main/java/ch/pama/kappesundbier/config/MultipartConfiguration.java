@@ -11,19 +11,19 @@ import java.util.Arrays;
 @Configuration
 public class MultipartConfiguration {
 
-  @Bean
-  public MultipartResolver multipartResolverWithHttpPutSupport() {
-    return new StandardServletMultipartResolver() {
-      @Override
-      public boolean isMultipart(HttpServletRequest request) {
-        String method = request.getMethod().toLowerCase();
-        //By default, only POST is allowed. Since this is an 'update' we should accept PUT.
-        if (!Arrays.asList("put", "post").contains(method)) {
-          return false;
-        }
-        String contentType = request.getContentType();
-        return (contentType != null && contentType.toLowerCase().startsWith("multipart/"));
-      }
-    };
-  }
+    @Bean
+    public MultipartResolver multipartResolverWithHttpPutSupport() {
+        return new StandardServletMultipartResolver() {
+            @Override
+            public boolean isMultipart(HttpServletRequest request) {
+                String method = request.getMethod().toLowerCase();
+                //By default, only POST is allowed. Since this is an 'update' we should accept PUT.
+                if (!Arrays.asList("put", "post").contains(method)) {
+                    return false;
+                }
+                String contentType = request.getContentType();
+                return (contentType != null && contentType.toLowerCase().startsWith("multipart/"));
+            }
+        };
+    }
 }

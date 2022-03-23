@@ -1,8 +1,8 @@
 plugins {
     id 'java'
-    id "com.moowork.node" version "1.3.1"
-    id 'org.springframework.boot' version '2.1.8.RELEASE'
-    id 'io.spring.dependency-management' version '1.0.8.RELEASE'
+    id 'org.springframework.boot' version '2.6.4'
+    id 'io.spring.dependency-management' version '1.0.11.RELEASE'
+    id "com.github.node-gradle.node" version "3.2.1"
 }
 
 apply from: "frontend.gradle"
@@ -17,6 +17,11 @@ repositories {
     mavenCentral()
 }
 
+java {
+    sourceCompatibility = JavaVersion.VERSION_17
+    targetCompatibility = JavaVersion.VERSION_17
+}
+
 dependencies {
     implementation("org.springframework.boot:spring-boot-starter-data-jpa")
     implementation("org.springframework.boot:spring-boot-starter-actuator")
@@ -27,14 +32,21 @@ dependencies {
     implementation("org.flywaydb:flyway-core")
     implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.7.RELEASE")
     implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.6.RELEASE")
-    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:2.1.2")
-
-    runtime("org.springframework.boot:spring-boot-devtools")
+    implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
 
     testImplementation("org.springframework.boot:spring-boot-starter-test")
 }
 
-task startPostgresqlDockerImage(type: Exec) {
+tasks.named('test') {
+    useJUnitPlatform()
+}
+
+task startPostgresqlDockerImageWithDocker(type: Exec) {
     workingDir 'docker/postgresql'
-    commandLine './start.sh'
+    commandLine './start-local-db-with-docker.sh'
+}
+
+task startPostgresqlDockerImageWithLima(type: Exec) {
+    workingDir 'docker/postgresql'
+    commandLine './start-local-db-with-lima.sh'
 }

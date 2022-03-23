@@ -25,57 +25,57 @@ import javax.servlet.Filter;
 @EnableOAuth2Client
 public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
 
-  private final OAuth2ClientContext oauth2ClientContext;
+    private final OAuth2ClientContext oauth2ClientContext;
 
-  @Autowired
-  public OAuthConfiguration(OAuth2ClientContext oauth2ClientContext) {
-    this.oauth2ClientContext = oauth2ClientContext;
-  }
+    @Autowired
+    public OAuthConfiguration(OAuth2ClientContext oauth2ClientContext) {
+        this.oauth2ClientContext = oauth2ClientContext;
+    }
 
-  @Override
-  protected void configure(HttpSecurity http) throws Exception {
-    http.antMatcher("/**").authorizeRequests()
-        .antMatchers("/", "/*.js**", "/*.jpg", "/*.jpeg", "/*.css", "/**/*.png", "/assets/**")
-        .permitAll()
-        .anyRequest()
-        .authenticated().and().exceptionHandling()
-        .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")).and().logout()
-        .logoutSuccessUrl("/").permitAll().and().csrf()
-        .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
-        .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
-  }
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http.antMatcher("/**").authorizeRequests()
+                .antMatchers("/", "/*.js**", "/*.jpg", "/*.jpeg", "/*.css", "/**/*.png", "/assets/**")
+                .permitAll()
+                .anyRequest()
+                .authenticated().and().exceptionHandling()
+                .authenticationEntryPoint(new LoginUrlAuthenticationEntryPoint("/")).and().logout()
+                .logoutSuccessUrl("/").permitAll().and().csrf()
+                .csrfTokenRepository(CookieCsrfTokenRepository.withHttpOnlyFalse()).and()
+                .addFilterBefore(ssoFilter(), BasicAuthenticationFilter.class);
+    }
 
-  @Bean
-  public FilterRegistrationBean oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
-    FilterRegistrationBean registration = new FilterRegistrationBean();
-    registration.setFilter(filter);
-    registration.setOrder(-100);
-    return registration;
-  }
+    @Bean
+    public FilterRegistrationBean oauth2ClientFilterRegistration(OAuth2ClientContextFilter filter) {
+        FilterRegistrationBean registration = new FilterRegistrationBean();
+        registration.setFilter(filter);
+        registration.setOrder(-100);
+        return registration;
+    }
 
-  private Filter ssoFilter() {
-    OAuth2ClientAuthenticationProcessingFilter googleFilter = new OAuth2ClientAuthenticationProcessingFilter(
-        "/login/google");
-    OAuth2RestTemplate googleTemplate = new OAuth2RestTemplate(google(), oauth2ClientContext);
-    googleFilter.setRestTemplate(googleTemplate);
-    UserInfoTokenServices tokenServices = new UserInfoTokenServices(
-        googleResource().getUserInfoUri(),
-        google().getClientId());
-    tokenServices.setRestTemplate(googleTemplate);
-    googleFilter.setTokenServices(
-        new UserInfoTokenServices(googleResource().getUserInfoUri(), google().getClientId()));
-    return googleFilter;
-  }
+    private Filter ssoFilter() {
+        OAuth2ClientAuthenticationProcessingFilter googleFilter = new OAuth2ClientAuthenticationProcessingFilter(
+                "/login/google");
+        OAuth2RestTemplate googleTemplate = new OAuth2RestTemplate(google(), oauth2ClientContext);
+        googleFilter.setRestTemplate(googleTemplate);
+        UserInfoTokenServices tokenServices = new UserInfoTokenServices(
+                googleResource().getUserInfoUri(),
+                google().getClientId());
+        tokenServices.setRestTemplate(googleTemplate);
+        googleFilter.setTokenServices(
+                new UserInfoTokenServices(googleResource().getUserInfoUri(), google().getClientId()));
+        return googleFilter;
+    }
 
-  @Bean
-  @ConfigurationProperties("google.client")
-  public AuthorizationCodeResourceDetails google() {
-    return new AuthorizationCodeResourceDetails();
-  }
+    @Bean
+    @ConfigurationProperties("google.client")
+    public AuthorizationCodeResourceDetails google() {
+        return new AuthorizationCodeResourceDetails();
+    }
 
-  @Bean
-  @ConfigurationProperties("google.resource")
-  public ResourceServerProperties googleResource() {
-    return new ResourceServerProperties();
-  }
+    @Bean
+    @ConfigurationProperties("google.resource")
+    public ResourceServerProperties googleResource() {
+        return new ResourceServerProperties();
+    }
 }

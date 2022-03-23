@@ -1,5 +1,4 @@
 ##Business
-- Export cookbook in epub format
 - Show thumbnail for each recipe
 - Show thumbnail for each category in category search screen
 - Better layout for ingredients and their deletion in edit and create mode
@@ -10,10 +9,11 @@
 - Move ingredients above description
 - Week Planner
 - Share Recipes
+- Export cookbook in epub format
 
 ##Technical
-- Use spring security mechanism to get user in REST controller
-- Introduce state management (maybe redux)
+- Google Login Mock
+- Switch to Java 17
 - Keep URL when hot refresh
 - Deploy the artifact built with travis to heroku instead of building it on heroku again
 - Create e2e tests
@@ -23,6 +23,4 @@
 - Fix home screen icon on iPhone
 - Introduce "413 Entity Too Large" in image upload in case of too large images 
 - Logging mechanism for frontend error
-- Google Login Mock
-- Switch to Java 11 or Kotlin
 - Encrypt IDs in frontend

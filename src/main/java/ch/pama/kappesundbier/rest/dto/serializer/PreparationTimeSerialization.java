@@ -15,22 +15,22 @@ import java.math.BigDecimal;
 @JsonComponent
 public class PreparationTimeSerialization {
 
-  public static class PreparationTimeSerializer extends JsonSerializer<PreparationTime> {
+    public static class PreparationTimeSerializer extends JsonSerializer<PreparationTime> {
 
-    @Override
-    public void serialize(PreparationTime preparationTime, JsonGenerator jsonGenerator,
-        SerializerProvider provider) throws IOException {
-      jsonGenerator.writeNumber(preparationTime.getValue());
+        @Override
+        public void serialize(PreparationTime preparationTime, JsonGenerator jsonGenerator,
+                              SerializerProvider provider) throws IOException {
+            jsonGenerator.writeNumber(preparationTime.getValue());
+        }
     }
-  }
 
-  public static class PreparationTimeDeserializer extends JsonDeserializer<PreparationTime> {
+    public static class PreparationTimeDeserializer extends JsonDeserializer<PreparationTime> {
 
-    @Override
-    public PreparationTime deserialize(JsonParser jsonParser, DeserializationContext context)
-        throws IOException {
-      return new PreparationTime(new BigDecimal(jsonParser.getDoubleValue()));
+        @Override
+        public PreparationTime deserialize(JsonParser jsonParser, DeserializationContext context)
+                throws IOException {
+            return new PreparationTime(new BigDecimal(jsonParser.getDoubleValue()));
+        }
     }
-  }
 
 }

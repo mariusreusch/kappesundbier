@@ -1,11 +1,12 @@
 package ch.pama.kappesundbier.domain;
 
 import ch.pama.kappesundbier.util.OnlyForFramework;
-import java.util.Objects;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import java.util.Objects;
 
 @Entity
 public class InstructionStep {
@@ -43,8 +44,8 @@ public class InstructionStep {
         }
         InstructionStep that = (InstructionStep) o;
         return sequenceNumber == that.sequenceNumber &&
-            Objects.equals(id, that.id) &&
-            Objects.equals(stepInstruction, that.stepInstruction);
+                Objects.equals(id, that.id) &&
+                Objects.equals(stepInstruction, that.stepInstruction);
     }
 
     @Override

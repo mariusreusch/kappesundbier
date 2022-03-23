@@ -4,18 +4,18 @@ import ch.pama.kappesundbier.util.OnlyForFramework;
 
 public class DeletedRecipeIdDto {
 
-  private String deletedRecipeId;
+    private String deletedRecipeId;
 
-  public DeletedRecipeIdDto(String deletedRecipeId) {
-    this.deletedRecipeId = deletedRecipeId;
-  }
+    public DeletedRecipeIdDto(String deletedRecipeId) {
+        this.deletedRecipeId = deletedRecipeId;
+    }
 
-  @OnlyForFramework
-  private DeletedRecipeIdDto() {
-  }
+    @OnlyForFramework
+    private DeletedRecipeIdDto() {
+    }
 
-  @OnlyForFramework
-  public String getDeletedRecipeId() {
-    return deletedRecipeId;
-  }
+    @OnlyForFramework
+    public String getDeletedRecipeId() {
+        return deletedRecipeId;
+    }
 }

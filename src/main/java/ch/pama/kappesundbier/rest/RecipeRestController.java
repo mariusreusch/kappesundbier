@@ -3,8 +3,8 @@ package ch.pama.kappesundbier.rest;
 import ch.pama.kappesundbier.domain.User;
 import ch.pama.kappesundbier.domain.UserRepository;
 import ch.pama.kappesundbier.rest.dto.DeletedRecipeIdDto;
-import ch.pama.kappesundbier.rest.dto.RecipeImageDto;
 import ch.pama.kappesundbier.rest.dto.RecipeDto;
+import ch.pama.kappesundbier.rest.dto.RecipeImageDto;
 import ch.pama.kappesundbier.service.RecipeService;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.springframework.http.CacheControl;
@@ -29,114 +29,114 @@ import static org.springframework.http.HttpStatus.OK;
 @RequestMapping("api/recipes")
 public class RecipeRestController {
 
-  private final RecipeService recipeService;
-  private final UserRepository userRepository;
-  private final ObjectMapper objectMapper;
+    private final RecipeService recipeService;
+    private final UserRepository userRepository;
+    private final ObjectMapper objectMapper;
 
-  public RecipeRestController(RecipeService recipeService, UserRepository userRepository,
-      ObjectMapper objectMapper) {
-    this.recipeService = recipeService;
-    this.userRepository = userRepository;
-    this.objectMapper = objectMapper;
-  }
-
-  @PostMapping
-  public RecipeDto create(
-      @RequestParam("recipe") String recipeJSON,
-      @RequestParam("file") MultipartFile[] multipartFiles, Principal principal)
-      throws IOException {
-    User user = getOrCreateUser(principal);
-
-    RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
-
-    return recipeService.createRecipe(recipeDto, from(multipartFiles), user);
-  }
-
-  @GetMapping
-  public List<RecipeDto> findRecipes(@RequestParam(required = false) String category,
-      Principal principal) {
-    List<RecipeDto> allRecipes = findAll(principal);
-
-    if (StringUtils.isEmpty(category)) {
-      return allRecipes;
+    public RecipeRestController(RecipeService recipeService, UserRepository userRepository,
+                                ObjectMapper objectMapper) {
+        this.recipeService = recipeService;
+        this.userRepository = userRepository;
+        this.objectMapper = objectMapper;
     }
 
-    return allRecipes.stream()
-        .filter(recipe -> recipe.getCategories().contains(category))
-        .collect(toList());
-  }
+    @PostMapping
+    public RecipeDto create(
+            @RequestParam("recipe") String recipeJSON,
+            @RequestParam("file") MultipartFile[] multipartFiles, Principal principal)
+            throws IOException {
+        User user = getOrCreateUser(principal);
 
-  @GetMapping("/{id}")
-  public RecipeDto findById(@PathVariable String id, Principal principal) {
-    return findAll(principal).stream()
-        .filter(recipe -> recipe.getId().equals(id))
-        .findFirst()
-        .orElseThrow(IllegalArgumentException::new);
-  }
+        RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
 
-  @GetMapping("/{id}/images")
-  public ResponseEntity<List<RecipeImageDto>> findImagesByRecipeId(@PathVariable Long id,
-      Principal principal) {
-    User user = getOrCreateUser(principal);
-    List<RecipeImageDto> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
-
-    HttpHeaders headers = new HttpHeaders();
-
-    headers.setCacheControl(CacheControl.noCache().getHeaderValue());
-
-    return new ResponseEntity<>(imagesOfRecipe, headers, OK);
-  }
-
-  @PutMapping(value = "/{id}", consumes = MULTIPART_FORM_DATA)
-  public RecipeDto update(
-      @PathVariable Long id,
-      @RequestParam("recipe") String recipeJSON,
-      @RequestParam(value = "file", required = false) MultipartFile[] multipartFiles,
-      Principal principal) throws IOException {
-    User user = getOrCreateUser(principal);
-
-    RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
-
-    assertBodyAndPathIdAreEqual(id, recipeDto);
-
-    return recipeService.updateRecipe(recipeDto, from(multipartFiles), user);
-  }
-
-  @DeleteMapping("/{id}")
-  @ResponseStatus(OK)
-  public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
-    User user = getOrCreateUser(principal);
-
-    recipeService.deleteRecipe(id, user);
-
-    return new DeletedRecipeIdDto(id.toString());
-  }
-
-  private List<RecipeDto> findAll(Principal principal) {
-    User user = getOrCreateUser(principal);
-    return recipeService.findAllRecipesOfUser(user);
-  }
-
-  private User getOrCreateUser(Principal principal) {
-    String userId = principal.getName();
-    Optional<User> byProviderId = userRepository.findByProviderId(userId);
-    return byProviderId
-        .orElseGet(() -> userRepository.save(new User(userId)));
-  }
-
-  private List<RecipeImageDto> from(MultipartFile[] multipartFiles) throws IOException {
-    List<RecipeImageDto> recipeImageData = new ArrayList<>();
-    for (MultipartFile multipartFile : multipartFiles) {
-      recipeImageData.add(
-          new RecipeImageDto(multipartFile.getOriginalFilename(), multipartFile.getBytes(),
-              multipartFile.getContentType()));
+        return recipeService.createRecipe(recipeDto, from(multipartFiles), user);
     }
-    return recipeImageData;
-  }
 
-  private void assertBodyAndPathIdAreEqual(@PathVariable Long id, RecipeDto recipeDto) {
-    if (!Objects.equals(id, Long.valueOf(recipeDto.getId()))) {
-      throw new IllegalStateException("The id in the path doesn't match the id in the body.");
+    @GetMapping
+    public List<RecipeDto> findRecipes(@RequestParam(required = false) String category,
+                                       Principal principal) {
+        List<RecipeDto> allRecipes = findAll(principal);
+
+        if (StringUtils.isEmpty(category)) {
+            return allRecipes;
+        }
+
+        return allRecipes.stream()
+                .filter(recipe -> recipe.getCategories().contains(category))
+                .collect(toList());
     }
-  }
+
+    @GetMapping("/{id}")
+    public RecipeDto findById(@PathVariable String id, Principal principal) {
+        return findAll(principal).stream()
+                .filter(recipe -> recipe.getId().equals(id))
+                .findFirst()
+                .orElseThrow(IllegalArgumentException::new);
+    }
+
+    @GetMapping("/{id}/images")
+    public ResponseEntity<List<RecipeImageDto>> findImagesByRecipeId(@PathVariable Long id,
+                                                                     Principal principal) {
+        User user = getOrCreateUser(principal);
+        List<RecipeImageDto> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
+
+        HttpHeaders headers = new HttpHeaders();
+
+        headers.setCacheControl(CacheControl.noCache().getHeaderValue());
+
+        return new ResponseEntity<>(imagesOfRecipe, headers, OK);
+    }
+
+    @PutMapping(value = "/{id}", consumes = MULTIPART_FORM_DATA)
+    public RecipeDto update(
+            @PathVariable Long id,
+            @RequestParam("recipe") String recipeJSON,
+            @RequestParam(value = "file", required = false) MultipartFile[] multipartFiles,
+            Principal principal) throws IOException {
+        User user = getOrCreateUser(principal);
+
+        RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
+
+        assertBodyAndPathIdAreEqual(id, recipeDto);
+
+        return recipeService.updateRecipe(recipeDto, from(multipartFiles), user);
+    }
+
+    @DeleteMapping("/{id}")
+    @ResponseStatus(OK)
+    public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
+        User user = getOrCreateUser(principal);
+
+        recipeService.deleteRecipe(id, user);
+
+        return new DeletedRecipeIdDto(id.toString());
+    }
+
+    private List<RecipeDto> findAll(Principal principal) {
+        User user = getOrCreateUser(principal);
+        return recipeService.findAllRecipesOfUser(user);
+    }
+
+    private User getOrCreateUser(Principal principal) {
+        String userId = principal.getName();
+        Optional<User> byProviderId = userRepository.findByProviderId(userId);
+        return byProviderId
+                .orElseGet(() -> userRepository.save(new User(userId)));
+    }
+
+    private List<RecipeImageDto> from(MultipartFile[] multipartFiles) throws IOException {
+        List<RecipeImageDto> recipeImageData = new ArrayList<>();
+        for (MultipartFile multipartFile : multipartFiles) {
+            recipeImageData.add(
+                    new RecipeImageDto(multipartFile.getOriginalFilename(), multipartFile.getBytes(),
+                            multipartFile.getContentType()));
+        }
+        return recipeImageData;
+    }
+
+    private void assertBodyAndPathIdAreEqual(@PathVariable Long id, RecipeDto recipeDto) {
+        if (!Objects.equals(id, Long.valueOf(recipeDto.getId()))) {
+            throw new IllegalStateException("The id in the path doesn't match the id in the body.");
+        }
+    }
 }

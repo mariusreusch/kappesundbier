@@ -14,115 +14,115 @@ import static javax.persistence.FetchType.EAGER;
 @Entity
 public class Recipe {
 
-  @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Long id;
-  private String name;
-  private int numberOfPortions;
-  @ManyToMany(fetch = EAGER, cascade = ALL)
-  private Set<Ingredient> ingredients;
-  @OneToMany(cascade = ALL, orphanRemoval = true)
-  @JoinColumn(name = "fk_recipe_id")
-  private Set<InstructionStep> instructionSteps;
-  @ManyToMany(fetch = EAGER, cascade = ALL)
-  private Set<RecipeCategory> categories;
-  private ZonedDateTime creationDate;
-  @OneToMany(cascade = ALL)
-  @JoinColumn(name = "fk_recipe_id")
-  private Set<RecipeImage> recipeImages;
-  @Column(name = "preparation_time_in_minutes")
-  private PreparationTime preparationTime;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    private String name;
+    private int numberOfPortions;
+    @ManyToMany(fetch = EAGER, cascade = ALL)
+    private Set<Ingredient> ingredients;
+    @OneToMany(cascade = ALL, orphanRemoval = true)
+    @JoinColumn(name = "fk_recipe_id")
+    private Set<InstructionStep> instructionSteps;
+    @ManyToMany(fetch = EAGER, cascade = ALL)
+    private Set<RecipeCategory> categories;
+    private ZonedDateTime creationDate;
+    @OneToMany(cascade = ALL)
+    @JoinColumn(name = "fk_recipe_id")
+    private Set<RecipeImage> recipeImages;
+    @Column(name = "preparation_time_in_minutes")
+    private PreparationTime preparationTime;
 
-  @OnlyForFramework
-  private Recipe() {
-  }
-
-  public Recipe(String name, int numberOfPortions, Set<InstructionStep> instructionSteps, Set<Ingredient> ingredients,
-      Set<RecipeCategory> categories, PreparationTime preparationTime) {
-    this.name = Objects.requireNonNull(name);
-    this.numberOfPortions = numberOfPortions;
-    this.instructionSteps = new HashSet<>(instructionSteps);
-    this.ingredients = new HashSet<>(ingredients);
-    this.categories = new HashSet<>(requireNotEmpty(categories));
-    this.preparationTime = preparationTime;
-    this.creationDate = ZonedDateTime.now();
-    this.recipeImages = new HashSet<>();
-  }
-
-  private Set<RecipeCategory> requireNotEmpty(Set<RecipeCategory> categories) {
-    if (categories == null || categories.isEmpty()) {
-      throw new IllegalArgumentException("A recipe must have at least one category.");
+    @OnlyForFramework
+    private Recipe() {
     }
-    return categories;
-  }
 
-  public void addImage(RecipeImage recipeImage) {
-    this.recipeImages.add(recipeImage);
-  }
+    public Recipe(String name, int numberOfPortions, Set<InstructionStep> instructionSteps, Set<Ingredient> ingredients,
+                  Set<RecipeCategory> categories, PreparationTime preparationTime) {
+        this.name = Objects.requireNonNull(name);
+        this.numberOfPortions = numberOfPortions;
+        this.instructionSteps = new HashSet<>(instructionSteps);
+        this.ingredients = new HashSet<>(ingredients);
+        this.categories = new HashSet<>(requireNotEmpty(categories));
+        this.preparationTime = preparationTime;
+        this.creationDate = ZonedDateTime.now();
+        this.recipeImages = new HashSet<>();
+    }
 
-  public Long getId() {
-    return id;
-  }
+    private Set<RecipeCategory> requireNotEmpty(Set<RecipeCategory> categories) {
+        if (categories == null || categories.isEmpty()) {
+            throw new IllegalArgumentException("A recipe must have at least one category.");
+        }
+        return categories;
+    }
 
-  public String getName() {
-    return name;
-  }
+    public void addImage(RecipeImage recipeImage) {
+        this.recipeImages.add(recipeImage);
+    }
 
-  public void setName(String name) {
-    this.name = name;
-  }
+    public Long getId() {
+        return id;
+    }
 
-  public int getNumberOfPortions() {
-    return numberOfPortions;
-  }
+    public String getName() {
+        return name;
+    }
 
-  public void setNumberOfPortions(int numberOfPortions) {
-    this.numberOfPortions = numberOfPortions;
-  }
+    public void setName(String name) {
+        this.name = name;
+    }
 
-  public Set<Ingredient> getIngredients() {
-    return ingredients;
-  }
+    public int getNumberOfPortions() {
+        return numberOfPortions;
+    }
 
-  public void setIngredients(Set<Ingredient> ingredients) {
-    this.ingredients = ingredients;
-  }
+    public void setNumberOfPortions(int numberOfPortions) {
+        this.numberOfPortions = numberOfPortions;
+    }
 
-  public Set<InstructionStep> getInstructionSteps() {
-    return instructionSteps;
-  }
+    public Set<Ingredient> getIngredients() {
+        return ingredients;
+    }
 
-  public void setInstructionSteps(Set<InstructionStep> instructionSteps) {
-    this.instructionSteps.clear();
-    this.instructionSteps.addAll(instructionSteps);
-  }
+    public void setIngredients(Set<Ingredient> ingredients) {
+        this.ingredients = ingredients;
+    }
 
-  public Set<RecipeCategory> getCategories() {
-    return categories;
-  }
+    public Set<InstructionStep> getInstructionSteps() {
+        return instructionSteps;
+    }
 
-  public void setCategories(Set<RecipeCategory> categories) {
-    this.categories = categories;
-  }
+    public void setInstructionSteps(Set<InstructionStep> instructionSteps) {
+        this.instructionSteps.clear();
+        this.instructionSteps.addAll(instructionSteps);
+    }
 
-  public Set<RecipeImage> getRecipeImages() {
-    return recipeImages;
-  }
+    public Set<RecipeCategory> getCategories() {
+        return categories;
+    }
 
-  public void setRecipeImages(Set<RecipeImage> recipeImages) {
-    this.recipeImages = recipeImages;
-  }
+    public void setCategories(Set<RecipeCategory> categories) {
+        this.categories = categories;
+    }
 
-  public PreparationTime getPreparationTime() {
-    return preparationTime;
-  }
+    public Set<RecipeImage> getRecipeImages() {
+        return recipeImages;
+    }
 
-  public void setPreparationTime(PreparationTime preparationTime) {
-    this.preparationTime = preparationTime;
-  }
+    public void setRecipeImages(Set<RecipeImage> recipeImages) {
+        this.recipeImages = recipeImages;
+    }
 
-  public ZonedDateTime getCreationDate() {
-    return creationDate;
-  }
+    public PreparationTime getPreparationTime() {
+        return preparationTime;
+    }
+
+    public void setPreparationTime(PreparationTime preparationTime) {
+        this.preparationTime = preparationTime;
+    }
+
+    public ZonedDateTime getCreationDate() {
+        return creationDate;
+    }
 
 }

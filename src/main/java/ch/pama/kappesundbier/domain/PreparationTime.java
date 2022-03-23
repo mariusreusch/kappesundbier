@@ -4,17 +4,17 @@ import java.math.BigDecimal;
 
 public class PreparationTime {
 
-  private BigDecimal minutes;
+    private BigDecimal minutes;
 
-  public PreparationTime(BigDecimal minutes) {
-    if (minutes.doubleValue() <= 0) {
-      throw new IllegalArgumentException("Please provide a number greater than 0.");
+    public PreparationTime(BigDecimal minutes) {
+        if (minutes.doubleValue() <= 0) {
+            throw new IllegalArgumentException("Please provide a number greater than 0.");
+        }
+        this.minutes = minutes;
     }
-    this.minutes = minutes;
-  }
 
-  public BigDecimal getValue() {
+    public BigDecimal getValue() {
 
-    return minutes;
-  }
+        return minutes;
+    }
 }
