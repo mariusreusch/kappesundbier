@@ -36,6 +36,7 @@ jobs:
           heroku_app_name: "kappes-und-bier"
           heroku_email: ${{secrets.HEROKU_EMAIL}}
           justlogin: true
+      - run: heroku plugins:install java
       - run: heroku deploy:jar build/libs/kappesundbier-0.1.0.jar --app kappes-und-bier
           #healthcheck: https://kappes-und-bier.herokuapp.com/actuator/health
           #checkstring: "UP"
