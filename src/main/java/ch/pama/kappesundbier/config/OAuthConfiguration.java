@@ -35,7 +35,14 @@ public class OAuthConfiguration extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.antMatcher("/**").authorizeRequests()
-                .antMatchers("/", "/*.js**", "/*.jpg", "/*.jpeg", "/*.css", "/**/*.png", "/assets/**")
+                .antMatchers("/",
+                        "/actuator/health",
+                        "/*.js**",
+                        "/*.jpg",
+                        "/*.jpeg",
+                        "/*.css",
+                        "/**/*.png",
+                        "/assets/**")
                 .permitAll()
                 .anyRequest()
                 .authenticated().and().exceptionHandling()
