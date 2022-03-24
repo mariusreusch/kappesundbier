@@ -1,7 +1,7 @@
 package ch.pama.kappesundbier.domain.jpaconverter;
 
 import ch.pama.kappesundbier.domain.PreparationTime;
-import ch.pama.kappesundbier.util.OnlyForFramework;
+import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

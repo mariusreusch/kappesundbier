@@ -1,8 +1,8 @@
-package ch.pama.kappesundbier.rest.dto;
+package ch.pama.kappesundbier.interfaces.dto;
 
 import ch.pama.kappesundbier.domain.Amount;
 import ch.pama.kappesundbier.domain.Ingredient;
-import ch.pama.kappesundbier.util.OnlyForFramework;
+import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 public class IngredientDto {
 

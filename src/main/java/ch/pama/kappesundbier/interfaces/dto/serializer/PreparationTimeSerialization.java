@@ -1,4 +1,4 @@
-package ch.pama.kappesundbier.rest.dto.serializer;
+package ch.pama.kappesundbier.interfaces.dto.serializer;
 
 import ch.pama.kappesundbier.domain.PreparationTime;
 import com.fasterxml.jackson.core.JsonGenerator;

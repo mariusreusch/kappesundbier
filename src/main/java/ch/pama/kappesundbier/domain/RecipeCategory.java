@@ -1,6 +1,6 @@
 package ch.pama.kappesundbier.domain;
 
-import ch.pama.kappesundbier.util.OnlyForFramework;
+import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 import org.springframework.util.StringUtils;
 
 import javax.persistence.Entity;

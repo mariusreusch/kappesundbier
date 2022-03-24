@@ -1,6 +1,6 @@
 package ch.pama.kappesundbier.domain;
 
-import ch.pama.kappesundbier.util.OnlyForFramework;
+import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 import javax.persistence.*;
 import java.util.ArrayList;

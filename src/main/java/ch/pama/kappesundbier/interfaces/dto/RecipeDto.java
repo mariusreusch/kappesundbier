@@ -1,7 +1,7 @@
-package ch.pama.kappesundbier.rest.dto;
+package ch.pama.kappesundbier.interfaces.dto;
 
 import ch.pama.kappesundbier.domain.*;
-import ch.pama.kappesundbier.util.OnlyForFramework;
+import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 import java.time.ZonedDateTime;
 import java.util.HashSet;

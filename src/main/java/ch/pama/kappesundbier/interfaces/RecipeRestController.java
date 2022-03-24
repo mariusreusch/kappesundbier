@@ -1,16 +1,16 @@
-package ch.pama.kappesundbier.rest;
+package ch.pama.kappesundbier.interfaces;
 
+import ch.pama.kappesundbier.application.*;
 import ch.pama.kappesundbier.domain.User;
 import ch.pama.kappesundbier.domain.UserRepository;
-import ch.pama.kappesundbier.rest.dto.DeletedRecipeIdDto;
-import ch.pama.kappesundbier.rest.dto.RecipeDto;
-import ch.pama.kappesundbier.rest.dto.RecipeImageDto;
-import ch.pama.kappesundbier.service.RecipeService;
+import ch.pama.kappesundbier.interfaces.dto.DeletedRecipeIdDto;
+import ch.pama.kappesundbier.interfaces.dto.RecipeDto;
+import ch.pama.kappesundbier.interfaces.dto.RecipeImageDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import lombok.RequiredArgsConstructor;
 import org.springframework.http.CacheControl;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.ResponseEntity;
-import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
@@ -21,24 +21,22 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
-import static java.util.stream.Collectors.toList;
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
 import static org.springframework.http.HttpStatus.OK;
 
 @RestController
 @RequestMapping("api/recipes")
+@RequiredArgsConstructor
 public class RecipeRestController {
 
     private final RecipeService recipeService;
     private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
+    private final DeleteRecipeUseCase deleteRecipeUseCase;
+    private final UpdateRecipeUseCase updateRecipeUseCase;
+    private final FindAllRecipesOfUserUseCase findAllRecipesOfUserUseCase;
+    private final CreateRecipeUseCase createRecipeUseCase;
 
-    public RecipeRestController(RecipeService recipeService, UserRepository userRepository,
-                                ObjectMapper objectMapper) {
-        this.recipeService = recipeService;
-        this.userRepository = userRepository;
-        this.objectMapper = objectMapper;
-    }
 
     @PostMapping
     public RecipeDto create(
@@ -49,21 +47,15 @@ public class RecipeRestController {
 
         RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
 
-        return recipeService.createRecipe(recipeDto, from(multipartFiles), user);
+        return createRecipeUseCase.invoke(recipeDto, from(multipartFiles), user);
     }
 
     @GetMapping
     public List<RecipeDto> findRecipes(@RequestParam(required = false) String category,
                                        Principal principal) {
-        List<RecipeDto> allRecipes = findAll(principal);
+        User user = getOrCreateUser(principal);
 
-        if (StringUtils.isEmpty(category)) {
-            return allRecipes;
-        }
-
-        return allRecipes.stream()
-                .filter(recipe -> recipe.getCategories().contains(category))
-                .collect(toList());
+        return findAllRecipesOfUserUseCase.invoke(user, category);
     }
 
     @GetMapping("/{id}")
@@ -99,7 +91,7 @@ public class RecipeRestController {
 
         assertBodyAndPathIdAreEqual(id, recipeDto);
 
-        return recipeService.updateRecipe(recipeDto, from(multipartFiles), user);
+        return updateRecipeUseCase.invoke(recipeDto, from(multipartFiles), user);
     }
 
     @DeleteMapping("/{id}")
@@ -107,7 +99,7 @@ public class RecipeRestController {
     public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
         User user = getOrCreateUser(principal);
 
-        recipeService.deleteRecipe(id, user);
+        deleteRecipeUseCase.invoke(id, user);
 
         return new DeletedRecipeIdDto(id.toString());
     }
