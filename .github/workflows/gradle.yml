@@ -35,9 +35,11 @@ jobs:
         heroku_api_key: ${{secrets.HEROKU_API_KEY}}
         heroku_app_name: "kappes-und-bier"
         heroku_email: ${{secrets.HEROKU_EMAIL}}
-        healthcheck: https://kappes-und-bier.herokuapp.com/actuator/health
-        checkstring: "UP"
-        rollbackonhealthcheckfailed: true
-        procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/kappesundbier-0.1.0.jar"
+        justlogin: true
+      - run: heroku deploy:jar build/libs/kappesundbier-0.1.0.jar --app kappes-und-bier
+        #healthcheck: https://kappes-und-bier.herokuapp.com/actuator/health
+        #checkstring: "UP"
+        #rollbackonhealthcheckfailed: true
+        #procfile: "web: java -Dserver.port=$PORT $JAVA_OPTS -jar build/libs/kappesundbier-0.1.0.jar"
 
 
