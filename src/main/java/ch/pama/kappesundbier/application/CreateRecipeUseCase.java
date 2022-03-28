@@ -1,6 +1,8 @@
 package ch.pama.kappesundbier.application;
 
-import ch.pama.kappesundbier.domain.*;
+import ch.pama.kappesundbier.infrastructure.db.RecipeDbEntity;
+import ch.pama.kappesundbier.infrastructure.db.RecipeRepository;
+import ch.pama.kappesundbier.infrastructure.db.UserDbEntity;
 import ch.pama.kappesundbier.interfaces.dto.RecipeDto;
 import ch.pama.kappesundbier.interfaces.dto.RecipeImageDto;
 import lombok.RequiredArgsConstructor;
@@ -17,12 +19,12 @@ public class CreateRecipeUseCase {
 
     @Transactional
     public RecipeDto invoke(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData,
-                            User user) {
-        Recipe recipe = recipeDto.toRecipeWithImages(recipeImageData);
+                            UserDbEntity user) {
+        RecipeDbEntity recipe = recipeDto.toRecipeWithImages(recipeImageData);
 
         user.addRecipe(recipe);
 
-        Recipe newRecipe = recipeRepository.save(recipe);
+        RecipeDbEntity newRecipe = recipeRepository.save(recipe);
 
         return RecipeDto.from(newRecipe);
     }

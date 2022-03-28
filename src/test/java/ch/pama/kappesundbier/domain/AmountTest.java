@@ -16,7 +16,7 @@ class AmountTest {
 
         Amount amount = new Amount(validAmount);
 
-        assertThat(amount.getValue()).isEqualTo(validAmount);
+        assertThat(amount.value()).isEqualTo(validAmount);
     }
 
     @Test

@@ -1,4 +1,4 @@
-package ch.pama.kappesundbier.domain.jpaconverter;
+package ch.pama.kappesundbier.infrastructure.db.jpaconverter;
 
 import ch.pama.kappesundbier.domain.Amount;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
@@ -13,7 +13,7 @@ public class AmountConverter implements AttributeConverter<Amount, BigDecimal> {
 
     @Override
     public BigDecimal convertToDatabaseColumn(Amount amount) {
-        return (amount == null ? null : amount.getValue());
+        return (amount == null ? null : amount.value());
     }
 
     @Override

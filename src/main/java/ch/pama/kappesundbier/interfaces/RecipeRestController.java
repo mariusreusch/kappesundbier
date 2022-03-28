@@ -1,9 +1,9 @@
 package ch.pama.kappesundbier.interfaces;
 
 import ch.pama.kappesundbier.application.*;
-import ch.pama.kappesundbier.domain.User;
-import ch.pama.kappesundbier.domain.UserRepository;
-import ch.pama.kappesundbier.interfaces.dto.DeletedRecipeIdDto;
+import ch.pama.kappesundbier.domain.RecipeIdentifier;
+import ch.pama.kappesundbier.infrastructure.db.UserDbEntity;
+import ch.pama.kappesundbier.infrastructure.db.UserRepository;
 import ch.pama.kappesundbier.interfaces.dto.RecipeDto;
 import ch.pama.kappesundbier.interfaces.dto.RecipeImageDto;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -21,6 +21,7 @@ import java.util.List;
 import java.util.Objects;
 import java.util.Optional;
 
+import static java.util.Collections.emptyList;
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
 import static org.springframework.http.HttpStatus.OK;
 
@@ -41,19 +42,19 @@ public class RecipeRestController {
     @PostMapping
     public RecipeDto create(
             @RequestParam("recipe") String recipeJSON,
-            @RequestParam("file") MultipartFile[] multipartFiles, Principal principal)
+            @RequestParam("file") Optional<MultipartFile[]> multipartFiles, Principal principal)
             throws IOException {
-        User user = getOrCreateUser(principal);
+        UserDbEntity user = getOrCreateUser(principal);
 
         RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
 
-        return createRecipeUseCase.invoke(recipeDto, from(multipartFiles), user);
+        return createRecipeUseCase.invoke(recipeDto, multipartFiles.map(this::from).orElse(emptyList()), user);
     }
 
     @GetMapping
     public List<RecipeDto> findRecipes(@RequestParam(required = false) String category,
                                        Principal principal) {
-        User user = getOrCreateUser(principal);
+        UserDbEntity user = getOrCreateUser(principal);
 
         return findAllRecipesOfUserUseCase.invoke(user, category);
     }
@@ -69,7 +70,7 @@ public class RecipeRestController {
     @GetMapping("/{id}/images")
     public ResponseEntity<List<RecipeImageDto>> findImagesByRecipeId(@PathVariable Long id,
                                                                      Principal principal) {
-        User user = getOrCreateUser(principal);
+        UserDbEntity user = getOrCreateUser(principal);
         List<RecipeImageDto> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
 
         HttpHeaders headers = new HttpHeaders();
@@ -83,45 +84,49 @@ public class RecipeRestController {
     public RecipeDto update(
             @PathVariable Long id,
             @RequestParam("recipe") String recipeJSON,
-            @RequestParam(value = "file", required = false) MultipartFile[] multipartFiles,
+            @RequestParam("file") Optional<MultipartFile[]> multipartFiles,
             Principal principal) throws IOException {
-        User user = getOrCreateUser(principal);
+        UserDbEntity user = getOrCreateUser(principal);
 
         RecipeDto recipeDto = objectMapper.readValue(recipeJSON, RecipeDto.class);
 
         assertBodyAndPathIdAreEqual(id, recipeDto);
 
-        return updateRecipeUseCase.invoke(recipeDto, from(multipartFiles), user);
+        return updateRecipeUseCase.invoke(recipeDto, multipartFiles.map(this::from).orElse(emptyList()), user);
     }
 
     @DeleteMapping("/{id}")
     @ResponseStatus(OK)
-    public DeletedRecipeIdDto deleteById(@PathVariable Long id, Principal principal) {
-        User user = getOrCreateUser(principal);
+    public RecipeIdentifier deleteById(@PathVariable RecipeIdentifier id, Principal principal) {
+        UserDbEntity user = getOrCreateUser(principal);
 
         deleteRecipeUseCase.invoke(id, user);
 
-        return new DeletedRecipeIdDto(id.toString());
+        return id;
     }
 
     private List<RecipeDto> findAll(Principal principal) {
-        User user = getOrCreateUser(principal);
+        UserDbEntity user = getOrCreateUser(principal);
         return recipeService.findAllRecipesOfUser(user);
     }
 
-    private User getOrCreateUser(Principal principal) {
+    private UserDbEntity getOrCreateUser(Principal principal) {
         String userId = principal.getName();
-        Optional<User> byProviderId = userRepository.findByProviderId(userId);
+            Optional<UserDbEntity> byProviderId = userRepository.findByProviderId(userId);
         return byProviderId
-                .orElseGet(() -> userRepository.save(new User(userId)));
+                .orElseGet(() -> userRepository.save(new UserDbEntity(userId)));
     }
 
-    private List<RecipeImageDto> from(MultipartFile[] multipartFiles) throws IOException {
+    private List<RecipeImageDto> from(MultipartFile[] multipartFiles) {
         List<RecipeImageDto> recipeImageData = new ArrayList<>();
         for (MultipartFile multipartFile : multipartFiles) {
-            recipeImageData.add(
-                    new RecipeImageDto(multipartFile.getOriginalFilename(), multipartFile.getBytes(),
-                            multipartFile.getContentType()));
+            try {
+                recipeImageData.add(
+                        new RecipeImageDto(multipartFile.getOriginalFilename(), multipartFile.getBytes(),
+                                multipartFile.getContentType()));
+            } catch (IOException e) {
+                throw new IllegalStateException();
+            }
         }
         return recipeImageData;
     }

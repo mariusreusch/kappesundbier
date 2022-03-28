@@ -1,15 +1,13 @@
-package ch.pama.kappesundbier.domain;
+package ch.pama.kappesundbier.infrastructure.db;
 
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class InstructionStep {
+@Table(name = "instruction_step")
+public class InstructionStepDbEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -18,10 +16,10 @@ public class InstructionStep {
     private String stepInstruction;
 
     @OnlyForFramework
-    private InstructionStep() {
+    private InstructionStepDbEntity() {
     }
 
-    public InstructionStep(int sequenceNumber, String stepInstruction) {
+    public InstructionStepDbEntity(int sequenceNumber, String stepInstruction) {
         this.sequenceNumber = sequenceNumber;
         this.stepInstruction = stepInstruction;
     }
@@ -42,7 +40,7 @@ public class InstructionStep {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        InstructionStep that = (InstructionStep) o;
+        InstructionStepDbEntity that = (InstructionStepDbEntity) o;
         return sequenceNumber == that.sequenceNumber &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(stepInstruction, that.stepInstruction);

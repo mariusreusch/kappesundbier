@@ -1,23 +1,21 @@
-package ch.pama.kappesundbier.domain;
+package ch.pama.kappesundbier.infrastructure.db;
 
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 import org.springframework.util.StringUtils;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class RecipeCategory {
+@Table(name = "recipe_category")
+public class RecipeCategoryDbEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private final String name;
 
-    public RecipeCategory(String name) {
+    public RecipeCategoryDbEntity(String name) {
         this.name = requireNotEmpty(name);
     }
 
@@ -29,7 +27,7 @@ public class RecipeCategory {
     }
 
     @OnlyForFramework
-    private RecipeCategory() {
+    private RecipeCategoryDbEntity() {
         this.name = "";
     }
 
@@ -45,7 +43,7 @@ public class RecipeCategory {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        RecipeCategory that = (RecipeCategory) o;
+        RecipeCategoryDbEntity that = (RecipeCategoryDbEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name);
     }

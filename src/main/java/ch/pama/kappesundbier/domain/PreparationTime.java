@@ -2,19 +2,11 @@ package ch.pama.kappesundbier.domain;
 
 import java.math.BigDecimal;
 
-public class PreparationTime {
+public record PreparationTime(BigDecimal minutes) {
 
-    private BigDecimal minutes;
-
-    public PreparationTime(BigDecimal minutes) {
+    public PreparationTime {
         if (minutes.doubleValue() <= 0) {
             throw new IllegalArgumentException("Please provide a number greater than 0.");
         }
-        this.minutes = minutes;
-    }
-
-    public BigDecimal getValue() {
-
-        return minutes;
     }
 }

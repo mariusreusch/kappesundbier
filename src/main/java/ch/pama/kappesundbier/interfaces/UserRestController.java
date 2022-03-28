@@ -1,4 +1,4 @@
-package ch.pama.kappesundbier.domain;
+package ch.pama.kappesundbier.interfaces;
 
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;

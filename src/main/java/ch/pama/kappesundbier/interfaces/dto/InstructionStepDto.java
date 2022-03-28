@@ -1,6 +1,6 @@
 package ch.pama.kappesundbier.interfaces.dto;
 
-import ch.pama.kappesundbier.domain.InstructionStep;
+import ch.pama.kappesundbier.infrastructure.db.InstructionStepDbEntity;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 public class InstructionStepDto {
@@ -25,11 +25,11 @@ public class InstructionStepDto {
         return stepInstruction;
     }
 
-    static InstructionStepDto from(InstructionStep instructionStep) {
-        return new InstructionStepDto(instructionStep.getSequenceNumber(), instructionStep.getStepInstruction());
+    static InstructionStepDto from(InstructionStepDbEntity instructionStepDbEntity) {
+        return new InstructionStepDto(instructionStepDbEntity.getSequenceNumber(), instructionStepDbEntity.getStepInstruction());
     }
 
-    public InstructionStep toInstructionStep() {
-        return new InstructionStep(sequenceNumber, stepInstruction);
+    public InstructionStepDbEntity toInstructionStep() {
+        return new InstructionStepDbEntity(sequenceNumber, stepInstruction);
     }
 }

@@ -1,6 +1,7 @@
 package ch.pama.kappesundbier.interfaces.dto;
 
-import ch.pama.kappesundbier.domain.*;
+import ch.pama.kappesundbier.domain.PreparationTime;
+import ch.pama.kappesundbier.infrastructure.db.*;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 import java.time.ZonedDateTime;
@@ -70,20 +71,20 @@ public class RecipeDto {
         return creationDate;
     }
 
-    public Recipe toRecipeWithImages(List<RecipeImageDto> recipeImageData) {
-        Set<Ingredient> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient).collect(toSet());
-        Set<RecipeCategory> categories = this.categories.stream().map(RecipeCategory::new).collect(toSet());
-        Set<InstructionStep> instructionSteps = this.instructionSteps.stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
-        Recipe recipe = new Recipe(name, numberOfPortions, instructionSteps, ingredients, categories, preparationTime);
+    public RecipeDbEntity toRecipeWithImages(List<RecipeImageDto> recipeImageData) {
+        Set<IngredientDbEntity> ingredients = this.ingredients.stream().map(IngredientDto::toIngredient).collect(toSet());
+        Set<RecipeCategoryDbEntity> categories = this.categories.stream().map(RecipeCategoryDbEntity::new).collect(toSet());
+        Set<InstructionStepDbEntity> instructionSteps = this.instructionSteps.stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
+        RecipeDbEntity recipe = new RecipeDbEntity(name, numberOfPortions, instructionSteps, ingredients, categories, preparationTime);
         recipeImageData.stream()
-                .map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
+                .map(image -> new RecipeImageDbEntity(image.getFileName(), image.getImageData(), image.getContentType()))
                 .forEach(recipe::addImage);
         return recipe;
     }
 
-    public static RecipeDto from(Recipe recipe) {
+    public static RecipeDto from(RecipeDbEntity recipe) {
         Set<IngredientDto> ingredients = recipe.getIngredients().stream().map(IngredientDto::from).collect(toSet());
-        Set<String> categories = recipe.getCategories().stream().map(RecipeCategory::getName).collect(toSet());
+        Set<String> categories = recipe.getCategories().stream().map(RecipeCategoryDbEntity::getName).collect(toSet());
         Set<InstructionStepDto> instructionSteps = recipe.getInstructionSteps().stream().map(InstructionStepDto::from).collect(toSet());
 
         return new RecipeDto(recipe.getId().toString(), recipe.getName(), recipe.getNumberOfPortions(),

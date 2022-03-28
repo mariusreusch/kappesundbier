@@ -1,6 +1,8 @@
 package ch.pama.kappesundbier.domain;
 
 
+import ch.pama.kappesundbier.infrastructure.db.RecipeDbEntity;
+import ch.pama.kappesundbier.infrastructure.db.UserDbEntity;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -11,7 +13,7 @@ class UserTest {
 
     @Test
     void isOwnerOf_recipeOfUser_true() {
-        User user = new User("test-id-1");
+        UserDbEntity user = new UserDbEntity("test-id-1");
         user.addRecipe(createRecipeMockWithId(1L));
 
         boolean isOwner = user.isOwnerOf(createRecipeMockWithId(1L));
@@ -21,7 +23,7 @@ class UserTest {
 
     @Test
     void isOwnerOf_recipeFromOtherUser_false() {
-        User user = new User("test-id-2");
+        UserDbEntity user = new UserDbEntity("test-id-2");
         user.addRecipe(createRecipeMockWithId(2L));
 
         boolean isOwner = user.isOwnerOf(createRecipeMockWithId(3L));
@@ -29,8 +31,8 @@ class UserTest {
         assertThat(isOwner).isFalse();
     }
 
-    private Recipe createRecipeMockWithId(Long id) {
-        Recipe recipeMock = mock(Recipe.class);
+    private RecipeDbEntity createRecipeMockWithId(Long id) {
+        RecipeDbEntity recipeMock = mock(RecipeDbEntity.class);
         doReturn(id).when(recipeMock).getId();
         return recipeMock;
     }

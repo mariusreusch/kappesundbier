@@ -1,4 +1,4 @@
-package ch.pama.kappesundbier.domain.jpaconverter;
+package ch.pama.kappesundbier.infrastructure.db.jpaconverter;
 
 import ch.pama.kappesundbier.domain.PreparationTime;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
@@ -13,7 +13,7 @@ public class PreparationTimeConverter implements AttributeConverter<PreparationT
 
     @Override
     public BigDecimal convertToDatabaseColumn(PreparationTime preparationTime) {
-        return (preparationTime == null ? null : preparationTime.getValue());
+        return (preparationTime == null ? null : preparationTime.minutes());
     }
 
     @Override

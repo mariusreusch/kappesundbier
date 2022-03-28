@@ -1,6 +1,6 @@
 package ch.pama.kappesundbier.application;
 
-import ch.pama.kappesundbier.domain.*;
+import ch.pama.kappesundbier.infrastructure.db.*;
 import ch.pama.kappesundbier.interfaces.dto.IngredientDto;
 import ch.pama.kappesundbier.interfaces.dto.InstructionStepDto;
 import ch.pama.kappesundbier.interfaces.dto.RecipeDto;
@@ -21,17 +21,17 @@ public class UpdateRecipeUseCase {
     private final RecipeRepository recipeRepository;
 
     @Transactional
-    public RecipeDto invoke(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData, User user) {
+    public RecipeDto invoke(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData, UserDbEntity user) {
 
-        Recipe recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId())).orElseThrow(IllegalStateException::new);
+        RecipeDbEntity recipe = recipeRepository.findById(Long.valueOf(recipeDto.getId())).orElseThrow(IllegalStateException::new);
 
         assertRecipeBelongsToUser(user, recipe);
 
-        Set<Ingredient> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
-        Set<RecipeCategory> categories = recipeDto.getCategories().stream().map(RecipeCategory::new).collect(toSet());
-        Set<RecipeImage> recipeImages = recipeImageData.stream().map(image -> new RecipeImage(image.getFileName(), image.getImageData(), image.getContentType()))
+        Set<IngredientDbEntity> ingredients = recipeDto.getIngredients().stream().map(IngredientDto::toIngredient).collect(toSet());
+        Set<RecipeCategoryDbEntity> categories = recipeDto.getCategories().stream().map(RecipeCategoryDbEntity::new).collect(toSet());
+        Set<RecipeImageDbEntity> recipeImages = recipeImageData.stream().map(image -> new RecipeImageDbEntity(image.getFileName(), image.getImageData(), image.getContentType()))
                 .collect(toSet());
-        Set<InstructionStep> instructionSteps = recipeDto.getInstructionSteps().stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
+        Set<InstructionStepDbEntity> instructionSteps = recipeDto.getInstructionSteps().stream().map(InstructionStepDto::toInstructionStep).collect(toSet());
 
         recipe.setName(recipeDto.getName());
         recipe.setCategories(categories);
@@ -41,12 +41,12 @@ public class UpdateRecipeUseCase {
         recipe.setRecipeImages(recipeImages);
         recipe.setPreparationTime(recipeDto.getPreparationTime());
 
-        Recipe updatedRecipe = recipeRepository.save(recipe);
+        RecipeDbEntity updatedRecipe = recipeRepository.save(recipe);
 
         return RecipeDto.from(updatedRecipe);
     }
 
-    private void assertRecipeBelongsToUser(User user, Recipe recipe) {
+    private void assertRecipeBelongsToUser(UserDbEntity user, RecipeDbEntity recipe) {
         if (!user.isOwnerOf(recipe)) {
             throw new IllegalArgumentException("Logged in user is not owner of edited recipe.");
         }

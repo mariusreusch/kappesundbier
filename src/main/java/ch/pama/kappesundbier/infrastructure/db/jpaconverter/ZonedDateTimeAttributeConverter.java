@@ -1,4 +1,4 @@
-package ch.pama.kappesundbier.domain.jpaconverter;
+package ch.pama.kappesundbier.infrastructure.db.jpaconverter;
 
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 

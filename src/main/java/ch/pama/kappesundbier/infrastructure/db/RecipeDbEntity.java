@@ -1,5 +1,7 @@
-package ch.pama.kappesundbier.domain;
+package ch.pama.kappesundbier.infrastructure.db;
 
+import ch.pama.kappesundbier.domain.PreparationTime;
+import ch.pama.kappesundbier.domain.RecipeIdentifier;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 import javax.persistence.*;
@@ -12,7 +14,8 @@ import static javax.persistence.CascadeType.ALL;
 import static javax.persistence.FetchType.EAGER;
 
 @Entity
-public class Recipe {
+@Table(name = "recipe")
+public class RecipeDbEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,25 +23,31 @@ public class Recipe {
     private String name;
     private int numberOfPortions;
     @ManyToMany(fetch = EAGER, cascade = ALL)
-    private Set<Ingredient> ingredients;
+    @JoinTable(name = "recipe_ingredients",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "ingredients_id"))
+    private Set<IngredientDbEntity> ingredients;
     @OneToMany(cascade = ALL, orphanRemoval = true)
     @JoinColumn(name = "fk_recipe_id")
-    private Set<InstructionStep> instructionSteps;
+    private Set<InstructionStepDbEntity> instructionSteps;
+    @JoinTable(name = "recipe_categories",
+            joinColumns = @JoinColumn(name = "recipe_id"),
+            inverseJoinColumns = @JoinColumn(name = "categories_id"))
     @ManyToMany(fetch = EAGER, cascade = ALL)
-    private Set<RecipeCategory> categories;
+    private Set<RecipeCategoryDbEntity> categories;
     private ZonedDateTime creationDate;
     @OneToMany(cascade = ALL)
     @JoinColumn(name = "fk_recipe_id")
-    private Set<RecipeImage> recipeImages;
+    private Set<RecipeImageDbEntity> recipeImages;
     @Column(name = "preparation_time_in_minutes")
     private PreparationTime preparationTime;
 
     @OnlyForFramework
-    private Recipe() {
+    private RecipeDbEntity() {
     }
 
-    public Recipe(String name, int numberOfPortions, Set<InstructionStep> instructionSteps, Set<Ingredient> ingredients,
-                  Set<RecipeCategory> categories, PreparationTime preparationTime) {
+    public RecipeDbEntity(String name, int numberOfPortions, Set<InstructionStepDbEntity> instructionSteps, Set<IngredientDbEntity> ingredients,
+                          Set<RecipeCategoryDbEntity> categories, PreparationTime preparationTime) {
         this.name = Objects.requireNonNull(name);
         this.numberOfPortions = numberOfPortions;
         this.instructionSteps = new HashSet<>(instructionSteps);
@@ -49,14 +58,14 @@ public class Recipe {
         this.recipeImages = new HashSet<>();
     }
 
-    private Set<RecipeCategory> requireNotEmpty(Set<RecipeCategory> categories) {
+    private Set<RecipeCategoryDbEntity> requireNotEmpty(Set<RecipeCategoryDbEntity> categories) {
         if (categories == null || categories.isEmpty()) {
             throw new IllegalArgumentException("A recipe must have at least one category.");
         }
         return categories;
     }
 
-    public void addImage(RecipeImage recipeImage) {
+    public void addImage(RecipeImageDbEntity recipeImage) {
         this.recipeImages.add(recipeImage);
     }
 
@@ -80,36 +89,36 @@ public class Recipe {
         this.numberOfPortions = numberOfPortions;
     }
 
-    public Set<Ingredient> getIngredients() {
+    public Set<IngredientDbEntity> getIngredients() {
         return ingredients;
     }
 
-    public void setIngredients(Set<Ingredient> ingredients) {
+    public void setIngredients(Set<IngredientDbEntity> ingredients) {
         this.ingredients = ingredients;
     }
 
-    public Set<InstructionStep> getInstructionSteps() {
+    public Set<InstructionStepDbEntity> getInstructionSteps() {
         return instructionSteps;
     }
 
-    public void setInstructionSteps(Set<InstructionStep> instructionSteps) {
+    public void setInstructionSteps(Set<InstructionStepDbEntity> instructionSteps) {
         this.instructionSteps.clear();
         this.instructionSteps.addAll(instructionSteps);
     }
 
-    public Set<RecipeCategory> getCategories() {
+    public Set<RecipeCategoryDbEntity> getCategories() {
         return categories;
     }
 
-    public void setCategories(Set<RecipeCategory> categories) {
+    public void setCategories(Set<RecipeCategoryDbEntity> categories) {
         this.categories = categories;
     }
 
-    public Set<RecipeImage> getRecipeImages() {
+    public Set<RecipeImageDbEntity> getRecipeImages() {
         return recipeImages;
     }
 
-    public void setRecipeImages(Set<RecipeImage> recipeImages) {
+    public void setRecipeImages(Set<RecipeImageDbEntity> recipeImages) {
         this.recipeImages = recipeImages;
     }
 

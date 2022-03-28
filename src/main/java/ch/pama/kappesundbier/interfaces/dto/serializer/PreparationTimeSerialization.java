@@ -20,7 +20,7 @@ public class PreparationTimeSerialization {
         @Override
         public void serialize(PreparationTime preparationTime, JsonGenerator jsonGenerator,
                               SerializerProvider provider) throws IOException {
-            jsonGenerator.writeNumber(preparationTime.getValue());
+            jsonGenerator.writeNumber(preparationTime.minutes());
         }
     }
 

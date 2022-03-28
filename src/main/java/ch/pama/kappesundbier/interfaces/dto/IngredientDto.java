@@ -1,7 +1,7 @@
 package ch.pama.kappesundbier.interfaces.dto;
 
 import ch.pama.kappesundbier.domain.Amount;
-import ch.pama.kappesundbier.domain.Ingredient;
+import ch.pama.kappesundbier.infrastructure.db.IngredientDbEntity;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
 public class IngredientDto {
@@ -32,11 +32,11 @@ public class IngredientDto {
         return unitOfMeasurement;
     }
 
-    public Ingredient toIngredient() {
-        return new Ingredient(name, amount, unitOfMeasurement);
+    public IngredientDbEntity toIngredient() {
+        return new IngredientDbEntity(name, amount, unitOfMeasurement);
     }
 
-    static IngredientDto from(Ingredient ingredient) {
+    static IngredientDto from(IngredientDbEntity ingredient) {
         return new IngredientDto(ingredient.getName(), ingredient.getAmount(),
                 ingredient.getUnitOfMeasurement());
     }

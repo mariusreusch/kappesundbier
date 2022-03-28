@@ -20,7 +20,7 @@ public class AmountSerialization {
         @Override
         public void serialize(Amount amount, JsonGenerator jsonGenerator, SerializerProvider provider)
                 throws IOException {
-            jsonGenerator.writeNumber(amount.getValue());
+            jsonGenerator.writeNumber(amount.value());
         }
     }
 

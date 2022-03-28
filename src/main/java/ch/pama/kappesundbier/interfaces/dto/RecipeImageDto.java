@@ -1,16 +1,10 @@
 package ch.pama.kappesundbier.interfaces.dto;
 
-import ch.pama.kappesundbier.shared.util.OnlyForFramework;
-
 public class RecipeImageDto {
 
-    private String fileName;
-    private byte[] imageData;
-    private String contentType;
-
-    @OnlyForFramework
-    private RecipeImageDto() {
-    }
+    private final String fileName;
+    private final byte[] imageData;
+    private final String contentType;
 
     public RecipeImageDto(String fileName, byte[] imageData, String contentType) {
         this.imageData = imageData;

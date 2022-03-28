@@ -1,15 +1,14 @@
-package ch.pama.kappesundbier.domain;
+package ch.pama.kappesundbier.infrastructure.db;
 
+import ch.pama.kappesundbier.domain.Amount;
 import ch.pama.kappesundbier.shared.util.OnlyForFramework;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.Objects;
 
 @Entity
-public class Ingredient {
+@Table(name = "ingredient")
+public class IngredientDbEntity {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,10 +19,10 @@ public class Ingredient {
     private String unitOfMeasurement;
 
     @OnlyForFramework
-    private Ingredient() {
+    private IngredientDbEntity() {
     }
 
-    public Ingredient(String name, Amount amount, String unitOfMeasurement) {
+    public IngredientDbEntity(String name, Amount amount, String unitOfMeasurement) {
         this.name = Objects.requireNonNull(name);
         this.amount = amount;
         this.unitOfMeasurement = Objects.requireNonNull(unitOfMeasurement);
@@ -49,7 +48,7 @@ public class Ingredient {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        Ingredient that = (Ingredient) o;
+        IngredientDbEntity that = (IngredientDbEntity) o;
         return amount == that.amount &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
