@@ -1,7 +1,7 @@
 import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
 import {Ingredient} from '../ingredient';
 import {NgForm} from '@angular/forms';
-import {MatSnackBar} from '@angular/material';
+import {MatSnackBar} from '@angular/material/snack-bar';
 import {CreateRecipeResult} from '../create-recipe-result';
 import {ResponseResultState} from '../response-result-state';
 import {Recipe} from '../recipe';

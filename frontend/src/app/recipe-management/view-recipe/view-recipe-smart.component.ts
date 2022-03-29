@@ -7,7 +7,7 @@ import { Recipe } from '../recipe';
 import { Observable } from 'rxjs';
 import { DeleteRecipeResult } from '../delete-recipe-result';
 import { ResponseResultState } from '../response-result-state';
-import { MatSnackBar } from '@angular/material';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { TranslateService } from '@ngx-translate/core';
 
 @Component({

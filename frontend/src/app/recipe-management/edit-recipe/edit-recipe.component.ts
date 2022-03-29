@@ -1,14 +1,14 @@
-import {Component, EventEmitter, Input, Output, ViewChild} from '@angular/core';
-import {Ingredient} from '../ingredient';
-import {Recipe} from '../recipe';
-import {NgForm} from '@angular/forms';
-import {EditRecipeResult} from '../edit-recipe-result';
-import {ResponseResultState} from '../response-result-state';
-import {TranslateService} from '@ngx-translate/core';
-import {MatSnackBar} from '@angular/material';
-import {UploadedImage} from '../../common/components/image-upload/uploaded-image';
-import {RecipeImage} from '../recipe-image';
-import {InstructionStep} from '../instruction-step';
+import { Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Ingredient } from '../ingredient';
+import { Recipe } from '../recipe';
+import { NgForm } from '@angular/forms';
+import { EditRecipeResult } from '../edit-recipe-result';
+import { ResponseResultState } from '../response-result-state';
+import { TranslateService } from '@ngx-translate/core';
+import { MatSnackBar } from '@angular/material/snack-bar';
+import { UploadedImage } from '../../common/components/image-upload/uploaded-image';
+import { RecipeImage } from '../recipe-image';
+import { InstructionStep } from '../instruction-step';
 
 @Component({
   selector: 'kub-edit-recipe',
@@ -26,9 +26,9 @@ export class EditRecipeComponent {
   @Output() onRecipeEdit = new EventEmitter<Recipe>();
   @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
 
-  @ViewChild('ingredientForm', { static: false }) ingredientForm: NgForm;
-  @ViewChild('instructionStepForm', { static: false }) instructionStepForm: NgForm;
-  @ViewChild('recipeForm', { static: false }) recipeForm: NgForm;
+  @ViewChild('ingredientForm', {static: false}) ingredientForm: NgForm;
+  @ViewChild('instructionStepForm', {static: false}) instructionStepForm: NgForm;
+  @ViewChild('recipeForm', {static: false}) recipeForm: NgForm;
 
   @Input('recipe')
   set setRecipe(recipe: Recipe) {
@@ -68,8 +68,8 @@ export class EditRecipeComponent {
 
   removeInstructionStep(instructionStepToRemove: InstructionStep) {
     let instructionStepsWithoutRemovedStepOrderedBySequenceNumber = this.recipe.instructionSteps
-    .filter(step => step !== instructionStepToRemove)
-    .sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+      .filter(step => step !== instructionStepToRemove)
+      .sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
 
     let newSequenceNumber = 1;
     let newInstructionSteps = [];
@@ -82,8 +82,8 @@ export class EditRecipeComponent {
 
   onSubmit() {
     this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',')
-    .map(s => s.trim())
-    .filter((s: string) => s.length > 0);
+      .map(s => s.trim())
+      .filter((s: string) => s.length > 0);
 
     if (!this.recipe.images || this.recipe.images.length === 0) {
       this.recipe.images = []
