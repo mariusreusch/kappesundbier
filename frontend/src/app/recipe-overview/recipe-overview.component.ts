@@ -15,7 +15,7 @@ import { ChipListItem } from '../common/components/chip-list/chip-list-item';
 export class RecipeOverviewComponent {
 
   @Input()
-  recipes: Recipe[];
+  recipes: Recipe[] | null;
   @Output()
   onRecipeSelect = new EventEmitter<Recipe>();
   @Output()
@@ -43,7 +43,7 @@ export class RecipeOverviewComponent {
 
   getAllRecipeCategories(): string[] {
     const categories: string[] = [];
-    for (const recipe of this.recipes) {
+    for (const recipe of this.recipes!) {
       categories.push(...recipe.categories);
     }
     return Array.from(new Set(categories));

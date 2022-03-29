@@ -11,7 +11,7 @@ import {Router} from '@angular/router';
 })
 export class RecipeOverviewSmartComponent implements OnInit {
 
-  myRecipes: Observable<Recipe[]>;
+  myRecipes?: Observable<Recipe[]>;
   user: Observable<User>;
 
   constructor(private recipeService: RecipeService, private router: Router) {

@@ -1,7 +1,7 @@
-import {Component, EventEmitter, Input, Output} from '@angular/core';
-import {Recipe} from '../recipe';
-import {YesNoDialogComponent} from '../../common/components/yes-no-dialog/yes-no-dialog.component';
-import {MatDialog} from '@angular/material/dialog';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Recipe } from '../recipe';
+import { YesNoDialogComponent } from '../../common/components/yes-no-dialog/yes-no-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'kub-view-recipe',
@@ -10,9 +10,9 @@ import {MatDialog} from '@angular/material/dialog';
 })
 export class ViewRecipeComponent {
 
-  @Input() recipe: Recipe;
-  @Input() deleteDialogTitle: string;
-  @Input() deleteDialogQuestion: string;
+  @Input() recipe: Recipe | null;
+  @Input() deleteDialogTitle: string | null;
+  @Input() deleteDialogQuestion: string | null;
 
   @Output() switchToEditModeEvent = new EventEmitter<Recipe>();
   @Output() onRecipeDelete = new EventEmitter<Recipe>();
@@ -21,7 +21,7 @@ export class ViewRecipeComponent {
   }
 
   switchToEditMode() {
-    this.switchToEditModeEvent.emit(this.recipe);
+    this.switchToEditModeEvent.emit(this.recipe!);
   }
 
   onDelete(recipe: Recipe) {
@@ -39,6 +39,6 @@ export class ViewRecipeComponent {
   }
 
   getInstructionStepsOrderedBySequence() {
-    return this.recipe.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+    return this.recipe!.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
   }
 }

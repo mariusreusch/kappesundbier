@@ -30,7 +30,7 @@ export class CreateRecipeComponent {
   onRecipeSuccessFullyCreated = new EventEmitter<void>();
 
   @Input('createRecipeResult')
-  set setCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
+  set setCreateRecipeResult(createRecipeResult: CreateRecipeResult | null) {
     this.handleCreateRecipeResult(createRecipeResult)
   }
 
@@ -92,7 +92,7 @@ export class CreateRecipeComponent {
     this.onRecipeCreate.emit(this.newRecipe);
   }
 
-  handleCreateRecipeResult(createRecipeResult: CreateRecipeResult) {
+  handleCreateRecipeResult(createRecipeResult: CreateRecipeResult | null) {
     if (createRecipeResult) {
       switch (createRecipeResult.state) {
         case ResponseResultState.SUCCESS:
@@ -103,7 +103,7 @@ export class CreateRecipeComponent {
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Recipe.SuccessfullySaved').subscribe(text => {
-              this.snackBar.open(text, null, {
+              this.snackBar.open(text, undefined, {
                 duration: 4000,
               });
             });
@@ -114,7 +114,7 @@ export class CreateRecipeComponent {
           // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Common.Error').subscribe(text => {
-              this.snackBar.open(text, null, {
+              this.snackBar.open(text, undefined, {
                 duration: 4000,
               });
             });

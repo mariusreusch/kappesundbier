@@ -1,4 +1,4 @@
-  import { Injectable } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { CreateRecipeResult } from './create-recipe-result';
 import { ResponseResultState } from './response-result-state';
 import { Recipe } from './recipe';
@@ -29,7 +29,7 @@ export class RecipeService {
   }
 
 
-  private static b64toBlob(b64Data, contentType) {
+  private static b64toBlob(b64Data: string, contentType: string) {
     // https://stackoverflow.com/a/16245768/1992820
     contentType = contentType || '';
 
@@ -72,9 +72,9 @@ export class RecipeService {
   }
 
   findRecipeWithImages(id: string): Observable<Recipe> {
-    return forkJoin(
+    return forkJoin([
       this.findRecipe(id),
-      this.findRecipeBase64EncodedImages(id)
+      this.findRecipeBase64EncodedImages(id)]
     ).pipe(map(data => {
       const recipe: Recipe = data[0];
       recipe.images = data[1];

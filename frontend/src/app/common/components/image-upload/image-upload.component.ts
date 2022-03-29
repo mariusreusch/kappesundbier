@@ -11,7 +11,7 @@ export class ImageUploadComponent {
   @Output()
   onFileSelect = new EventEmitter<UploadedImage>();
 
-  onChange(files: File[]) {
+  onChange(files: FileList | null) {
     if (files && files[0]) {
       const fileReader = new FileReader();
 

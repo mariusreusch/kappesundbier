@@ -13,7 +13,7 @@ import { switchMap } from 'rxjs/operators';
 })
 export class EditRecipeSmartComponent implements OnInit {
 
-  recipe: Observable<Recipe>;
+  recipe?: Observable<Recipe>;
   editRecipeResult: Observable<EditRecipeResult>;
 
   constructor(private recipeService: RecipeService,
@@ -23,7 +23,7 @@ export class EditRecipeSmartComponent implements OnInit {
 
   ngOnInit() {
     this.recipe = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.recipeService.findRecipeWithImages(params.get('id')))
+      switchMap((params: ParamMap) => this.recipeService.findRecipeWithImages(params.get('id')!))
     );
   }
 

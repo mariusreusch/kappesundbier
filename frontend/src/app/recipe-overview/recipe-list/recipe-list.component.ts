@@ -11,7 +11,7 @@ export class RecipeListComponent {
   _recipes: Recipe[];
 
   @Input()
-  set recipes(recipes: Recipe[]) {
+  set recipes(recipes: Recipe[] | null) {
     if (recipes) {
       this._recipes = this.orderByCreationDateDescending(recipes);
     }
@@ -26,7 +26,7 @@ export class RecipeListComponent {
 
   private orderByCreationDateDescending(myRecipes: Recipe[]) {
     return myRecipes.sort((a, b) => {
-      return new Date(b.creationDate).getTime() - new Date(a.creationDate).getTime();
+      return new Date(b.creationDate!).getTime() - new Date(a.creationDate!).getTime();
     });
   }
 }

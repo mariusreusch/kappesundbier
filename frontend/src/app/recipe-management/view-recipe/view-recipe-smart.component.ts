@@ -16,9 +16,9 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class ViewRecipeSmartComponent implements OnInit {
 
-  recipe: Observable<Recipe>;
-  deleteDialogTitle: Observable<string>;
-  deleteDialogQuestion: Observable<string>;
+  recipe?: Observable<Recipe>;
+  deleteDialogTitle?: Observable<string>;
+  deleteDialogQuestion?: Observable<string>;
 
   constructor(private route: ActivatedRoute,
               private router: Router,
@@ -29,7 +29,7 @@ export class ViewRecipeSmartComponent implements OnInit {
 
   ngOnInit() {
     this.recipe = this.route.paramMap.pipe(
-      switchMap((params: ParamMap) => this.recipeService.findRecipeWithImages(params.get('id'))));
+      switchMap((params: ParamMap) => this.recipeService.findRecipeWithImages(params.get('id')!)));
 
     this.deleteDialogQuestion = this.translate.get('Recipe.DeleteDialogQuestion');
     this.deleteDialogTitle = this.translate.get('Recipe.DeleteDialogTitle');
@@ -45,7 +45,7 @@ export class ViewRecipeSmartComponent implements OnInit {
         if (deleteRecipeResult && deleteRecipeResult.state === ResponseResultState.SUCCESS) {
           this.router.navigate(['/']);
           this.translate.get('Recipe.DeleteRecipe').subscribe(text => {
-            this.snackBar.open(text, null, {
+            this.snackBar.open(text, undefined, {
               duration: 4000,
             });
           });

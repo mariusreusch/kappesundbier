@@ -11,7 +11,7 @@ import { Recipe } from '../../recipe-management/recipe';
 })
 export class ViewCategorySmartComponent implements OnInit {
 
-  recipes: Observable<Recipe[]>;
+  recipes?: Observable<Recipe[]>;
   category: string;
 
   constructor(private recipeService: RecipeService,
@@ -22,7 +22,7 @@ export class ViewCategorySmartComponent implements OnInit {
   ngOnInit() {
     this.recipes = this.route.paramMap.pipe(
       switchMap((params: ParamMap) => {
-        const categoryName = params.get('category-name');
+        const categoryName = params.get('category-name')!;
         this.category = categoryName;
         return this.recipeService.findMyRecipesByCategory(categoryName);
       }));

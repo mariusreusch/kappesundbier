@@ -11,7 +11,7 @@ import { CreateRecipeResult } from '../create-recipe-result';
 })
 export class CreateRecipeSmartComponent {
 
-  createRecipeResult: Observable<CreateRecipeResult>;
+  createRecipeResult?: Observable<CreateRecipeResult>;
 
   constructor(private router: Router,
               private recipeService: RecipeService) {

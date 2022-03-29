@@ -8,7 +8,7 @@ import { Recipe } from '../../recipe-management/recipe';
 })
 export class ViewCategoryComponent {
 
-  @Input() recipes: Recipe[];
+  @Input() recipes: Recipe[] | null;
   @Input() category: string;
 
   @Output() onRecipeSelect = new EventEmitter<Recipe>();

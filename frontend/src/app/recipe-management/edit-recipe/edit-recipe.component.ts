@@ -21,7 +21,7 @@ export class EditRecipeComponent {
   newInstructionStep: InstructionStep;
   categoriesAsCommaSeparatedString = '';
 
-  @Input() recipe: Recipe;
+  recipe?: Recipe;
 
   @Output() onRecipeEdit = new EventEmitter<Recipe>();
   @Output() onRecipeSuccessfullyEdited = new EventEmitter<void>();
@@ -31,17 +31,17 @@ export class EditRecipeComponent {
   @ViewChild('recipeForm', {static: false}) recipeForm: NgForm;
 
   @Input('recipe')
-  set setRecipe(recipe: Recipe) {
+  set setRecipe(recipe: Recipe | null) {
     if (recipe != null) {
       this.recipe = recipe;
-      this.categoriesAsCommaSeparatedString = this.recipe.categories.join(', ');
-      let highestExistingSequenceNumber = Math.max(0, ...this.recipe.instructionSteps.map(step => step.sequenceNumber));
+      this.categoriesAsCommaSeparatedString = this.recipe?.categories.join(', ');
+      let highestExistingSequenceNumber = Math.max(0, ...this.recipe?.instructionSteps.map(step => step.sequenceNumber));
       this.newInstructionStep = new InstructionStep(++highestExistingSequenceNumber, "")
     }
   }
 
   @Input('editRecipeResult')
-  set setCreateRecipeResult(editRecipeResult: EditRecipeResult) {
+  set setCreateRecipeResult(editRecipeResult: EditRecipeResult | null) {
     this.handleEditRecipeResult(editRecipeResult)
   }
 
@@ -50,24 +50,24 @@ export class EditRecipeComponent {
   }
 
   addIngredient(): void {
-    this.recipe.ingredients.push(this.newIngredient);
+    this.recipe?.ingredients.push(this.newIngredient);
     this.initializeIngredientForm();
   }
 
   removeIngredient(ingredientToRemove: Ingredient): void {
-    const index = this.recipe.ingredients.indexOf(ingredientToRemove);
-    if (index > -1) {
-      this.recipe.ingredients.splice(index, 1);
+    const index = this.recipe?.ingredients.indexOf(ingredientToRemove);
+    if (index && index > -1) {
+      this.recipe?.ingredients.splice(index, 1);
     }
   }
 
   addInstructionStep() {
-    this.recipe.instructionSteps.push(this.newInstructionStep);
+    this.recipe?.instructionSteps.push(this.newInstructionStep);
     this.initializeInstructionStepForm();
   }
 
-  removeInstructionStep(instructionStepToRemove: InstructionStep) {
-    let instructionStepsWithoutRemovedStepOrderedBySequenceNumber = this.recipe.instructionSteps
+  removeInstructionStep(instructionStepToRemove: InstructionStep | null) {
+    const instructionStepsWithoutRemovedStepOrderedBySequenceNumber = this.recipe!.instructionSteps
       .filter(step => step !== instructionStepToRemove)
       .sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
 
@@ -77,36 +77,36 @@ export class EditRecipeComponent {
       newInstructionSteps.push(new InstructionStep(newSequenceNumber, instructionStep.stepInstruction));
       newSequenceNumber++;
     }
-    this.recipe.instructionSteps = newInstructionSteps;
+    this.recipe!.instructionSteps = newInstructionSteps;
   }
 
   onSubmit() {
-    this.recipe.categories = this.categoriesAsCommaSeparatedString.split(',')
+    this.recipe!.categories = this.categoriesAsCommaSeparatedString.split(',')
       .map(s => s.trim())
       .filter((s: string) => s.length > 0);
 
-    if (!this.recipe.images || this.recipe.images.length === 0) {
-      this.recipe.images = []
+    if (!this.recipe?.images || this.recipe?.images.length === 0) {
+      this.recipe!.images = []
     }
-    this.onRecipeEdit.emit(this.recipe);
+    this.onRecipeEdit.emit(this.recipe!);
   }
 
   addImage(image: UploadedImage) {
-    if (!this.recipe.images || this.recipe.images.length === 0) {
-      this.recipe.images = [];
+    if (!this.recipe?.images || this.recipe?.images.length === 0) {
+      this.recipe!.images = [];
     }
-    this.recipe.images.push(new RecipeImage(image.file.name, image.content));
+    this.recipe?.images.push(new RecipeImage(image.file.name, image.content));
   }
 
   deleteImage(imageToDelete: RecipeImage) {
-    this.recipe.images = this.recipe.images.filter(image => image !== imageToDelete)
+    this.recipe!.images = this.recipe!.images.filter(image => image !== imageToDelete)
   }
 
   getInstructionStepsOrderedBySequence() {
-    return this.recipe.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
+    return this.recipe?.instructionSteps.sort((step1, step2) => step1.sequenceNumber - step2.sequenceNumber);
   }
 
-  private handleEditRecipeResult(editRecipeResult: EditRecipeResult) {
+  private handleEditRecipeResult(editRecipeResult: EditRecipeResult | null) {
     if (editRecipeResult) {
       switch (editRecipeResult.state) {
         case ResponseResultState.SUCCESS:
@@ -117,7 +117,7 @@ export class EditRecipeComponent {
           // TODO: find a proper solution (instead of set timeout) Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Recipe.SuccessfullyUpdated').subscribe(text => {
-              this.snackBar.open(text, null, {
+              this.snackBar.open(text, undefined, {
                 duration: 4000,
               });
             });
@@ -128,7 +128,7 @@ export class EditRecipeComponent {
           // TODO: find a proper solution (instead of set timeout). Problem: https://github.com/angular/angular/issues/10762
           setTimeout(() => {
             this.translate.get('Common.Error').subscribe(text => {
-              this.snackBar.open(text, null, {
+              this.snackBar.open(text, undefined, {
                 duration: 4000,
               });
             });
@@ -139,7 +139,10 @@ export class EditRecipeComponent {
   }
 
   private initializeInstructionStepForm() {
-    let highestExistingSequenceNumber = Math.max(...this.recipe.instructionSteps.map(step => step.sequenceNumber));
+    let highestExistingSequenceNumber = 0;
+    if (this.recipe) {
+      highestExistingSequenceNumber = Math.max(...this.recipe.instructionSteps.map(step => step.sequenceNumber));
+    }
     this.newInstructionStep = new InstructionStep(++highestExistingSequenceNumber, this.newInstructionStep.stepInstruction);
     this.instructionStepForm.resetForm();
   }
