@@ -18,7 +18,8 @@ public class CreateRecipeUseCase {
     private final RecipeRepository recipeRepository;
 
     @Transactional
-    public RecipeDto invoke(RecipeDto recipeDto, List<RecipeImageDto> recipeImageData,
+    public RecipeDto invoke(RecipeDto recipeDto,
+                            List<RecipeImageDto> recipeImageData,
                             UserDbEntity user) {
         RecipeDbEntity recipe = recipeDto.toRecipeWithImages(recipeImageData);
 

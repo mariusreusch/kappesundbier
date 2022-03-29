@@ -2,6 +2,7 @@ package ch.pama.kappesundbier.interfaces;
 
 import ch.pama.kappesundbier.application.*;
 import ch.pama.kappesundbier.domain.RecipeIdentifier;
+import ch.pama.kappesundbier.infrastructure.db.RecipeDbEntity;
 import ch.pama.kappesundbier.infrastructure.db.UserDbEntity;
 import ch.pama.kappesundbier.infrastructure.db.UserRepository;
 import ch.pama.kappesundbier.interfaces.dto.RecipeDto;
@@ -16,10 +17,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
 import java.security.Principal;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.*;
 
 import static java.util.Collections.emptyList;
 import static org.apache.tomcat.util.http.fileupload.FileUploadBase.MULTIPART_FORM_DATA;
@@ -30,7 +28,6 @@ import static org.springframework.http.HttpStatus.OK;
 @RequiredArgsConstructor
 public class RecipeRestController {
 
-    private final RecipeService recipeService;
     private final UserRepository userRepository;
     private final ObjectMapper objectMapper;
     private final DeleteRecipeUseCase deleteRecipeUseCase;
@@ -42,7 +39,8 @@ public class RecipeRestController {
     @PostMapping
     public RecipeDto create(
             @RequestParam("recipe") String recipeJSON,
-            @RequestParam("file") Optional<MultipartFile[]> multipartFiles, Principal principal)
+            @RequestParam("file") Optional<MultipartFile[]> multipartFiles,
+            Principal principal)
             throws IOException {
         UserDbEntity user = getOrCreateUser(principal);
 
@@ -71,7 +69,7 @@ public class RecipeRestController {
     public ResponseEntity<List<RecipeImageDto>> findImagesByRecipeId(@PathVariable Long id,
                                                                      Principal principal) {
         UserDbEntity user = getOrCreateUser(principal);
-        List<RecipeImageDto> imagesOfRecipe = recipeService.findImagesOfRecipe(id, user);
+        List<RecipeImageDto> imagesOfRecipe = findImagesOfRecipe(id, user);
 
         HttpHeaders headers = new HttpHeaders();
 
@@ -107,7 +105,19 @@ public class RecipeRestController {
 
     private List<RecipeDto> findAll(Principal principal) {
         UserDbEntity user = getOrCreateUser(principal);
-        return recipeService.findAllRecipesOfUser(user);
+        return user.getRecipes()
+                .stream()
+                .map(RecipeDto::from)
+                .toList();
+    }
+
+    private List<RecipeImageDto> findImagesOfRecipe(Long id, UserDbEntity user) {
+        return user.getRecipes().stream()
+                .filter(recipe -> Objects.equals(recipe.getId(), id))
+                .map(RecipeDbEntity::getRecipeImages)
+                .flatMap(Collection::stream)
+                .map(image -> new RecipeImageDto(image.getFileName(), image.getData(), image.getContentType()))
+                .toList();
     }
 
     private UserDbEntity getOrCreateUser(Principal principal) {

@@ -51,5 +51,4 @@ public class UpdateRecipeUseCase {
             throw new IllegalArgumentException("Logged in user is not owner of edited recipe.");
         }
     }
-
 }
