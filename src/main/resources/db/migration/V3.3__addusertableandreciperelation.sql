@@ -7,5 +7,5 @@ create table kub_user
 create table kub_user_recipes
 (
 	user_id bigint not null references kub_user,
-	recipes_id bigint not null references recipe unique
+	recipes_id bigint not null references recipe
 ) ;

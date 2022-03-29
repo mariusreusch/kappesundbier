@@ -30,8 +30,10 @@ dependencies {
     implementation("org.springframework.boot:spring-boot-configuration-processor")
     implementation("org.postgresql:postgresql")
     implementation("org.flywaydb:flyway-core")
+    implementation("com.h2database:h2")
     implementation("org.springframework.security.oauth.boot:spring-security-oauth2-autoconfigure:2.1.7.RELEASE")
     implementation("org.springframework.security.oauth:spring-security-oauth2:2.3.6.RELEASE")
+
     implementation("com.github.ulisesbocchio:jasypt-spring-boot-starter:3.0.4")
 
     compileOnly 'org.projectlombok:lombok'
