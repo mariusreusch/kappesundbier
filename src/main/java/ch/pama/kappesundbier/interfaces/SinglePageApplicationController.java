@@ -8,7 +8,6 @@ public class SinglePageApplicationController {
 
     @RequestMapping({
             "/login",
-            "/week-planner",
             "/recipe-overview",
             "/create-recipe",
             "/view-recipe/*",

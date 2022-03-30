@@ -1,5 +1,5 @@
 def clientRoot = file("${project.rootDir}/frontend")
-def clientDist = file("${clientRoot.getAbsolutePath()}/dist")
+def clientDist = file("${clientRoot.getAbsolutePath()}/dist/kappesundbier")
 
 node {
     version = '16.14.1'
